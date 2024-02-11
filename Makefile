@@ -7,7 +7,7 @@
 ############################################################################
 
 
-FILENAME = Modelo-TCC-DCOMP
+FILENAME = TCC
 #FILENAME = Modelo-Mestrado-PROCC
 
 
@@ -20,12 +20,11 @@ ps: $(FILENAME).ps
 pimg.ps: $(FILENAME).dvi
 	dvips -o $(FILENAME).ps $(FILENAME).dvi
 
-$(FILENAME).pdf: *.tex
+$(FILENAME).pdf: $(FILENAME).tex
 	pdflatex $(FILENAME).tex
 	bibtex $(FILENAME)
 	pdflatex $(FILENAME).tex
 	pdflatex $(FILENAME).tex
-	evince $(FILENAME).pdf
 
 $(FILENAME).dvi: clean $(FILENAME).tex
 	echo "Running latex..."
@@ -42,5 +41,8 @@ $(FILENAME).dvi: clean $(FILENAME).tex
 	      latex_count=`expr $$latex_count - 1` ;\
 	    done
 
+web: $(FILENAME).pdf
+	mv TCC.pdf web
+
 clean:
-	rm -f *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.brf *.blg *.bbl *.bbl *.loa *.loc *.loq *.lot *.lof # $(FILENAME).pdf
+	rm -f *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.brf *.blg *.bbl *.bbl *.loa *.loc *.loq *.lot *.lof *.fdb_latexmk *.fls *.synctex.gz # $(FILENAME).pdf
