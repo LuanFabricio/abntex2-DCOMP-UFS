@@ -43,4 +43,4 @@ $(FILENAME).dvi: clean $(FILENAME).tex
 	    done
 
 clean:
-	rm -f *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.brf *.blg *.bbl $(FILENAME).pdf
+	rm -f *.ps *.dvi *.aux *.toc *.idx *.ind *.ilg *.log *.out *.brf *.blg *.bbl *.bbl *.loa *.loc *.loq *.lot *.lof # $(FILENAME).pdf
