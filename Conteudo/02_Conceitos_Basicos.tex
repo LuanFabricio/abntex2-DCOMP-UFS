@@ -1,17 +1,29 @@
-\chapter{Conceitos básicos}\label{cap_exemplos}
+\chapter{Conceitos básicos}\label{cap_conceitos}
 
 \chapterprecis{Isto é uma sinopse de capítulo. A ABNT não traz nenhuma
 normatização a respeito desse tipo de resumo, que é mais comum em romances
 e livros técnicos.}\index{sinopse de capítulo}
 
 % ---
-\section{Redes Neurais Convolucionais(CNNs)}
+\section{Redes Neurais Convolucionais}\label{cap_conceitos_cnn}
 % ---
+% Redes Neurais Convolucionais(CNNs), é um tipo de Rede Neural Artifical (ANN)
+% que é especializada em dados no formato de \textit{grid}, como um array 1-D ou 2-D.
+% \citeonline{Goodfellow-et-al-2016}
 
-% TODO: escrever sobre CNN
-A codificação de todos os arquivos do \abnTeX\ é \texttt{UTF8}. É necessário que
-você utilize a mesma codificação nos documentos que escrever, inclusive nos
-arquivos de base bibliográficas |.bib|.
+Redes Neurais Convolucionais (CNNs) são Redes Neurais Artificais (ANN)
+que utilizam a operação de convolução para o processamento e análise de dados no formato de \textit{grid}.
+Por exemplo, uma série temporal que pode ser representada no formato de \textit{grid} 1-D,
+ou uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
+
+A arquitetura de uma CNN é composta por camadas convolucionais \ref{cap_conceitos_cnn_conv}, de \textit{pooling} e totalmente conectadas.
+
+\subsection{Camada de Convolução}\label{cap_conceitos_cnn_conv}
+Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada, esses fi
+com o objetivo de gerar um mapa de características (\textit{feature map}).
+
+O objetivo desses filtros é realçar as características dos dados de entrada no \textit{feature map}.
+
 
 \section{Transferência de conhecimento}
  TODO: escrever sobre transferência de conhecimento
@@ -439,11 +451,11 @@ comandos, que devem ser digitados no \emph{Prompt de Comandos} do Windows ou no
 
 Ao nomear a \autoref{tab-nivinv} e a \autoref{fig_circulo}, apresentamos um
 exemplo de remissão interna, que também pode ser feita quando indicamos o
-\autoref{cap_exemplos}, que tem o nome \emph{\nameref{cap_exemplos}}. O número
-do capítulo indicado é \ref{cap_exemplos}, que se inicia à
-\autopageref{cap_exemplos}\footnote{O número da página de uma remissão pode ser
+\autoref{cap_conceitos}, que tem o nome \emph{\nameref{cap_conceitos}}. O número
+do capítulo indicado é \ref{cap_conceitos}, que se inicia à
+\autopageref{cap_conceitos}\footnote{O número da página de uma remissão pode ser
 obtida também assim:
-\pageref{cap_exemplos}.}.
+\pageref{cap_conceitos}.}.
 Veja a \autoref{sec-divisoes} para outros exemplos de remissões internas entre
 seções, subseções e subsubseções.
 
@@ -452,11 +464,11 @@ O código usado para produzir o texto desta seção é:
 \begin{verbatim}
 Ao nomear a \autoref{tab-nivinv} e a \autoref{fig_circulo}, apresentamos um
 exemplo de remissão interna, que também pode ser feita quando indicamos o
-\autoref{cap_exemplos}, que tem o nome \emph{\nameref{cap_exemplos}}. O número
-do capítulo indicado é \ref{cap_exemplos}, que se inicia à
-\autopageref{cap_exemplos}\footnote{O número da página de uma remissão pode ser
+\autoref{cap_conceitos}, que tem o nome \emph{\nameref{cap_conceitos}}. O número
+do capítulo indicado é \ref{cap_conceitos}, que se inicia à
+\autopageref{cap_conceitos}\footnote{O número da página de uma remissão pode ser
 obtida também assim:
-\pageref{cap_exemplos}.}.
+\pageref{cap_conceitos}.}.
 Veja a \autoref{sec-divisoes} para outros exemplos de remissões internas entre
 seções, subseções e subsubseções.
 \end{verbatim}
