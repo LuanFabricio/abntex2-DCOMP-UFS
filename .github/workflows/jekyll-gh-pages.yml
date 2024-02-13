@@ -33,7 +33,7 @@ jobs:
       - name: Install dependecies
         run: sudo apt-get update && sudo apt-get install texlive texlive-base texlive-latex-base abntex texlive-fonts-recommended texlive-fonts-extra texlive-lang-portuguese texlive-latex-recommended texlive-science texlive-publishers texlive-latex-extra preview-latex-style texlive-pictures texlive-font-utils
       - name: Build pdf
-        run: make web
+        run: make -B web
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
