@@ -6,12 +6,14 @@ e livros técnicos.}\index{sinopse de capítulo}
 
 \section{Redes Neurais Artificiais}\label{cap_conceitos_ann}
 % ---
+
 \section{Redes Neurais Convolucionais}\label{cap_conceitos_cnn}
 % ---
-Redes Neurais Convolucionais (CNNs) são Redes Neurais Artificais (ANN)
+Redes Neurais Convolucionais (CNNs) são Redes Neurais Artificiais (ANN)
 que utilizam a operação de convolução para o processamento e análise de dados no formato de \textit{grid}(grade).
 Por exemplo, uma série temporal que pode ser representada no formato de \textit{grid} 1-D,
 ou uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
+(TODO: Adicionar exemplos)
 
 A arquitetura de uma CNN é composta por camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
 \textit{pooling} (\ref{cap_conceitos_cnn_pooling}) e totalmente conectadas (\ref{cap_conceitos_cnn_totalmente}).
@@ -21,18 +23,24 @@ Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada,
 onde esses filtros deslizam cada célula da imagem executando operações de multiplicação e soma
 em cada elemento da matriz de entrada, com o objetivo de gerar um mapa de características (\textit{feature map}).
 O objetivo desses filtros é realçar as características dos dados de entrada, como curvas, linhas e outros padrões.
+(TODO: Adicionar figuras, referências e detalhar mais)
 
 \subsection{Camada de \textit{pooling}}\label{cap_conceitos_cnn_pooling}
 A abordagem da camada de \textit{pooling} é um pouco parecida com a camada de convolução,
-uma matriz é desliza pelas células da imagem, salvando apenas o maior valor dessa área na matriz de saída.
-Fazendo isso a camada consegue reduzir o tamanho da matriz de entrada, fazendo com que poder computacional seja
-reduzido, junto com o uso de memória.
+uma matriz desliza pelas células da imagem, salvando apenas o maior valor dessa área na matriz de saída.
+A partir disso, a camada consegue reduzir o tamanho da matriz de entrada, fazendo com que o poder computacional
+necessário seja reduzido, junto com o uso de memória.
+(TODO: Adicionar figuras, referências e detalhar mais)
 
 \subsection{Camada totalmente conectada}\label{cap_conceitos_cnn_totalmente}
-A camada totalmente conectada (\textit{fully connected layer}) seria a camada final,
-pois as camadas anteriores (convolução e \textit{pooling}), são responsáveis por extrair as
-características da imagem de entrada. Depois disso, a camada totalmente conectada vai
-transformar esses dados em uma classe final.
+A camada totalmente conectada (\textit{fully connected layer}) é a camada final de uma CNN.
+Depois das camadas anteriores extraírem as características da imagem, a camada totalmente
+conectada as interpreta e gerar uma resposta.
+(TODO: Revisar texto e adicionar figuras)
+
+% onde as camadas anteriores (convolução e \textit{pooling}), são responsáveis por extrair as
+% características da imagem de entrada. Depois disso, a camada totalmente conectada vai
+% transformar esses dados em uma classe final.
 
 \section{Transferência de conhecimento}
  TODO: escrever sobre transferência de conhecimento
