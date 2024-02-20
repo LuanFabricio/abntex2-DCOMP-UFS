@@ -13,6 +13,7 @@ Redes Neurais Convolucionais (CNNs) são Redes Neurais Artificiais (ANN)
 que utilizam a operação de convolução para o processamento e análise de dados no formato de \textit{grid}(grade).
 Por exemplo, uma série temporal que pode ser representada no formato de \textit{grid} 1-D,
 ou uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
+Onde, Residual Network (ResNet) \cite{resnet} e AlexNet \cite{alexnet} são alguns exemplos de CNNs famosas.
 (TODO: Adicionar exemplos)
 
 A arquitetura de uma CNN é composta por camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
@@ -38,16 +39,20 @@ Depois das camadas anteriores extraírem as características da imagem, a camada
 conectada as interpreta e gerar uma resposta.
 (TODO: Revisar texto e adicionar figuras)
 
-% onde as camadas anteriores (convolução e \textit{pooling}), são responsáveis por extrair as
-% características da imagem de entrada. Depois disso, a camada totalmente conectada vai
-% transformar esses dados em uma classe final.
+\section{Poda de redes neurais}
+TODO: escrever sobre poda de redes neurais
 
 \section{Transferência de conhecimento}
+Transferência de conhecimento, consiste em usar um modelo pré-treinado em uma base de dados específica e aproveitar
+esse conhecimento adquirido durante esse treinamento para um novo conjunto de dados, é necessário que o problema do
+\textit{dataset}(conjunto de dados) atual seja um subconjunto do \textit{dataset} que foi usado para treinar o modelo
+base. Depois disso basta adaptar a camada de entrada e de "saída" (totalmente conectada) do modelo base, para que haja
+um pré-processamento dos dados de entrada (antes deles serem passados para o modelo base) e é necessário definir a cama
+da totalmente conectada.
+
  TODO: escrever sobre transferência de conhecimento
 \section{Destilamento de conhecimento}
- TODO: escrever sobre destilamento de conhecimento
-\section{Poda de redes neurais}
- TODO: escrever sobre poda de redes neurais
+TODO: escrever sobre destilamento de conhecimento
 
 % ---
 \section{Citações diretas}
