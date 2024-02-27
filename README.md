@@ -60,3 +60,6 @@ Lista mínima de pacotes a serem instalados em distribuições Ubuntu/Mint linux
   * https://www.overleaf.com/ , https://papeeria.com/ ou https://cocalc.com/doc/latex-editor.html
   * Ambientes online com todos os pacotes latex existentes já prontos para uso, com a opção de compartilhamento de projeto entre várias pessoas
   * Para usar nosso template, basta importar a estrutura de pastas e compilar o texto
+
+# Créditos
+- `Imagens/exemplo_neuronio_artificial.png`: https://repositorio.usp.br/item/003128493
