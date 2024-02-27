@@ -7,8 +7,9 @@ e livros técnicos.}\index{sinopse de capítulo}
 \section{Redes Neurais Artificiais}\label{cap_conceitos_ann}
 % ---
 Redes Neurais Artificiais (ANNs), são neurônios interconectados que realizam um processamento simples. Dentro dessa
-estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônio da coluna anterior, como é demonstrado na
-\autoref{cap_conceitos_ann_exemplo_ann}.
+estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônio da coluna anterior, assim replicando
+o processo de aprendizagem do cérebro humano. A \autoref{cap_conceitos_ann_exemplo_ann} exemplifica uma ANN bem
+simples.
 
 \begin{figure}[htb]
 	\caption {\label{cap_conceitos_ann_exemplo_ann}Exemplo de uma ANN}
@@ -18,13 +19,34 @@ estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônio 
 	\legend {Fonte: Autor}
 \end{figure}
 
+O neurônio é uma parte fundamental de uma ANN, nele que o aprendizado é armazenado através do reforço de conexões com
+outros neurônio. Esse reforço é o peso da conexão, ele é multiplicado pela entrada e somado com os outros valores,
+como é demonstrado na equação \ref{eq_neuronio} (onde $x$ é um vetor com os valores de entrada do neurônio e $w$
+é um vetor com os pesos de cada entrada). Depois disso os valores passam por uma função de ativação $g(x)$ (\ref
+{eq_ativacao}), que é responsável por "tratar" esses dados de saída antes que eles sejam passados para próxima etapa.
+
+\begin{equation}\label{eq_neuronio}
+u = \sum x_i w_i
+\end{equation}
+\begin{equation}\label{eq_ativacao}
+y = g(u + b)
+\end{equation}
+
+\begin{figure}[htb]
+	\caption {\label{cap_conceitos_ex_neuronio} Exemplo de um neurônio artificial}
+	\begin{center}
+		\includegraphics[scale=0.3]{Imagens/exemplo_neuronio_artificial}
+	\end{center}
+	\legend{Fonte: \cite{ml-faceli}}
+\end{figure}
+
 \section{Redes Neurais Convolucionais}\label{cap_conceitos_cnn}
 % ---
 Redes Neurais Convolucionais (CNNs) são Redes Neurais Artificiais (ANN)
 que utilizam a operação de convolução para o processamento e análise de dados no formato de \textit{grid}(grade).
 Por exemplo, uma série temporal que pode ser representada no formato de \textit{grid} 1-D,
 ou uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
-Onde, Residual Network (ResNet) \cite{resnet} e AlexNet \cite{alexnet} são alguns exemplos de CNNs famosas.
+Onde, Residual Network (ResNet) \cite{resnet}, LeNet \cite{lenet} e AlexNet \cite{alexnet} são alguns exemplos de CNNs famosas.
 (TODO: Adicionar exemplos)
 
 A arquitetura de uma CNN é composta por camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
