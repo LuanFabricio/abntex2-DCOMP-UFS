@@ -62,5 +62,5 @@ Lista mínima de pacotes a serem instalados em distribuições Ubuntu/Mint linux
   * Para usar nosso template, basta importar a estrutura de pastas e compilar o texto
 
 # Créditos
-- `Imagens/exemplo_neuronio_artificial.png`: https://repositorio.usp.br/item/003128493
+- `Imagens/exemplo_neuronio_artificial.png`: https://repositorio.usp.br/item/002208293
 - `Imagens/lenet.svg`: https://d2l.ai/chapter_convolutional-neural-networks/lenet.html
