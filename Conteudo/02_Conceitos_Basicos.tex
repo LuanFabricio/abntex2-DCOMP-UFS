@@ -46,11 +46,21 @@ Redes Neurais Convolucionais (CNNs) são Redes Neurais Artificiais (ANN)
 que utilizam a operação de convolução para o processamento e análise de dados no formato de \textit{grid}(grade).
 Por exemplo, uma série temporal que pode ser representada no formato de \textit{grid} 1-D,
 ou uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
-Onde, Residual Network (ResNet) \cite{resnet}, LeNet \cite{lenet} e AlexNet \cite{alexnet} são alguns exemplos de CNNs famosas.
+Onde, LeNet \cite{lenet}, Residual Network (ResNet) \cite{resnet} e AlexNet \cite{alexnet} são alguns exemplos de CNNs
+famosas.
 (TODO: Adicionar exemplos)
 
 A arquitetura de uma CNN é composta por camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
-\textit{pooling} (\ref{cap_conceitos_cnn_pooling}) e totalmente conectadas (\ref{cap_conceitos_cnn_totalmente}).
+\textit{pooling} (\ref{cap_conceitos_cnn_pooling}) e totalmente conectadas (\ref{cap_conceitos_cnn_totalmente}),
+como podemos ver na \autoref{exemplo_lenet}.
+
+\begin{figure}[htb]
+	\caption {\label{exemplo_lenet} Arquitetura da LeNet}
+	\begin{center}
+		\includegraphics[scale=0.5]{Imagens/lenet}
+	\end{center}
+	\legend{Fonte: \cite{zhang2023dive}}
+\end{figure}
 
 \subsection{Camada de Convolução}\label{cap_conceitos_cnn_conv}
 Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada,
