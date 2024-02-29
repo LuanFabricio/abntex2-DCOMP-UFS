@@ -63,3 +63,4 @@ Lista mínima de pacotes a serem instalados em distribuições Ubuntu/Mint linux
 
 # Créditos
 - `Imagens/exemplo_neuronio_artificial.png`: https://repositorio.usp.br/item/003128493
+- `Imagens/lenet.svg`: https://d2l.ai/chapter_convolutional-neural-networks/lenet.html
