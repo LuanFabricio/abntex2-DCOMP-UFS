@@ -1,0 +1,94 @@
+\chapter{Resultados preliminares}
+
+Neste capítulo serão apresentados testes feitos antes do projeto, eles tiveram a finalidade de exercitar o
+conteúdo estudado durante o trabalho. O objetivo principal é usar as técnicas de compressão de modelos para
+criar modelos menores e mais eficientes.
+
+% TODO: Revisar
+
+% Destilamento de conhecimento
+\section{Destilamento de conhecimento (modelo Professor-Aluno)}
+Para fazer o experimento com destilamento de conhecimento foi utilizada da base STL-10, que possui 500 imagens para
+treinamento e 800 para teste, com resolução de $96 \times 96$ e 3 canais de cor (RGB). Como o conjunto de dados
+não possui muitas imagens, foi aplicada a técnica de \textit{data augmentation} (aumento de dados) para reduzir o
+\textit{overfitting}.
+
+Como já foi descrito na \autoref{conceitos_destilamento}, o objetivo dessa etapa é utilizar o conhecimento do modelo
+Professor(mais robusto e pré-treinado) para treinar o modelo Aluno (mais simples e sem pré-treinamento).
+Onde o modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
+\autoref{res_aluno_1}.
+
+\begin{codigo}[!htb]
+    \caption{Criação do modelo Professor}
+    \label{res_professor}
+    \begin{lstlisting}[language = python]
+	preprocess_input = tf.keras.applications.resnet50.preprocess_input
+	base_model = tf.keras.applications.resnet.ResNet50(input_shape=IMG_SHAPE,
+					   include_top=False,
+					   pooling='avg',
+					   weights='imagenet')
+	base_model.trainable = False
+	input = tf.keras.Input(shape=(96, 96, 3))
+	x = input
+	x = preprocess_input(x)
+	x = base_model(x, training=False)
+	x = tf.keras.layers.Dropout(0.2)(x)
+	output = tf.keras.layers.Dense(n)(x)
+	teacher = tf.keras.Model(input, output)
+    \end{lstlisting}
+    \legend{Fonte: Autor}
+\end{codigo}
+
+\begin{codigo}[!htb]
+    \caption{Criação do modelo Aluno}
+    \label{res_aluno_1}
+    \begin{lstlisting}[language = python]
+	def create_student_model():
+		i = tf.keras.layers.Input(shape=IMG_SHAPE)
+		x = add_cnorm_layer(32, i)
+		x = add_cnorm_layer(64, x)
+		x = add_cnorm_layer(128, x)
+		x = tf.keras.layers.Flatten()(x)
+		x = tf.keras.layers.Dropout(0.2)(x)
+		x = tf.keras.layers.Dense(1024, activation='relu')(x)
+		x = tf.keras.layers.Dropout(0.2)(x)
+		x = tf.keras.layers.Dense(n)(x)
+		return tf.keras.Model(i, x)
+
+	def add_cnorm_layer(size, x):
+		x = tf.keras.layers.Conv2D(size, (3, 3), padding='same', activation='relu')(x)
+		x = tf.keras.layers.BatchNormalization()(x)
+		x = tf.keras.layers.Conv2D(size, (3, 3), padding='same', activation='relu')(x)
+		x = tf.keras.layers.BatchNormalization()(x)
+		x = tf.keras.layers.MaxPooling2D((2, 2))(x)
+		return x
+    \end{lstlisting}
+    \legend{Fonte: Autor}
+\end{codigo}
+
+Para aumentar a precisão do modelo Aluno com o destilamento de conhecimento, foi utilizada a otimização
+\textit{bayesiana}, para procurar os valores dos hiperparâmetros $\alpha$ e \textit{Temperature}.
+Os possíveis valores de $\alpha$ foram 0.1, 0.5, 0.01 e 0.25.
+E os possíveis valores de \textit{Temperature} foram 2, 5, 7, 10, 12, 15, 17 e 20.
+
+\begin{center}
+\begin{table}[htb]
+\ABNTEXfontereduzida
+\caption[Acurácia dos modelos]{Acurácia dos modelos.}
+\label{tab-nivinv}
+\begin{tabular}{ |c|c|c|c|c| }
+	\hline
+	\textbf{Modelo} & \textbf{Com destilamento de conhecimento?}  & \textbf{Acurácia (validação)}
+		   & \textbf{$\alpha$} & \textbf{\textit{Temperatura}} \\
+	\hline
+	ResNet-50 	& 	Não 	& 	90.65\%	& 	- 	& 	-	 \\
+	Aluno-1 	& 	Não 	& 	76.80\%	& 	- 	& 	-	 \\
+	Aluno-1 	& 	Sim 	& 	83.79\%	& 	0.1 	& 	5	 \\
+	\hline
+\end{tabular}
+\legend{Fonte: Autor}
+\end{table}
+\end{center}
+
+%TODO: Escrever sobre pruning
+%TODO: Escrever sobre quantização
