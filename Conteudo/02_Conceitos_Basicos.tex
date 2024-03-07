@@ -120,21 +120,31 @@ redundantes ou irrelevantes para o problema, além disso reduz o \textit{overfit
 Quantização reduz a computação diminuindo a precisão dos tipos de dados. Pesos, \textit{bias} (vieses) e ativações
 geralmente devem ser quantizadas para inteiros de 8 bit, embora implementações menores que 8 bit sejam discutidas
 incluindo redes neurais binárias. \cite{LIANG2021370}
+
+
 % (TODO: Escrever sobre quantização)
 
 \subsection{Destilamento de conhecimento (Professor-Aluno)}\label{conceitos_destilamento}
 
 Destilamento de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica que tem
 como objetivo treinar um modelo Aluno (menor e sem pré-treinamento) com um modelo Professor
-(maior e com pré-treinamento).
+(maior e com pré-treinamento). Ela é amplamente utilizada para as áreas de visão computacional e linguagem natural,
+e tem como objetivo reduzir o tamanho do modelo final (Aluno).
 
+Para transferir o conhecimento do modelo Professor para o Aluno, a técnica utiliza os \textit{logits} (entrada da
+função de ativação final \textit{softmax}) no lugar da classe prevista. Além disso, são utilizado os
+\textit{soft targets} (probabilidades das classes previstas pelo modelo Professor) junto com os
+\textit{hard targets} (classe esperada). Então, o Aluno é treinado com uma porcentagem $\alpha$ do erro com o
+\textit{hard target} e $\alpha - 1$ do erro com \textit{soft target}, assim é calculado o erro do aluno.
 
-Destilamento de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica de
-treinamento que utiliza dois modelos, Professor que é um modelo mais robusto e pré-treinado para o problema, e
-o modelo Aluno que é o modelo que (geralmente) é mais leve que o professor e não possui nenhum pré-treinamento.
-Para destilar o conhecimento do professor para o estudante, utilizamos os \textit{logits}, que são os valores de
-entrada da camada \textit{softmax}, então os \textit{logits} do \emph{professor} são comparados com os do
-\emph{estudante}.
+% NOTE: Talvez detalhar a temperatura?
+
+% Destilamento de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica de
+% treinamento que utiliza dois modelos, Professor que é um modelo mais robusto e pré-treinado para o problema, e
+% o modelo Aluno que é o modelo que (geralmente) é mais leve que o professor e não possui nenhum pré-treinamento.
+% Para destilar o conhecimento do professor para o estudante, utilizamos os \textit{logits}, que são os valores de
+% entrada da camada \textit{softmax}, então os \textit{logits} do \emph{professor} são comparados com os do
+% \emph{estudante}.
 % TODO: escrever sobre destilamento de conhecimento
 
 \section{Otimização Bayesiana}
