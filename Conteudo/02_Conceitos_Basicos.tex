@@ -14,7 +14,7 @@ simples.
 \begin{figure}[htb]
 	\caption {\label{cap_conceitos_ann_exemplo_ann}Exemplo de uma ANN}
 	\begin{center}
-		\includegraphics[scale=0.25]{Imagens/exemplo-ann.pdf}
+		\includegraphics[scale=0.5]{Imagens/exemplo_nn}
 	\end{center}
 	\legend {Fonte: Autor}
 \end{figure}
@@ -83,6 +83,17 @@ Depois das camadas anteriores extraírem as características da imagem, a camada
 conectada as interpreta e gerar uma resposta.
 (TODO: Revisar texto)
 
+\section{Transferência de conhecimento}\label{conceitos_transferencia}
+Transferência de conhecimento consiste em usar um modelo pré-treinado em uma base de dados específica e aproveitar
+o conhecimento adquirido durante esse treinamento para um novo conjunto de dados.
+É necessário que o problema do \textit{dataset} (conjunto de dados) atual seja um subconjunto do \textit{dataset}
+que foi usado para treinar o modelo base.
+
+Para realizar a transferência de conhecimento é necessário adaptar a camada de entrada e de saída
+(totalmente conectada) do modelo base, para que ocorra um pré-processamento dos dados de entrada
+(antes deles serem passados para o modelo base), além disso é necessário definir e treinar a camada totalmente
+conectada com o \textit{dataset} do problema.
+
 \section{Métodos de compressão para Redes Neurais}
 ANNs são utilizadas em várias aplicações, demonstrando habilidades extraordinárias no campo de visão computacional.
 No entanto, redes com arquiteturas complexas são um desafio para a implantação em tempo real e necessitam de uma
@@ -101,26 +112,33 @@ redundantes ou irrelevantes para o problema, além disso reduz o \textit{overfit
 % redundantes ou irrelevantes para o problema, além disso reduz o \textit{overfitting}(superajuste).
 
 \subsection{Quantização}\label{quantizacao}
-(TODO: Escrever sobre quantização)
 
-\subsection{Destilamento de conhecimento}\label{conceitos_destilamento}
+% Quantization reduces computations by reducing the precision of the datatype. Weights, biases, and activations
+% may be quantized typically to 8-bit integers although lower bit width implementations are also discussed including
+% binary neural networks. Both pruning and quantization can be used independently or combined.
+
+Quantização reduz a computação diminuindo a precisão dos tipos de dados. Pesos, \textit{bias} (vieses) e ativações
+geralmente devem ser quantizadas para inteiros de 8 bit, embora implementações menores que 8 bit sejam discutidas
+incluindo redes neurais binárias. \cite{LIANG2021370}
+% (TODO: Escrever sobre quantização)
+
+\subsection{Destilamento de conhecimento (Professor-Aluno)}\label{conceitos_destilamento}
+
+Destilamento de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica que tem
+como objetivo treinar um modelo Aluno (menor e sem pré-treinamento) com um modelo Professor
+(maior e com pré-treinamento).
+
+
 Destilamento de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica de
-treinamento que utiliza modelos, \emph{professor} que é um modelo mais robusto e pré-treinado para o problema, e o
-modelo \emph{aluno} que é o modelo que (geralmente) é mais leve que o professor e não possui nenhum pré-treinamento.
+treinamento que utiliza dois modelos, Professor que é um modelo mais robusto e pré-treinado para o problema, e
+o modelo Aluno que é o modelo que (geralmente) é mais leve que o professor e não possui nenhum pré-treinamento.
 Para destilar o conhecimento do professor para o estudante, utilizamos os \textit{logits}, que são os valores de
 entrada da camada \textit{softmax}, então os \textit{logits} do \emph{professor} são comparados com os do
 \emph{estudante}.
-TODO: escrever sobre destilamento de conhecimento
+% TODO: escrever sobre destilamento de conhecimento
 
-\section{Transferência de conhecimento}
-Transferência de conhecimento, consiste em usar um modelo pré-treinado em uma base de dados específica e aproveitar
-esse conhecimento adquirido durante esse treinamento para um novo conjunto de dados, é necessário que o problema do
-\textit{dataset}(conjunto de dados) atual seja um subconjunto do \textit{dataset} que foi usado para treinar o modelo
-base. Depois disso basta adaptar a camada de entrada e de "saída" (totalmente conectada) do modelo base, para que haja
-um pré-processamento dos dados de entrada (antes deles serem passados para o modelo base) e é necessário definir a cama
-da totalmente conectada.
-
- TODO: escrever sobre transferência de conhecimento
+\section{Otimização Bayesiana}
+% TODO: Escrever sobre otimização Bayesiana.
 
 % ---
 \section{Citações diretas}
