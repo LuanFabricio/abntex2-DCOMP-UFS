@@ -18,54 +18,6 @@ Professor(mais robusto e pré-treinado) para treinar o modelo Aluno (mais simple
 Onde o modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
 \autoref{res_aluno_1}.
 
-\begin{codigo}[!htb]
-    \caption{Criação do modelo Professor}
-    \label{res_professor}
-    \begin{lstlisting}[language = python]
-	preprocess_input = tf.keras.applications.resnet50.preprocess_input
-	base_model = tf.keras.applications.resnet.ResNet50(input_shape=IMG_SHAPE,
-					   include_top=False,
-					   pooling='avg',
-					   weights='imagenet')
-	base_model.trainable = False
-	input = tf.keras.Input(shape=(96, 96, 3))
-	x = input
-	x = preprocess_input(x)
-	x = base_model(x, training=False)
-	x = tf.keras.layers.Dropout(0.2)(x)
-	output = tf.keras.layers.Dense(n)(x)
-	teacher = tf.keras.Model(input, output)
-    \end{lstlisting}
-    \legend{Fonte: Autor}
-\end{codigo}
-
-\begin{codigo}[!htb]
-    \caption{Criação do modelo Aluno}
-    \label{res_aluno_1}
-    \begin{lstlisting}[language = python]
-	def create_student_model():
-		i = tf.keras.layers.Input(shape=IMG_SHAPE)
-		x = add_cnorm_layer(32, i)
-		x = add_cnorm_layer(64, x)
-		x = add_cnorm_layer(128, x)
-		x = tf.keras.layers.Flatten()(x)
-		x = tf.keras.layers.Dropout(0.2)(x)
-		x = tf.keras.layers.Dense(1024, activation='relu')(x)
-		x = tf.keras.layers.Dropout(0.2)(x)
-		x = tf.keras.layers.Dense(n)(x)
-		return tf.keras.Model(i, x)
-
-	def add_cnorm_layer(size, x):
-		x = tf.keras.layers.Conv2D(size, (3, 3), padding='same', activation='relu')(x)
-		x = tf.keras.layers.BatchNormalization()(x)
-		x = tf.keras.layers.Conv2D(size, (3, 3), padding='same', activation='relu')(x)
-		x = tf.keras.layers.BatchNormalization()(x)
-		x = tf.keras.layers.MaxPooling2D((2, 2))(x)
-		return x
-    \end{lstlisting}
-    \legend{Fonte: Autor}
-\end{codigo}
-
 Para aumentar a precisão do modelo Aluno com o destilamento de conhecimento, foi utilizada a otimização
 Bayesiana, para procurar os valores dos hiperparâmetros $\alpha$ e \textit{Temperature}.
 Os possíveis valores de $\alpha$ foram 0.1, 0.5, 0.01 e 0.25.
