@@ -17,6 +17,7 @@ Como já foi descrito na \autoref{conceitos_destilamento}, o objetivo dessa etap
 Professor(mais robusto e pré-treinado) para treinar o modelo Aluno (mais simples e sem pré-treinamento).
 Onde o modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
 \autoref{res_aluno_1}.
+Além disso o modelo Rafael \cite{rafael} foi adaptado e utilizado (com algumas variações).
 
 Para aumentar a precisão do modelo Aluno com o destilamento de conhecimento, foi utilizada a otimização
 Bayesiana, para procurar os valores dos hiperparâmetros $\alpha$ e \textit{Temperature}.
@@ -32,16 +33,27 @@ Os resultados do experimento estão na \autoref{tabela_acuracia_1}.
 \begin{tabular}{ |c|c|c|c|c| }
 	\hline
 	\textbf{Modelo} & \textbf{Com destilamento de conhecimento?}  & \textbf{Acurácia (validação)}
-		   & \textbf{$\alpha$} & \textbf{\textit{Temperatura}} \\
+		   & \textbf{$\alpha$} & \textbf{\textit{Temperature}} \\
 	\hline
 	ResNet-50 	& 	Não 	& 	90.65\%	& 	- 	& 	-	 \\
-	Aluno-1 	& 	Não 	& 	76.80\%	& 	- 	& 	-	 \\
-	Aluno-1 	& 	Sim 	& 	83.79\%	& 	0.1 	& 	5	 \\
+	Aluno 		& 	Não 	& 	76.80\%	& 	- 	& 	-	 \\
+	Rafael-1 	& 	Não 	& 	67.08\%	& 	- 	& 	-	 \\
+	Rafael-base 	& 	Não 	& 	71.38\%	& 	- 	& 	-	 \\
+	Rafael-2 	& 	Não 	& 	74.57\%	& 	- 	& 	-	 \\
+	Rafael-3 	& 	Não 	& 	71.01\%	& 	- 	& 	-	 \\
+	Aluno 		& 	Sim 	& 	83.79\%	& 	0.1 	& 	5	 \\
+	Rafael-base 	& 	Sim 	& 	74.21\%	& 	0.1 	& 	10	 \\
+	Rafael-1 	& 	Sim 	& 	69.70\%	& 	0.01 	& 	20	 \\
+	Rafael-2 	& 	Sim 	& 	79.12\%	& 	0.01 	& 	7	 \\
+	Rafael-3 	& 	Sim 	& 	76.55\%	& 	0.01 	& 	5	 \\
 	\hline
 \end{tabular}
 \legend{Fonte: Autor}
 \end{table}
 \end{center}
+
+Na \autoref{tabela_acuracia_1}, a variação Rafael-1 indica que foi adicionada uma camada $9x9$ no modelo, Rafael-2
+indica que foi adicionada duas camadas $3x3$ e Rafael-3 indica que foi adicionada três camadas $3x3$.
 
 %TODO: Escrever sobre pruning
 %TODO: Escrever sobre quantização
