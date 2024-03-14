@@ -64,15 +64,17 @@ tem resolução igual $32x32$ e possui 3 canais de cores (RGB). Nesse conjunto d
 
 O modelo utilizado no experimento foi gerado pelo \autoref{pruning_quantization_model}, inicialmente ele possui
 2.397.226 parâmetros (pesando 28 MB). Inicialmente ele é treinado durante 25 \textit{epochs} (épocas), atingindo
-uma acurácia de $90,04\%$ nos dados de treinamento e $83,91\%$ nos dados de validação.
+uma acurácia de $90,18\%$ nos dados de treinamento e $85,91\%$ nos dados de validação.
 
 Depois de treinado, o modelo é podado utilizando a estratégia de \textit{prune low magnitude} (podar baixa magnitude),
 que tem como foco zerar valores abaixo de um certo limiar. Depois de definir os parâmetros da poda, o modelo é
 retreinado por 2 \textit{epochs}, para que o algoritmo de poda consiga identificar as conexões importantes durante o
-uso do modelo. Após o retreinamento, o modelo final tem acurácia de $84,18\%$ nos dados de treinamento e $84,81\%$
+uso do modelo. Após o retreinamento, o modelo final tem acurácia de $83,83\%$ nos dados de treinamento e $84,40\%$
 nos dados de validação, pesando 9,3 MB após remover todos os valores iguais a zero.
+
 Depois de podado, modelo foi convertido para TensorFlow Lite, consumindo 9,2 MB de armazenamento e ficando com
-$84,91\%$ de precisão.
+$84,91\%$ de precisão. Depois disso, a quantização é aplicada, deixando o modelo final com 2,4 MB e $84,36\%$ de
+precisão.
 
 % TODO: Fazer etapa de quantização.
 
@@ -86,9 +88,10 @@ $84,91\%$ de precisão.
 	\hline
 	\textbf{Modelo} & \textbf{Acurácia (validação)}  & \textbf{Peso (MB)} \\
 	\hline
-	Modelo base 			& 	83,91\% 	& 	28	\\
-	Modelo base podado 		& 	84,81\% 	& 	9,3	\\
-	Modelo base podado (TFLite) 	& 	84,81\% 	& 	9,2	\\
+	Modelo base 				 & 	85,91\% 	& 	28	\\
+	Modelo base podado 			 & 	84,40\% 	& 	9,3	\\
+	Modelo base podado (TFLite) 		 & 	84,40\% 	& 	9,2	\\
+	Modelo base podado e quantizado (TFLite) & 	84,36\% 	& 	2,4	\\
 	\hline
 \end{tabular}
 \legend{Fonte: Autor}

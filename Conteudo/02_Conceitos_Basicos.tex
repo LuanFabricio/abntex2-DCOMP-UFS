@@ -69,8 +69,8 @@ em cada elemento da matriz de entrada, com o objetivo de gerar um mapa de caract
 O objetivo desses filtros é realçar as características dos dados de entrada, como curvas, linhas e outros padrões.
 % (TODO: Adicionar figuras, referências e detalhar mais)
 
-
 \subsection{Camada de \textit{pooling}}\label{cap_conceitos_cnn_pooling}
+% ---
 A abordagem da camada de \textit{pooling} é um pouco parecida com a camada de convolução,
 uma matriz desliza pelas células da imagem, salvando apenas o maior valor dessa área na matriz de saída.
 A partir disso, a camada consegue reduzir o tamanho da matriz de entrada, fazendo com que o poder computacional
@@ -78,19 +78,24 @@ necessário seja reduzido, junto com o uso de memória.
 (TODO: Adicionar figuras, referências e detalhar mais)
 
 \subsection{Camada totalmente conectada}\label{cap_conceitos_cnn_totalmente}
+% ---
 A camada totalmente conectada (\textit{fully connected layer}) é a camada final de uma CNN.
 Depois das camadas anteriores extraírem as características da imagem, a camada totalmente
 conectada as interpreta e gerar uma resposta.
 (TODO: Revisar texto)
 
 \section{\textit{Data augmentation}}
+% ---
 CNNs tem um ótimo desempenho em tarefas de visão computacional. Entretanto esse tipo de rede neural precisa de uma
 grande quantidade dados para não sofrer de \textit{overfitting} (superajuste). \cite{shorten2019survey}
 Esse é o objetivo do \textit{data augmentation} (aumento de dados), gerar mais dados a partir de um conjunto de dados
 que já existe, aplicando algumas transformações geométricas ou espaciais, ou realizam injeção de ruído nas imagens
 originais.
 
+% TODO: Adicionar exemplo de data augmentation.
+
 \section{Transferência de conhecimento}\label{conceitos_transferencia}
+% ---
 Transferência de conhecimento consiste em usar um modelo pré-treinado em uma base de dados específica e aproveitar
 o conhecimento adquirido durante esse treinamento para um novo conjunto de dados.
 É necessário que o problema do \textit{dataset} (conjunto de dados) atual seja um subconjunto do \textit{dataset}
