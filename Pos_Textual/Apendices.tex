@@ -63,4 +63,41 @@ Código utilizado para criar a o modelo Aluno com TensorFlow 2.0.
 \end{codigo}
 
 
+% ----------------------------------------------------------
+\chapter{Modelo utilizado para fazer poda e quantização}\label{apendice_pruning_quantization}
+% ----------------------------------------------------------
+
+\begin{codigo}[!htb]
+    \caption{Criação do modelo utilizado na etapa de poda e quantização}
+    \label{pruning_quantization_model}
+    \begin{lstlisting}[language = python]
+	    def create_model():
+		    i = Input(shape=x_train[0].shape)
+
+		    x = add_cnorm_layer(32, i)
+		    x = add_cnorm_layer(64, x)
+		    x = add_cnorm_layer(128, x)
+
+		    x = Flatten()(x)
+		    x = Dropout(0.2)(x)
+		    x = Dense(1024, activation='relu')(x)
+		    x = Dropout(0.2)(x)
+		    x = Dense(K, activation='softmax')(x)
+
+		    return Model(i, x)
+
+	    def add_cnorm_layer(size, x):
+		    x = Conv2D(size, (3, 3), padding='same', activation='relu')(x)
+		    x = BatchNormalization()(x)
+
+		    x = Conv2D(size, (3, 3), padding='same', activation='relu')(x)
+		    x = BatchNormalization()(x)
+
+		    x = MaxPooling2D((2, 2))(x)
+
+		    return x
+    \end{lstlisting}
+    \legend{Fonte: Autor}
+\end{codigo}
+
 \end{apendicesenv}
