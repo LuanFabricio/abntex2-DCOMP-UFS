@@ -73,8 +73,8 @@ uso do modelo. Após o retreinamento, o modelo final tem acurácia de $83,83\%$ 
 nos dados de validação, pesando 9,3 MB após remover todos os valores iguais a zero.
 
 Depois de podado, modelo foi convertido para TensorFlow Lite, consumindo 9,2 MB de armazenamento e ficando com
-$84,91\%$ de precisão. Depois disso, a quantização é aplicada, deixando o modelo final com 2,4 MB e $84,36\%$ de
-precisão.
+$84,91\%$ de precisão. Depois disso, a quantização é aplicada utilizando a API do TensorFlow Lite, deixando o modelo
+final com 2,4 MB e $84,36\%$ de precisão.
 
 % TODO: Fazer etapa de quantização.
 
@@ -86,7 +86,7 @@ precisão.
 \label{tabela_acuracia_peso}
 \begin{tabular}{ |c|c|c| }
 	\hline
-	\textbf{Modelo} & \textbf{Acurácia (validação)}  & \textbf{Peso (MB)} \\
+	\textbf{Modelo} & \textbf{Acurácia (validação)}  & \textbf{\textit{Footprint} (MB)} \\
 	\hline
 	Modelo base 				 & 	85,91\% 	& 	28	\\
 	Modelo base podado 			 & 	84,40\% 	& 	9,3	\\
