@@ -1,8 +1,7 @@
 \chapter{Resultados preliminares}
 
-Neste capítulo serão apresentados testes feitos antes do projeto, eles tiveram a finalidade de exercitar o
-conteúdo estudado durante o trabalho. O objetivo principal é usar as técnicas de compressão de modelos para
-criar modelos menores e mais eficientes.
+Neste capítulo serão apresentados testes feitos durante o trabalho, eles tiveram a finalidade de exercitar o
+conteúdo estudado. O objetivo principal é usar as técnicas de compressão para criar modelos menores e mais eficientes.
 
 % TODO: Revisar
 
@@ -75,8 +74,6 @@ nos dados de validação, pesando 9,3 MB após remover todos os valores iguais a
 Depois de podado, modelo foi convertido para TensorFlow Lite, consumindo 9,2 MB de armazenamento e ficando com
 $84,91\%$ de precisão. Depois disso, a quantização é aplicada utilizando a API do TensorFlow Lite, deixando o modelo
 final com 2,4 MB e $84,36\%$ de precisão.
-
-% TODO: Fazer etapa de quantização.
 
 \begin{center}
 \begin{table}[htb]
