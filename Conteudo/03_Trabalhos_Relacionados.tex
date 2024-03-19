@@ -1,10 +1,11 @@
 \chapter{Trabalhos relacionados}\label{cap_trabalhos_relacionados}
 
-\section{\textit{A Resource Constrained Pipeline Approach to Embed Convolutional Neural Models (CNNs)}}
+\section{Trabalhos acadêmicos}
+
+\subsection{\textit{A Resource Constrained Pipeline Approach to Embed Convolutional Neural Models (CNNs)}}
 O objetivo deste trabalho de dissertação \cite{rafael} é elaborar um modelo de detecção de placas de trânsito que seja
 computacionalmente e energeticamente barato. Para atingir esse objetivo, foi elaborada uma pipeline de compressão,
 começando pelo destilamento de conhecimento, e partindo para poda e quantização.
 
-% TODO: Escrever sobre o resultado final
-% Acc: 85,91%, F1-Score: 85,80%
-% Tamanho do modelo: 59KB, Tempo de inferência: 80ms ~ 83ms
+O resultado alcançado foi uma CNN capaz de detecta placas de trânsito, consumindo 59KB de espaço, com $85,91\%$ de
+acurácia e F1-Score igual a $85,80\%$, atingindo um tempo de inferência de 80 ms no ESP32 e 83 ms no ESP32-2.
