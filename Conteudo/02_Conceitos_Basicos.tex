@@ -117,9 +117,20 @@ Nesse trabalho os métodos de poda (\ref{poda}), quantização (\ref{quantizacao
 (\ref{conceitos_destilamento}) serão usados.
 
 \subsection{\textit{Pruning}(Poda)}\label{poda}
+
+% TODO: terminar de reescrever sobre poda
+A poda de redes neurais tem como foco eliminar conexões ou neurônios que não apresentam uma grade contribuição para a
+rede.
+Essa operação, é muito vantajosa para reduzir o peso da rede, pois uma vez que temos
+
+A operação de poda procura pesos com valores abaixo de um determinado limiar e os define igual a zero, assim deixando
+a rede neural mais esparsa, o que facilita o processo de compressão.
+Além disso, o processo de poda reduz o superajuste da rede, uma vez que remove pesos pouco importantes para a rede
+
+
+
 A poda de redes neurais tem como objetivo principal remover pesos ou neurônios que são
 redundantes ou irrelevantes para o problema, além disso reduz o \textit{overfitting}(superajuste).
-(TODO: escrever sobre poda de redes neurais)
 
 % Redes neurais costumam usar muito recurso computacional e otimizar o uso dos recursos é muito importante para
 % aplicações de grande escala. A poda de redes neurais tem como objetivo principal remover pesos ou neurônios que são
