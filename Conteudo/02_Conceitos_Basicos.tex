@@ -118,23 +118,29 @@ Nesse trabalho os métodos de poda (\ref{poda}), quantização (\ref{quantizacao
 
 \subsection{\textit{Pruning}(Poda)}\label{poda}
 
-% TODO: terminar de reescrever sobre poda
 A poda de redes neurais tem como foco eliminar conexões ou neurônios que não apresentam uma grade contribuição para a
 rede.
-Essa operação, é muito vantajosa para reduzir o peso da rede, pois uma vez que temos
+Essa operação, é muito vantajosa para diminuir a pegada de memória da rede, pois ela reduz a quantidade de parâmetros
+redundantes ou que não contribuem muito para a precisão dos resultados.
 
-A operação de poda procura pesos com valores abaixo de um determinado limiar e os define igual a zero, assim deixando
+
+A operação de poda procura pesos com valores abaixo de um determinado limiar e os muda para a zero, assim deixando
 a rede neural mais esparsa, o que facilita o processo de compressão.
-Além disso, o processo de poda reduz o superajuste da rede, uma vez que remove pesos pouco importantes para a rede
+O processo de poda pode reduzir o superajuste da rede, uma vez que remove pesos pouco importantes ou redundantes
+da rede.
+Podemos dividir esse processo em dois, poda estática (\textit{static pruning}), que é realiza todas as etapas de poda
+o modelo sem executar o processo de inferência, e poda dinâmica (\textit{dynamic pruning}), que é realizada junto com
+o processo de execução do modelo, permitindo que os nós relevantes sejam identificados.
 
+\begin{figure}[htb]
+	\caption {\label{cap_conceitos_tipos_poda}Fluxo dos tipos de poda}
+	\begin{center}
+		\includegraphics[scale=0.5]{Imagens/categorias-poda}
+	\end{center}
+	\legend {Fonte: \cite{LIANG2021370}}
+\end{figure}
 
-
-A poda de redes neurais tem como objetivo principal remover pesos ou neurônios que são
-redundantes ou irrelevantes para o problema, além disso reduz o \textit{overfitting}(superajuste).
-
-% Redes neurais costumam usar muito recurso computacional e otimizar o uso dos recursos é muito importante para
-% aplicações de grande escala. A poda de redes neurais tem como objetivo principal remover pesos ou neurônios que são
-% redundantes ou irrelevantes para o problema, além disso reduz o \textit{overfitting}(superajuste).
+% NOTE: Revisar
 
 \subsection{Quantização}\label{quantizacao}
 
@@ -169,7 +175,6 @@ função de ativação final \textit{softmax}) no lugar da classe prevista. Alé
 % Para destilar o conhecimento do professor para o estudante, utilizamos os \textit{logits}, que são os valores de
 % entrada da camada \textit{softmax}, então os \textit{logits} do \emph{professor} são comparados com os do
 % \emph{estudante}.
-% TODO: escrever sobre destilamento de conhecimento
 
 \section{Otimização Bayesiana}
 % ---
