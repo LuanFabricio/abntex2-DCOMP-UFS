@@ -2,7 +2,7 @@
 
 \chapterprecis{
 	O foco deste capítulo é introduzir alguns tópicos relevantes para o trabalho, de forma que o leitor consiga
-	entender o conteúdo do trabalho independente de conhecimento prévio.
+	entender o conteúdo independente de conhecimento prévio.
 	Neste capítulo serão abordados os tópicos relacionados a ANNs (\autoref{cap_conceitos_ann}),
 	CNNs (\autoref{cap_conceitos_cnn}), \textit{Data augmentation} (\autoref{cap_conceitos_data_augmentation}),
 	transferência de conhecimento (\autoref{cap_conceitos_transferencia}), técnicas de compressão para redes neurais
@@ -74,7 +74,7 @@ Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada,
 onde esses filtros deslizam cada célula da imagem executando operações de multiplicação e soma
 em cada elemento da matriz de entrada, com o objetivo de gerar um mapa de características (\textit{feature map}).
 O objetivo desses filtros é realçar as características dos dados de entrada, como curvas, linhas e outros padrões.
-% (TODO: Adicionar figuras, referências e detalhar mais)
+% TODO: Adicionar figuras, referências e detalhar mais
 
 \subsection{Camada de \textit{pooling}}\label{cap_conceitos_cnn_pooling}
 % ---
@@ -86,21 +86,22 @@ necessário seja reduzido, junto com o uso de memória.
 Existem diversos tipos de \textit{pooling}, min, \textit{average} e max, onde cada um foca em extrair um valor dos
 dados de entrada na matriz. O tipo mais comum de \textit{pooling} é o max, que salva apenas o maior valor da área,
 além de reduzir o tamanho da matriz de entrada ele consegue realçar algumas características mais expressivas da matriz.
-(TODO: Adicionar figuras, referências e detalhar mais)
+% TODO: Adicionar figuras, referências e detalhar mais
 
 \subsection{Camada totalmente conectada}\label{cap_conceitos_cnn_totalmente}
 % ---
 A camada totalmente conectada (\textit{fully connected layer}) é a camada final de uma CNN.
 Depois das camadas anteriores extraírem as características da imagem, ela é responsável por
-fazer aprender a interpretar essas características e aprender a retornar uma resposta.
-(TODO: Revisar texto e adicionar exemplo)
+fazer aprender a interpretar essas características e inferir um resultado a partir do seu treinamento.
+Onde essa camada é uma ANN (\autoref{cap_conceitos_ann}) que geralmente é focada em realizar a classificação dos dados
+de entrada.
 
 \section{\textit{Data augmentation}}\label{cap_conceitos_data_augmentation}
 % ---
 CNNs tem um ótimo desempenho em tarefas de visão computacional. Entretanto esse tipo de rede neural precisa de uma
 grande quantidade dados para não sofrer de \textit{overfitting} (superajuste). \cite{shorten2019survey}
 Esse é o objetivo do \textit{data augmentation} (aumento de dados), gerar mais dados a partir de um conjunto de dados
-que já existe, aplicando algumas transformações geométricas ou espaciais, ou realizam injeção de ruído nas imagens
+que já existe, aplicando algumas transformações geométricas ou espaciais, ou realizando injeção de ruído nas imagens
 originais.
 
 % TODO: Adicionar exemplo de data augmentation.
@@ -152,19 +153,11 @@ o processo de execução do modelo, permitindo que os nós relevantes sejam iden
 	\legend {Fonte: \cite{LIANG2021370}}
 \end{figure}
 
-% NOTE: Revisar
-
 \subsection{Quantização}\label{quantizacao}
-
-% Quantization reduces computations by reducing the precision of the datatype. Weights, biases, and activations
-% may be quantized typically to 8-bit integers although lower bit width implementations are also discussed including
-% binary neural networks. Both pruning and quantization can be used independently or combined.
 
 Quantização reduz a computação diminuindo a precisão dos tipos de dados. Pesos, \textit{bias} (vieses) e ativações
 geralmente devem ser quantizadas para inteiros de 8 bit, embora implementações menores que 8 bit sejam discutidas
 incluindo redes neurais binárias. \cite{LIANG2021370}
-
-% (TODO: Escrever sobre quantização)
 
 \subsection{Destilamento de conhecimento (Professor-Aluno)}\label{conceitos_destilamento}
 
@@ -177,16 +170,9 @@ Para transferir o conhecimento do modelo Professor para o Aluno, a técnica util
 função de ativação final \textit{softmax}) no lugar da classe prevista. Além disso, são utilizado os
 \textit{soft targets} (probabilidades das classes previstas pelo modelo Professor) junto com os
 \textit{hard targets} (classe esperada). Então, o Aluno é treinado com uma porcentagem $\alpha$ do erro com o
-\textit{hard target} e $\alpha - 1$ do erro com \textit{soft target}, assim é calculado o erro do aluno.
+\textit{hard target} e $1 - \alpha$ do erro com \textit{soft target}, assim é calculado o erro do aluno.
 
 % NOTE: Talvez detalhar a temperatura?
-
-% Destilamento de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica de
-% treinamento que utiliza dois modelos, Professor que é um modelo mais robusto e pré-treinado para o problema, e
-% o modelo Aluno que é o modelo que (geralmente) é mais leve que o professor e não possui nenhum pré-treinamento.
-% Para destilar o conhecimento do professor para o estudante, utilizamos os \textit{logits}, que são os valores de
-% entrada da camada \textit{softmax}, então os \textit{logits} do \emph{professor} são comparados com os do
-% \emph{estudante}.
 
 \section{Otimização Bayesiana}\label{cap_conceitos_bayesiana}
 % ---
@@ -194,5 +180,10 @@ Testar diferentes valores para os hiperparâmetros é uma tarefa essencial para 
 A otimização Bayesiana é um dos métodos utilizados para fazer esse teste, ela possui dois componentes principais,
 o modelo estatístico Bayesiano, que modelar a função objetiva, e a função de aquisição, que decide a próxima amostra
 de parâmetros. \cite{frazier2018tutorial}
+
+A otimização Bayesiana procura encontrar um valor ótimo (maximizando ou minimizando alguma métrica do modelo).
+Inicialmente os hiperparâmetros são escolhidos aleatoriamente e testados, após algumas iterações o modelo começa
+a convergir para um resultado ótimo, em algum ponto essa função de otimização só irá retornar o melhor conjunto de
+parâmetros testado.
 
 % TODO: Escrever sobre otimização Bayesiana.
