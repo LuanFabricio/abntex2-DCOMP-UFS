@@ -28,7 +28,7 @@ simples.
 \end{figure}
 
 O neurônio é uma parte fundamental de uma ANN, nele que o aprendizado é armazenado através do reforço de conexões com
-outros neurônio. Esse reforço é o peso da conexão, ele é multiplicado pela entrada e somado com os outros valores,
+outros neurônios. Esse reforço é o peso da conexão, ele é multiplicado pela entrada e somado com os outros valores,
 como é demonstrado na equação \ref{eq_neuronio} (onde $x$ é um vetor com os valores de entrada do neurônio e $w$
 é um vetor com os pesos de cada entrada). Depois disso os valores passam por uma função de ativação $g(x)$ (\ref
 {eq_ativacao}), que é responsável por "tratar" esses dados de saída antes que eles sejam passados para próxima etapa.
@@ -79,17 +79,21 @@ O objetivo desses filtros é realçar as características dos dados de entrada, 
 \subsection{Camada de \textit{pooling}}\label{cap_conceitos_cnn_pooling}
 % ---
 A abordagem da camada de \textit{pooling} é um pouco parecida com a camada de convolução,
-uma matriz desliza pelas células da imagem, salvando apenas o maior valor dessa área na matriz de saída.
+uma matriz desliza pelas células da imagem, salvando apenas um dos valores dessa área na matriz de saída.
 A partir disso, a camada consegue reduzir o tamanho da matriz de entrada, fazendo com que o poder computacional
 necessário seja reduzido, junto com o uso de memória.
+
+Existem diversos tipos de \textit{pooling}, min, \textit{average} e max, onde cada um foca em extrair um valor dos
+dados de entrada na matriz. O tipo mais comum de \textit{pooling} é o max, que salva apenas o maior valor da área,
+além de reduzir o tamanho da matriz de entrada ele consegue realçar algumas características mais expressivas da matriz.
 (TODO: Adicionar figuras, referências e detalhar mais)
 
 \subsection{Camada totalmente conectada}\label{cap_conceitos_cnn_totalmente}
 % ---
 A camada totalmente conectada (\textit{fully connected layer}) é a camada final de uma CNN.
-Depois das camadas anteriores extraírem as características da imagem, a camada totalmente
-conectada as interpreta e gerar uma resposta.
-(TODO: Revisar texto)
+Depois das camadas anteriores extraírem as características da imagem, ela é responsável por
+fazer aprender a interpretar essas características e aprender a retornar uma resposta.
+(TODO: Revisar texto e adicionar exemplo)
 
 \section{\textit{Data augmentation}}\label{cap_conceitos_data_augmentation}
 % ---
