@@ -1,8 +1,16 @@
 \chapter{Conceitos básicos}\label{cap_conceitos}
 
-\chapterprecis{Isto é uma sinopse de capítulo. A ABNT não traz nenhuma
-normatização a respeito desse tipo de resumo, que é mais comum em romances
-e livros técnicos.}\index{sinopse de capítulo}
+\chapterprecis{
+	O foco deste capítulo é introduzir alguns tópicos relevantes para o trabalho, de forma que o leitor consiga
+	entender o conteúdo do trabalho independente de conhecimento prévio.
+	Neste capítulo serão abordados os tópicos relacionados a ANNs (\autoref{cap_conceitos_ann}),
+	CNNs (\autoref{cap_conceitos_cnn}), \textit{Data augmentation} (\autoref{cap_conceitos_data_augmentation}),
+	transferência de conhecimento (\autoref{cap_conceitos_transferencia}), técnicas de compressão para redes neurais
+	(\autoref{cap_conceitos_compressao_redes}) e otimização Bayesiana (\autoref{cap_conceitos_bayesiana}).
+}
+% \chapterprecis{Isto é uma sinopse de capítulo. A ABNT não traz nenhuma
+% normatização a respeito desse tipo de resumo, que é mais comum em romances
+% e livros técnicos.}\index{sinopse de capítulo}
 
 \section{Redes Neurais Artificiais}\label{cap_conceitos_ann}
 % ---
@@ -83,7 +91,7 @@ Depois das camadas anteriores extraírem as características da imagem, a camada
 conectada as interpreta e gerar uma resposta.
 (TODO: Revisar texto)
 
-\section{\textit{Data augmentation}}
+\section{\textit{Data augmentation}}\label{cap_conceitos_data_augmentation}
 % ---
 CNNs tem um ótimo desempenho em tarefas de visão computacional. Entretanto esse tipo de rede neural precisa de uma
 grande quantidade dados para não sofrer de \textit{overfitting} (superajuste). \cite{shorten2019survey}
@@ -96,7 +104,7 @@ originais.
 % Na figura, temos um exemplo de uma imagem que sofreu uma transformação para efetuar um \textit{data augmentation}.
 % Nesse caso, temos uma que foi flipada, gerando um novo dado para o \text{dataset}
 
-\section{Transferência de conhecimento}\label{conceitos_transferencia}
+\section{Transferência de conhecimento}\label{cap_conceitos_transferencia}
 % ---
 Transferência de conhecimento consiste em usar um modelo pré-treinado em uma base de dados específica e aproveitar
 o conhecimento adquirido durante esse treinamento para um novo conjunto de dados.
@@ -108,7 +116,7 @@ Para realizar a transferência de conhecimento é necessário adaptar a camada d
 (antes deles serem passados para o modelo base), além disso é necessário definir e treinar a camada totalmente
 conectada com o \textit{dataset} do problema.
 
-\section{Métodos de compressão para Redes Neurais}
+\section{Métodos de compressão para Redes Neurais}\label{cap_conceitos_compressao_redes}
 ANNs são utilizadas em várias aplicações, demonstrando habilidades extraordinárias no campo de visão computacional.
 No entanto, redes com arquiteturas complexas são um desafio para a implantação em tempo real e necessitam de uma
 grande quantidade de energia e poder computacional \cite{LIANG2021370}.
@@ -176,7 +184,7 @@ função de ativação final \textit{softmax}) no lugar da classe prevista. Alé
 % entrada da camada \textit{softmax}, então os \textit{logits} do \emph{professor} são comparados com os do
 % \emph{estudante}.
 
-\section{Otimização Bayesiana}
+\section{Otimização Bayesiana}\label{cap_conceitos_bayesiana}
 % ---
 Testar diferentes valores para os hiperparâmetros é uma tarefa essencial para otimizar o desempenho de ANNs.
 A otimização Bayesiana é um dos métodos utilizados para fazer esse teste, ela possui dois componentes principais,
