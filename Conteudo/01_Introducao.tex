@@ -1,21 +1,34 @@
 \chapter{Introdução}
 
+Redes Neurais Artificiais são ferramentas poderosas para auxiliar a sociedade.
+Podendo ser utilizadas em diversas tarefas, como reconhecimento facial, onde a rede é treinada para realizar a
+classificação da face da pessoa, de acordo com o seu conjunto de dados.
+Permitindo que ela seja usada em várias áreas diferentes, indo de entreterimento até segurança.
+
+
 \section{Motivação}
 O uso de Redes Neurais Artificiais vem crescendo bastante no ramo de computação visual, principalmente desde 2012,
-quando Redes Neurais Convolucionais começaram a ser utilizadas para classificação de imagens \cite{alexnet}. Entretanto
-essas redes necessitam de muito poder computacional, dificultando a sua execução em dispositivos com poder
-computacional e memória limitados (como os dispositivos embarcados).
+quando Redes Neurais Convolucionais começaram a ser utilizadas para classificação de imagens \cite{alexnet}.
+Um dos principais usos desse tipo de rede é na detecção de face, que é muito relevante para a área de segurança e
+vigilância, onde o modelo pode fazer a detecção do rosto de uma pessoa liberar uma porta ou enviar uma notificação
+para algum segurança. Porém, essa abordagem necessita de uma quantidade elevada de poder computacional, tornando
+inviável que tal tipo de produto tenha um baixo tempo de resposta, o que pode atrapalhar a experiência do usuário, ou
+demora muito para notificar caso alguma ação suspeita aconteça.
 
-% TODO: Escrever motivação
+Um dos principais problemas das Redes Neurais é que elas necessitam de um alto processamento e uso de memória, o que
+acaba dificultando a sua execução em dispositivos com poder computacional e memória limitados (como os dispositivos
+embarcados).
+Porém, existem técnicas que podem ser aplicadas para reduzir pode computacional necessário, como o uso de destilamento
+de conhecimento \cite{hinton2015distilling}, poda e quantização.
+Possibilitando a implantação do modelo em sistemas embarcados na borda, de forma que o tempo de resposta do dispositivo
+seja baixo.
 
 \section{Objetivo principal}
-% TODO: Escrever objetivo principal
-% O objetivo principal do projeto é comprimir uma Rede Neural que calcula a velocidade de veículos. Para fazer isso será
-% necessário utilizar uma série de métodos e técnicas de compressão, como destilamento de conhecimento, poda e
-% quantização de Redes Neurais.
 
-O objetivo deste trabalho é comprimir Redes Neurais Convolucionais que realizam a tarefa de reconhecimento facial,
-com foco em executar a tarefa de reconhecimento facial na borda, utilizando dispositivos embarcados.
+O objetivo deste trabalho é desenvolver uma Rede Neural Convolucional que consiga realizar a tarefa de reconhecimento
+facial em dispositivos embarcados, na borda.
+Para ele seja alcançado, será necessário comprimir um modelo base, para que ele necessite de pouco poder computacional
+e uso de memória.
 
 \section{Metodologia}
 Para atingir o objetivo do estudo, foi necessário dividir o processo em algumas etapas, cada uma sendo
