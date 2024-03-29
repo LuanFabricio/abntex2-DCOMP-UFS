@@ -10,24 +10,27 @@ Permitindo que ela seja usada em várias áreas diferentes, indo de entreterimen
 O uso de Redes Neurais Artificiais vem crescendo bastante no ramo de computação visual, principalmente desde 2012,
 quando Redes Neurais Convolucionais começaram a ser utilizadas para classificação de imagens \cite{alexnet}.
 Um dos principais usos desse tipo de rede é na detecção de face, que é muito relevante para a área de segurança e
-vigilância, onde o modelo pode fazer a detecção do rosto de uma pessoa liberar uma porta ou enviar uma notificação
+vigilância, onde o modelo pode fazer a detecção do rosto de uma pessoa, abrir uma porta ou enviar uma notificação
 para algum segurança. Porém, essa abordagem necessita de uma quantidade elevada de poder computacional, tornando
 inviável que tal tipo de produto tenha um baixo tempo de resposta, o que pode atrapalhar a experiência do usuário, ou
-demora muito para notificar caso alguma ação suspeita aconteça.
+reduz a efetividade da ação que será tomada.
 
 Um dos principais problemas das Redes Neurais é que elas necessitam de um alto processamento e uso de memória, o que
 acaba dificultando a sua execução em dispositivos com poder computacional e memória limitados (como os dispositivos
 embarcados).
-Porém, existem técnicas que podem ser aplicadas para reduzir pode computacional necessário, como o uso de destilamento
-de conhecimento \cite{hinton2015distilling}, poda e quantização.
+Porém, existem técnicas que podem ser aplicadas para reduzir o poder computacional necessário, como o uso de
+destilamento de conhecimento \cite{hinton2015distilling}, poda e quantização.
 Possibilitando a implantação do modelo em sistemas embarcados na borda, de forma que o tempo de resposta do dispositivo
 seja baixo.
 
 \section{Objetivo principal}
 
 O objetivo deste trabalho é desenvolver uma Rede Neural Convolucional que consiga realizar a tarefa de reconhecimento
-facial em dispositivos embarcados, na borda.
-Para ele seja alcançado, será necessário comprimir um modelo base, para que ele necessite de pouco poder computacional
+facial em microcontroladores, na borda.
+De forma que, o reconhecimento facial seja realizado dentro do dispositivo embarcado, permitindo que ele realize essa
+tarefa e execute uma rotina, com a menor latência possível, por exemplo, desbloqueando uma porta assim que o rosto for
+reconhecido pelo sistema.
+Para que ele seja alcançado, será necessário comprimir um modelo base, para que ele exija pouco poder computacional
 e uso de memória.
 
 \section{Metodologia}
@@ -54,7 +57,7 @@ essencial para que o objetivo do trabalho seja atingido. Sendo elas:
 	\item \textbf{Avaliação do desempenho:}
 
 		Depois de treinar e aplicar técnicas de compressão, os dados dos modelos serão coletados e
-		avaliados. Para realizar essa avaliação, será necessário utilizar um conjunto de teste.
+		avaliados. Para realizar essa avaliação, será necessário utilizar um conjunto de testes.
 
 	\item \textbf{Análise e comparação dos resultados:}
 
@@ -66,9 +69,9 @@ essencial para que o objetivo do trabalho seja atingido. Sendo elas:
 \end{enumerate}
 
 \section{Estrutura do documento}
-Este documento foi divido em capítulos, onde cada um apresenta uma proposta diferente:
+Este documento foi dividido em capítulos, onde cada um apresenta uma proposta diferente:
 \begin{itemize}
-	\item Capitulo 2 - \textbf{Conceitos Básicos}: Apresenta os tópicos principais para o entendimento
+	\item Capítulo 2 - \textbf{Conceitos Básicos}: Apresenta os tópicos principais para o entendimento
 		do trabalho.
 	\item Capítulo 3 - \textbf{Trabalhos Relacionados}: Apresenta uma revisão dos trabalhos
 		relacionados ao tema do trabalho.

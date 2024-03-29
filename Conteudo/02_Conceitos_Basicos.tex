@@ -74,7 +74,16 @@ Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada,
 onde esses filtros deslizam cada célula da imagem executando operações de multiplicação e soma
 em cada elemento da matriz de entrada, com o objetivo de gerar um mapa de características (\textit{feature map}).
 O objetivo desses filtros é realçar as características dos dados de entrada, como curvas, linhas e outros padrões.
+A \autoref{exemplo_conv}, é um exemplo da operação de convolução sendo aplicada em uma matriz.
 % TODO: Adicionar figuras, referências e detalhar mais
+
+\begin{figure}[htb]
+	\caption {\label{exemplo_conv} Exemplo de convolução}
+	\begin{center}
+		\includegraphics[scale=1.0]{Imagens/conv}
+	\end{center}
+	\legend{Fonte: \cite{zhang2023dive}}
+\end{figure}
 
 \subsection{Camada de \textit{pooling}}\label{cap_conceitos_cnn_pooling}
 % ---
@@ -86,6 +95,15 @@ necessário seja reduzido, junto com o uso de memória.
 Existem diversos tipos de \textit{pooling}, min, \textit{average} e max, onde cada um foca em extrair um valor dos
 dados de entrada na matriz. O tipo mais comum de \textit{pooling} é o max, que salva apenas o maior valor da área,
 além de reduzir o tamanho da matriz de entrada ele consegue realçar algumas características mais expressivas da matriz.
+A \autoref{exemplo_pooling} demonstra uma operação de max \textit{pooling} em uma matriz.
+
+\begin{figure}[htb]
+	\caption {\label{exemplo_pooling} Exemplo de max \textit{pooling}}
+	\begin{center}
+		\includegraphics[scale=1.0]{Imagens/maxpooling}
+	\end{center}
+	\legend{Fonte: \cite{zhang2023dive}}
+\end{figure}
 % TODO: Adicionar figuras, referências e detalhar mais
 
 \subsection{Camada totalmente conectada}\label{cap_conceitos_cnn_totalmente}
@@ -189,7 +207,7 @@ de parâmetros. \cite{frazier2018tutorial}
 
 A otimização Bayesiana procura encontrar um valor ótimo (maximizando ou minimizando alguma métrica do modelo).
 Inicialmente os hiperparâmetros são escolhidos aleatoriamente e testados, após algumas iterações o modelo começa
-a convergir para um resultado ótimo, em algum ponto essa função de otimização só irá retornar o melhor conjunto de
+a convergir para um resultado ótimo, em algum ponto essa função de otimização só irá escolher o melhor conjunto de
 parâmetros testado.
 
 % TODO: Escrever sobre otimização Bayesiana.
