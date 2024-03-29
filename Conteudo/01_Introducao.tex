@@ -1,27 +1,24 @@
 \chapter{Introdução}
 
-Redes Neurais Artificiais são ferramentas poderosas para auxiliar a sociedade.
+Redes Neurais Artificiais (ANN) são ferramentas poderosas para auxiliar a sociedade.
 Podendo ser utilizadas em diversas tarefas, como reconhecimento facial, onde a rede é treinada para realizar a
-classificação da face da pessoa, de acordo com o seu conjunto de dados.
-Permitindo que ela seja usada em várias áreas diferentes, indo de entreterimento até segurança.
-
+classificação da face da pessoa, permitindo que ela seja usada em várias áreas diferentes, indo de entretenimento até
+segurança.
 
 \section{Motivação}
 O uso de Redes Neurais Artificiais vem crescendo bastante no ramo de computação visual, principalmente desde 2012,
-quando Redes Neurais Convolucionais começaram a ser utilizadas para classificação de imagens \cite{alexnet}.
+quando Redes Neurais Convolucionais (CNN) começaram a ser utilizadas para classificação de imagens \cite{alexnet}.
 Um dos principais usos desse tipo de rede é na detecção de face, que é muito relevante para a área de segurança e
 vigilância, onde o modelo pode fazer a detecção do rosto de uma pessoa, abrir uma porta ou enviar uma notificação
 para algum segurança. Porém, essa abordagem necessita de uma quantidade elevada de poder computacional, tornando
 inviável que tal tipo de produto tenha um baixo tempo de resposta, o que pode atrapalhar a experiência do usuário, ou
 reduz a efetividade da ação que será tomada.
 
-Um dos principais problemas das Redes Neurais é que elas necessitam de um alto processamento e uso de memória, o que
-acaba dificultando a sua execução em dispositivos com poder computacional e memória limitados (como os dispositivos
-embarcados).
+Um dos principais problemas das Redes Neurais Profundas, como CNN, é que elas necessitam de um alto processamento e uso
+de memória, o que acaba dificultando a sua execução em dispositivos com poder computacional e memória limitados (como os dispositivos embarcados).
 Porém, existem técnicas que podem ser aplicadas para reduzir o poder computacional necessário, como o uso de
-destilamento de conhecimento \cite{hinton2015distilling}, poda e quantização.
-Possibilitando a implantação do modelo em sistemas embarcados na borda, de forma que o tempo de resposta do dispositivo
-seja baixo.
+destilação de conhecimento \cite{hinton2015distilling}, poda e quantização.
+Possibilitando a implantação do modelo em sistemas embarcados na borda, de forma que a latência dispositivo seja baixa.
 
 \section{Objetivo principal}
 
@@ -38,35 +35,47 @@ Para atingir o objetivo do estudo, foi necessário dividir o processo em algumas
 essencial para que o objetivo do trabalho seja atingido. Sendo elas:
 
 \begin{enumerate}
-	\item \textbf{Seleção de artigos:}
+	\item \textbf{Levantamento do estado da arte:}
 
 		Nessa etapa, são selecionados artigos que possuem o objetivo parecido com o deste artigo,
 		com base nesses artigos serão testadas novas técnicas para compressão de modelos.
 
-	\item \textbf{Seleção de base e treino de modelos:}
+	\item \textbf{Reprodução do estado da arte:}
 
-		Nesta é selecionada uma base de dados e a partir dela serão desenvolvidos modelos,
-		com o objetivo de atingir uma alta acurácia, sem sofrer \textit{overfitting}.
+	\begin{enumerate}
+		\item \textbf{Seleção de base e treino de modelos:}
 
-	\item \textbf{Aplicação de técnicas de compressão para Modelos:}
+			Nesta é selecionada uma base de dados e a partir dela serão desenvolvidos modelos,
+			com o objetivo de atingir uma alta acurácia, sem sofrer \textit{overfitting}.
 
-		Após definir e treinar os modelos, serão aplicadas técnicas de compressão, tendo como
-		objetivo ter uma acurácia parecida com a do modelo original. Onde as técnicas aplicadas
-		foram: poda, quantização e destilamento de conhecimento.
+		\item \textbf{Aplicação de técnicas de compressão para Modelos:}
 
-	\item \textbf{Avaliação do desempenho:}
+			Após definir e treinar os modelos, serão aplicadas técnicas de compressão, tendo como
+			objetivo ter uma acurácia parecida com a do modelo original. Onde as técnicas aplicadas
+			foram: poda, quantização e destilação de conhecimento.
 
-		Depois de treinar e aplicar técnicas de compressão, os dados dos modelos serão coletados e
-		avaliados. Para realizar essa avaliação, será necessário utilizar um conjunto de testes.
+		\item \textbf{Avaliação do desempenho:}
 
-	\item \textbf{Análise e comparação dos resultados:}
+			Depois de treinar e aplicar técnicas de compressão, os dados dos modelos serão coletados e
+			avaliados. Para realizar essa avaliação, será necessário utilizar um conjunto de testes.
 
-		Para finalizar, os dados dos modelos serão comparados e analisados. Com o objetivo de
-		identificar o melhor modelo e descobrir quais foram os motivos para que esse modelo tenha se
-		saído tão bem, mesmo após a aplicação de compressão. Nesta etapa as métricas de acurácia e
-		tamanho do modelo são avaliadas.
+		\item \textbf{Análise e comparação dos resultados:}
 
+			Para finalizar, os dados dos modelos serão comparados e analisados. Com o objetivo de
+			identificar o melhor modelo e descobrir quais foram os motivos para que esse modelo tenha se
+			saído tão bem, mesmo após a aplicação de compressão. Nesta etapa as métricas de acurácia e
+			tamanho do modelo são avaliadas.
+	\end{enumerate}
+
+	% TODO: Terminar
+	\item \textbf{Escolha do modelo para reconhecimento facial:}
+
+	\item \textbf{Compressão e implantação do modelo em hardware limitado:}
+
+	\item \textbf{Desenvolvimento do estudo de caso:}
 \end{enumerate}
+
+Onde as etapas 3, 4 e 5 serão realizadas no Trabalho de Conclusão de Curso 2.
 
 \section{Estrutura do documento}
 Este documento foi dividido em capítulos, onde cada um apresenta uma proposta diferente:

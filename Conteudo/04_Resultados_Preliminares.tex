@@ -5,24 +5,26 @@ conteúdo estudado. O objetivo principal é usar as técnicas de compressão par
 
 % TODO: Revisar
 
-% Destilamento de conhecimento
-\section{Destilamento de conhecimento (modelo Professor-Aluno)}
-Para fazer o experimento com destilamento de conhecimento foi utilizada da base STL-10, que possui 500 imagens para
+% Destilação de conhecimento
+\section{Destilação de conhecimento (modelo Professor-Aluno)}
+Para fazer o experimento com destilação de conhecimento foi utilizada da base STL-10, que possui 500 imagens para
 treinamento e 800 para teste, com resolução de $96 \times 96$ e 3 canais de cor (RGB). Como o conjunto de dados
 não possui muitas imagens, foi aplicada a técnica de \textit{data augmentation} (aumento de dados) para reduzir o
 \textit{overfitting}.
 
-Como já foi descrito na \autoref{conceitos_destilamento}, o objetivo dessa etapa é utilizar o conhecimento do modelo
+Como já foi descrito na \autoref{conceitos_destilacao}, o objetivo dessa etapa é utilizar o conhecimento do modelo
 Professor(mais robusto e pré-treinado) para treinar o modelo Aluno (mais simples e sem pré-treinamento).
 Onde o modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
 \autoref{res_aluno_1}.
 Além disso o modelo Rafael \cite{rafael} foi adaptado e utilizado (com algumas variações).
 
-Para aumentar a precisão do modelo Aluno com o destilamento de conhecimento, foi utilizada a otimização
+Para aumentar a precisão do modelo Aluno com o destilação de conhecimento, foi utilizada a otimização
 Bayesiana, para procurar os valores dos hiperparâmetros $\alpha$ e \textit{Temperature}.
 Os possíveis valores de $\alpha$ foram 0.1, 0.5, 0.01 e 0.25.
 E os possíveis valores de \textit{Temperature} foram 2, 5, 7, 10, 12, 15, 17 e 20.
 Os resultados do experimento estão na \autoref{tabela_acuracia_1}.
+
+% TODO: Adicionar diagramas das arquiteturas
 
 \begin{center}
 \begin{table}[htb]
@@ -32,16 +34,16 @@ Os resultados do experimento estão na \autoref{tabela_acuracia_1}.
 \label{tabela_acuracia_1}
 \begin{tabular}{ |c|c|c|c|c| }
 	\hline
-	\textbf{Modelo} & \textbf{Com destilamento de conhecimento?}  & \textbf{Acurácia (validação)}
+	\textbf{Modelo} & \textbf{Com destilação de conhecimento?}  & \textbf{Acurácia (validação)}
 		   & \textbf{$\alpha$} & \textbf{\textit{Temperature}} \\
 	\hline
-	ResNet-50 	& 	Não 	& 	90,65\%	& 	- 	& 	-	 \\
-	Aluno 		& 	Não 	& 	76,80\%	& 	- 	& 	-	 \\
+	% ResNet-50 	& 	Não 	& 	90,65\%	& 	- 	& 	-	 \\
+	% Aluno 		& 	Não 	& 	76,80\%	& 	- 	& 	-	 \\
 	Rafael-1 	& 	Não 	& 	67,08\%	& 	- 	& 	-	 \\
 	Rafael-base 	& 	Não 	& 	71,38\%	& 	- 	& 	-	 \\
 	Rafael-2 	& 	Não 	& 	74,57\%	& 	- 	& 	-	 \\
 	Rafael-3 	& 	Não 	& 	71,01\%	& 	- 	& 	-	 \\
-	Aluno 		& 	Sim 	& 	83,79\%	& 	0,1 	& 	5	 \\
+	% Aluno 		& 	Sim 	& 	83,79\%	& 	0,1 	& 	5	 \\
 	Rafael-base 	& 	Sim 	& 	74,21\%	& 	0,1 	& 	10	 \\
 	Rafael-1 	& 	Sim 	& 	69,70\%	& 	0,01 	& 	20	 \\
 	Rafael-2 	& 	Sim 	& 	79,12\%	& 	0,01 	& 	7	 \\
@@ -52,6 +54,7 @@ Os resultados do experimento estão na \autoref{tabela_acuracia_1}.
 \end{table}
 \end{center}
 
+% TODO: Discutir melhor os resultado
 Na \autoref{tabela_acuracia_1}, a variação Rafael-1 indica que foi adicionada uma camada $9x9$ no modelo, Rafael-2
 indica que foi adicionada duas camadas $3x3$ e Rafael-3 indica que foi adicionada três camadas $3x3$.
 
@@ -59,10 +62,10 @@ indica que foi adicionada duas camadas $3x3$ e Rafael-3 indica que foi adicionad
 
 Para esse experimento foi utilizada a base CIFAR-10, que possui 6.000 imagens para cada classe, sendo que essas imagens
 tem resolução igual $32x32$ e possui 3 canais de cores (RGB). Nesse conjunto de dados também foi necessário fazer
-\textit{data augmentation} para aumentar a precisão do modelo final.
+\textit{data augmentation} para melhorar a acurácia do modelo final.
 
-O modelo utilizado no experimento foi gerado pelo \autoref{pruning_quantization_model}, inicialmente ele possui
-2.397.226 parâmetros (pesando 28 MB). Inicialmente ele é treinado durante 25 \textit{epochs} (épocas), atingindo
+O modelo utilizado no experimento foi gerado pelo \autoref{pruning_quantization_model}, inicialmente ele possuía
+2.397.226 parâmetros (28 MB). Inicialmente ele foi treinado durante 25 \textit{epochs} (épocas), atingindo
 uma acurácia de $90,18\%$ nos dados de treinamento e $85,91\%$ nos dados de validação.
 
 Depois de treinado, o modelo é podado utilizando a estratégia de \textit{prune low magnitude} (podar baixa magnitude),

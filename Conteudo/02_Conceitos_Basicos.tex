@@ -1,22 +1,17 @@
 \chapter{Conceitos básicos}\label{cap_conceitos}
 
-\chapterprecis{
-	O foco deste capítulo é introduzir alguns tópicos relevantes para o trabalho, de forma que o leitor consiga
-	entender o conteúdo independente de conhecimento prévio.
-	Neste capítulo serão abordados os tópicos relacionados a ANNs (\autoref{cap_conceitos_ann}),
-	CNNs (\autoref{cap_conceitos_cnn}), \textit{Data augmentation} (\autoref{cap_conceitos_data_augmentation}),
-	transferência de conhecimento (\autoref{cap_conceitos_transferencia}), técnicas de compressão para redes neurais
-	(\autoref{cap_conceitos_compressao_redes}) e otimização Bayesiana (\autoref{cap_conceitos_bayesiana}).
-}
-% \chapterprecis{Isto é uma sinopse de capítulo. A ABNT não traz nenhuma
-% normatização a respeito desse tipo de resumo, que é mais comum em romances
-% e livros técnicos.}\index{sinopse de capítulo}
+O foco deste capítulo é introduzir alguns tópicos relevantes para o trabalho, de forma que o leitor consiga
+entender o conteúdo independente de conhecimento prévio.
+Neste capítulo serão abordados os tópicos relacionados a ANNs (\autoref{cap_conceitos_ann}),
+CNNs (\autoref{cap_conceitos_cnn}), \textit{Data augmentation} (\autoref{cap_conceitos_data_augmentation}),
+transferência de conhecimento (\autoref{cap_conceitos_transferencia}), técnicas de compressão para redes neurais
+(\autoref{cap_conceitos_compressao_redes}) e otimização Bayesiana (\autoref{cap_conceitos_bayesiana}).
 
 \section{Redes Neurais Artificiais}\label{cap_conceitos_ann}
 % ---
 Redes Neurais Artificiais (ANNs), são neurônios interconectados que realizam um processamento simples. Dentro dessa
 estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônio da coluna anterior, assim replicando
-o processo de aprendizagem do cérebro humano. A \autoref{cap_conceitos_ann_exemplo_ann} exemplifica uma ANN bem
+o processo de aprendizagem do cérebro humano. A \autoref{cap_conceitos_ann_exemplo_ann} ilustra uma ANN bem
 simples.
 
 \begin{figure}[htb]
@@ -31,7 +26,8 @@ O neurônio é uma parte fundamental de uma ANN, nele que o aprendizado é armaz
 outros neurônios. Esse reforço é o peso da conexão, ele é multiplicado pela entrada e somado com os outros valores,
 como é demonstrado na equação \ref{eq_neuronio} (onde $x$ é um vetor com os valores de entrada do neurônio e $w$
 é um vetor com os pesos de cada entrada). Depois disso os valores passam por uma função de ativação $g(x)$ (\ref
-{eq_ativacao}), que é responsável por "tratar" esses dados de saída antes que eles sejam passados para próxima etapa.
+{eq_ativacao}), que é responsável por transformar estes dados antes que sejam passados para a próxima etapa, por esta
+razão, a função de ativação também é chamada função de transferência.
 
 \begin{equation}\label{eq_neuronio}
 u = \sum x_i w_i
@@ -50,16 +46,14 @@ y = g(u + b)
 
 \section{Redes Neurais Convolucionais}\label{cap_conceitos_cnn}
 % ---
-Redes Neurais Convolucionais (CNNs) são Redes Neurais Artificiais (ANN)
-que utilizam a operação de convolução para o processamento e análise de dados no formato de \textit{grid}(grade).
-Por exemplo, uma série temporal que pode ser representada no formato de \textit{grid} 1-D,
-ou uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
-Onde, LeNet \cite{lenet}, Residual Network (ResNet) \cite{resnet} e AlexNet \cite{alexnet} são alguns exemplos de CNNs
-famosas.
+Redes Neurais Convolucionais são Redes Neurais Artificiais que utilizam a operação de convolução para o processamento e
+análise de dados no formato de \textit{grid} (grade).
+Por exemplo, uma série temporal que pode ser representada no formato de \textit{grid} 1-D, ou uma imagem, que pode ser
+representada no formato 2-D. \cite{Goodfellow-et-al-2016}
 
 A arquitetura de uma CNN é composta por camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
 \textit{pooling} (\ref{cap_conceitos_cnn_pooling}) e totalmente conectadas (\ref{cap_conceitos_cnn_totalmente}),
-como podemos ver na \autoref{exemplo_lenet}.
+como pode ser visto na \autoref{exemplo_lenet}.
 
 \begin{figure}[htb]
 	\caption {\label{exemplo_lenet} Arquitetura da LeNet}
@@ -70,10 +64,11 @@ como podemos ver na \autoref{exemplo_lenet}.
 \end{figure}
 
 \subsection{Camada de Convolução}\label{cap_conceitos_cnn_conv}
-Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada,
-onde esses filtros deslizam cada célula da imagem executando operações de multiplicação e soma
-em cada elemento da matriz de entrada, com o objetivo de gerar um mapa de características (\textit{feature map}).
-O objetivo desses filtros é realçar as características dos dados de entrada, como curvas, linhas e outros padrões.
+Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada, onde esses filtros deslizam ao longo da grade de
+entrada executando operações de multiplicação e soma em cada elemento da matriz de entrada, com o objetivo de gerar um mapa de
+características (\textit{feature map}).
+O objetivo desses filtros é realçar as características dos dados de entrada. Alguns padrões como curvas e linhas podem ser
+reconhecidos por estas operações de filtragem.
 A \autoref{exemplo_conv}, é um exemplo da operação de convolução sendo aplicada em uma matriz.
 % TODO: Adicionar figuras, referências e detalhar mais
 
@@ -89,8 +84,8 @@ A \autoref{exemplo_conv}, é um exemplo da operação de convolução sendo apli
 % ---
 A abordagem da camada de \textit{pooling} é um pouco parecida com a camada de convolução,
 uma matriz desliza pelas células da imagem, salvando apenas um dos valores dessa área na matriz de saída.
-A partir disso, a camada consegue reduzir o tamanho da matriz de entrada, fazendo com que o poder computacional
-necessário seja reduzido, junto com o uso de memória.
+Esta operação reduz o tamanho da matriz de entrada, fazendo com que o poder computacional necessário seja reduzido,
+junto com o uso de memória.
 
 Existem diversos tipos de \textit{pooling}, min, \textit{average} e max, onde cada um foca em extrair um valor dos
 dados de entrada na matriz. O tipo mais comum de \textit{pooling} é o max, que salva apenas o maior valor da área,
@@ -104,7 +99,6 @@ A \autoref{exemplo_pooling} demonstra uma operação de max \textit{pooling} em 
 	\end{center}
 	\legend{Fonte: \cite{zhang2023dive}}
 \end{figure}
-% TODO: Adicionar figuras, referências e detalhar mais
 
 \subsection{Camada totalmente conectada}\label{cap_conceitos_cnn_totalmente}
 % ---
@@ -123,7 +117,7 @@ que já existe, aplicando algumas transformações geométricas ou espaciais, ou
 originais.
 
 Na \autoref{cap_conceitos_exemplo_da}, temos um exemplo de uma imagem que sofreu uma transformação para efetuar um \textit{data augmentation}.
-Nesse caso, temos uma que foi flipada, gerando um novo dado para o \text{dataset}
+Nesse caso, temos uma que foi revertida (\textit{flip}), gerando um novo dado para o \text{dataset}
 
 \begin{figure}[htb]
 	\caption {\label{cap_conceitos_exemplo_da}Exemplo de uma transformação utilizando \textit{data augmentation}}
@@ -150,15 +144,15 @@ ANNs são utilizadas em várias aplicações, demonstrando habilidades extraordi
 No entanto, redes com arquiteturas complexas são um desafio para a implantação em tempo real e necessitam de uma
 grande quantidade de energia e poder computacional \cite{LIANG2021370}.
 Por causa disso foram desenvolvidos métodos para reduzir o tamanho dessas redes, as tornando mais eficiente.
-Nesse trabalho os métodos de poda (\ref{poda}), quantização (\ref{quantizacao}) e destilamento do conhecimento
-(\ref{conceitos_destilamento}) serão usados.
+Nesse trabalho os métodos de poda (\ref{poda}), quantização (\ref{quantizacao}) e destilação do conhecimento
+(\ref{conceitos_destilacao}) serão usados.
 
 \subsection{\textit{Pruning}(Poda)}\label{poda}
 
 A poda de redes neurais tem como foco eliminar conexões ou neurônios que não apresentam uma grade contribuição para a
 rede.
-Essa operação, é muito vantajosa para diminuir a pegada de memória da rede, pois ela reduz a quantidade de parâmetros
-redundantes ou que não contribuem muito para a precisão dos resultados.
+Essa operação, é muito vantajosa para diminuir a pegada de memória \textit{memory footprint} da rede, pois ela reduz
+a quantidade de parâmetros redundantes ou que não contribuem muito para a precisão dos resultados.
 
 
 A operação de poda procura pesos com valores abaixo de um determinado limiar e os muda para a zero, assim deixando
@@ -183,9 +177,9 @@ Quantização reduz a computação diminuindo a precisão dos tipos de dados. Pe
 geralmente devem ser quantizadas para inteiros de 8 bit, embora implementações menores que 8 bit sejam discutidas
 incluindo redes neurais binárias. \cite{LIANG2021370}
 
-\subsection{Destilamento de conhecimento (Professor-Aluno)}\label{conceitos_destilamento}
+\subsection{Destilação de conhecimento (Professor-Aluno)}\label{conceitos_destilacao}
 
-Destilamento de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica que tem
+Destilação de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica que tem
 como objetivo treinar um modelo Aluno (menor e sem pré-treinamento) com um modelo Professor
 (maior e com pré-treinamento). Ela é amplamente utilizada para as áreas de visão computacional e linguagem natural,
 e tem como objetivo reduzir o tamanho do modelo final (Aluno).
@@ -193,8 +187,7 @@ e tem como objetivo reduzir o tamanho do modelo final (Aluno).
 Para transferir o conhecimento do modelo Professor para o Aluno, a técnica utiliza os \textit{logits} (entrada da
 função de ativação final \textit{softmax}) no lugar da classe prevista. Além disso, são utilizado os
 \textit{soft targets} (probabilidades das classes previstas pelo modelo Professor) junto com os
-\textit{hard targets} (classe esperada). Então, o Aluno é treinado com uma porcentagem $\alpha$ do erro com o
-\textit{hard target} e $1 - \alpha$ do erro com \textit{soft target}, assim é calculado o erro do aluno.
+\textit{hard targets} (classe esperada).
 
 % NOTE: Talvez detalhar a temperatura?
 
@@ -210,4 +203,4 @@ Inicialmente os hiperparâmetros são escolhidos aleatoriamente e testados, apó
 a convergir para um resultado ótimo, em algum ponto essa função de otimização só irá escolher o melhor conjunto de
 parâmetros testado.
 
-% TODO: Escrever sobre otimização Bayesiana.
+% TODO: Refinar, sendo mais objetivo
