@@ -24,8 +24,8 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#505050"
      inkscape:zoom="0.54331942"
-     inkscape:cx="831.00288"
-     inkscape:cy="459.21422"
+     inkscape:cx="831.00287"
+     inkscape:cy="459.21421"
      inkscape:window-width="1916"
      inkscape:window-height="1036"
      inkscape:window-x="0"
@@ -164,23 +164,23 @@
     <text
        class="text"
        x="763"
-       y="569"
+       y="387.99924"
        style="font-size:12px"
        id="text14">Camada de entrada</text>
     <text
        class="text"
        x="943"
-       y="569"
+       y="387.99924"
        style="font-size:12px"
        id="text15"><tspan
          sodipodi:role="line"
          id="tspan16"
          x="943"
-         y="569">Camada oculta</tspan><tspan
+         y="387.99924">Camada oculta</tspan><tspan
          sodipodi:role="line"
          id="tspan17"
          x="943"
-         y="584" /></text>
+         y="402.99924" /></text>
     <circle
        r="10"
        class="node"
@@ -191,7 +191,7 @@
     <text
        class="text"
        x="1123"
-       y="569"
+       y="387.99924"
        style="font-size:12px"
        id="text16">Camada de saída</text>
     <circle
@@ -207,7 +207,10 @@
        id="2_2"
        cx="1158"
        cy="509"
-       style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);" />
+       style="fill: rgb(255, 255, 255); stroke: rgb(51, 51, 51);"
+       inkscape:export-filename="exemplo_nn.pdf"
+       inkscape:export-xdpi="96"
+       inkscape:export-ydpi="96" />
   </g>
   <defs
      id="defs16">

@@ -1,17 +1,22 @@
 \chapter{Introdução}
 
-Redes Neurais Artificiais (ANN) são ferramentas poderosas para auxiliar a sociedade.
+% TODO: Melhorar, aprofundar ANNs
+Redes Neurais Artificiais, ou \textit{Artificial Neural Network} (ANN), são ferramentas poderosas para auxiliar a
+sociedade.
 Podendo ser utilizadas em diversas tarefas, como reconhecimento facial, onde a rede é treinada para realizar a
 classificação da face da pessoa, permitindo que ela seja usada em várias áreas diferentes, indo de entretenimento até
 segurança.
 
 \section{Motivação}
+% TODO: Talvez seja interessante rescrever para exaltar que o
+% motivo foi o artigo
 O uso de Redes Neurais Artificiais vem crescendo bastante no ramo de computação visual, principalmente desde 2012,
 quando Redes Neurais Convolucionais (CNN) começaram a ser utilizadas para classificação de imagens \cite{alexnet}.
-Um dos principais usos desse tipo de rede é na detecção de face, que é muito relevante para a área de segurança e
+Um dos usos desse tipo de rede é na detecção de face, que é muito relevante para a área de segurança e
 vigilância, onde o modelo pode fazer a detecção do rosto de uma pessoa, abrir uma porta ou enviar uma notificação
-para algum segurança. Porém, essa abordagem necessita de uma quantidade elevada de poder computacional, tornando
-inviável que tal tipo de produto tenha um baixo tempo de resposta, o que pode atrapalhar a experiência do usuário, ou
+para algum segurança.
+Porém, essa abordagem necessita de uma quantidade elevada de poder computacional, tornando inviável que tal tipo de
+produto seja embarcado e mantenha um baixo tempo de resposta, o que pode atrapalhar a experiência do usuário, ou
 reduz a efetividade da ação que será tomada.
 
 Um dos principais problemas das Redes Neurais Profundas, como CNN, é que elas necessitam de um alto processamento e uso
@@ -20,22 +25,21 @@ Porém, existem técnicas que podem ser aplicadas para reduzir o poder computaci
 destilação de conhecimento \cite{hinton2015distilling}, poda e quantização.
 Possibilitando a implantação do modelo em sistemas embarcados na borda, de forma que a latência dispositivo seja baixa.
 
-\section{Objetivo principal}
+\section{Objetivos}
 
-O objetivo deste trabalho é desenvolver uma Rede Neural Convolucional que consiga realizar a tarefa de reconhecimento
-facial em microcontroladores, na borda.
-De forma que, o reconhecimento facial seja realizado dentro do dispositivo embarcado, permitindo que ele realize essa
-tarefa e execute uma rotina, com a menor latência possível, por exemplo, desbloqueando uma porta assim que o rosto for
-reconhecido pelo sistema.
-Para que ele seja alcançado, será necessário comprimir um modelo base, para que ele exija pouco poder computacional
-e uso de memória.
+O objetivo deste trabalho é desenvolver uma Rede Neural Convolucional que realize o reconhecimento facial em
+microcontroladores, na borda.
+Nele também serão tratadas formas de comprimir e otimizar o modelo, para que a sua versão final consiga ser embarcada
+em um dispositivo com hardware limitado, mantendo acurácia alta e baixa latência.
 
 \subsection{Objetivo específicos}
 O trabalho estará completo se os seguintes objetivos forem finalizados:
 
 \begin{itemize}
-	\item Construir um modelo que seja leve o bastante para ser embarcado.
-	\item Embarcar um modelo, de forma que ele consiga realizar operações na borda.
+	\item Aplicar técnias de compressão e otimização em um modelo, o tornando eficiente o suficiente para ser
+		embarcado.
+	\item Embarcar esse modelo comprimido, de forma que ele consiga realizar operações na borda, mantendo acurácia
+		alta e baixa latência.
 \end{itemize}
 
 \section{Metodologia}
@@ -45,7 +49,7 @@ essencial para que o objetivo do trabalho seja atingido. Sendo elas:
 \begin{enumerate}
 	\item \textbf{Levantamento do estado da arte:}
 
-		Nessa etapa, são selecionados artigos que possuem o objetivo parecido com o deste artigo,
+		Nessa etapa, são selecionados artigos que possuem o objetivo similiar ao deste artigo,
 		com base nesses artigos serão testadas novas técnicas para compressão de modelos.
 
 	\item \textbf{Reprodução do estado da arte:}

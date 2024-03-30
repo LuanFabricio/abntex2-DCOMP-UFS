@@ -1,11 +1,12 @@
 \chapter{Resultados preliminares}
 
-Neste capítulo serão apresentados testes feitos durante o trabalho, eles tiveram a finalidade de exercitar o
-conteúdo estudado. O objetivo principal é usar as técnicas de compressão para criar modelos menores e mais eficientes.
+Neste capítulo serão apresentados testes feitos durante o período inicial do TCC, eles tiveram a finalidade de
+exercitar o conteúdo estudado.
+O objetivo principal é aplicar as técnicas de compressão para criar modelos menores e mais eficientes.
 
 % Destilação de conhecimento
 \section{Destilação de conhecimento (modelo Professor-Aluno)}
-Para fazer o experimento com destilação de conhecimento foi utilizada da base STL-10, que possui 500 imagens para
+Para fazer o experimento com destilação de conhecimento foi utilizada a base STL-10, que possui 500 imagens para
 treinamento e 800 para teste, com resolução de $96 \times 96$ e 3 canais de cor (RGB). Como o conjunto de dados
 não possui muitas imagens, foi aplicada a técnica de \textit{data augmentation} (aumento de dados) para reduzir o
 \textit{overfitting}.
@@ -57,8 +58,9 @@ ou não, e as colunas $\alpha$ e \textit{Temperature} indicam os valores dos hip
 Percebe-se que, em todos os casos, os modelos que foram treinados utilizando a técnica de destilação de conhecimento alcançaram
 uma acurácia maior do que os modelos treinados apenas com os atributos alvo, chegando a um aumento maior que $5\%$ (no modelo
 Rafael-3).
-Nela, a variação Rafael-1 (\autoref{cap_resultados_rafael_1}) indica que foi adicionada uma camada
-$9x9$ no modelo, Rafael-2 (\autoref{cap_resultados_rafael_2}) indica que foi adicionada duas camadas $3x3$ e Rafael-3
+Nela, as variações indicam a quantidade de camadas convolucionais adicionadas, Rafael-1
+(\autoref{cap_resultados_rafael_1}) indica que foi adicionada uma camada convolucional $9x9$ no modelo, Rafael-2
+(\autoref{cap_resultados_rafael_2}) indica que foi adicionada duas camadas $3x3$ convolucionais e Rafael-3
 (\autoref{cap_resultados_rafael_3})indica que foi adicionada três camadas $3x3$.
 
 \begin{figure}
@@ -87,19 +89,24 @@ $9x9$ no modelo, Rafael-2 (\autoref{cap_resultados_rafael_2}) indica que foi adi
 
 \section{\textit{Pruning} e Quantização}
 
-Para esse experimento foi utilizada a base CIFAR-10, que possui 6.000 imagens para cada classe, sendo que essas imagens
-tem resolução igual $32x32$ e possui 3 canais de cores (RGB). Nesse conjunto de dados também foi necessário fazer
-\textit{data augmentation} para melhorar a acurácia do modelo final.
+Para esse experimento foi utilizada a base CIFAR-10, pois ela exige menos do modelo, facilitando o treinamento de uma
+CNN que performe bem nessa tarefa de classificação, o que permite que o foco da atividade seja mantido.
+Essa base possui 10 classes, com  6.000 imagens para cada classe, sendo que essas imagens tem resolução igual $32x32$ e
+possui 3 canais de cores (RGB). Nesse conjunto de dados também foi necessário fazer \textit{data augmentation} para
+melhorar a acurácia do modelo final.
 
 O modelo utilizado no experimento foi gerado pelo \autoref{pruning_quantization_model}, inicialmente ele possuía
 2.397.226 parâmetros (28 MB). Inicialmente ele foi treinado durante 25 \textit{epochs} (épocas), atingindo
 uma acurácia de $90,18\%$ nos dados de treinamento e $85,91\%$ nos dados de validação.
+Onde somente os dados de validação serão utilizados para comparar os modelos, pois eles podem sofrer
+\textit{overfitting} e ter um alto desempenho nos dados de treinamento e baixo desempenho nos dados de validação.
 
-Depois de treinado, o modelo foi podado utilizando a estratégia de \textit{prune low magnitude} (podar baixa magnitude),
-que tem como foco zerar valores abaixo de um certo limiar. Depois de definir os parâmetros da poda, o modelo foi
-retreinado por 2 \textit{epochs}, para que o algoritmo de poda consiga identificar as conexões importantes durante o
-uso do modelo. Após o retreinamento, o modelo final teve acurácia de $83,83\%$ nos dados de treinamento e $84,40\%$
-nos dados de validação, consumindo 9,3 MB após remover todos os valores iguais a zero.
+Depois de treinado, o modelo foi podado utilizando a estratégia de \textit{prune low magnitude}
+(podar baixa magnitude), que tem como foco zerar valores abaixo de um certo limiar. Depois de definir os parâmetros da
+poda, o modelo foi retreinado por 2 \textit{epochs}, para que o algoritmo de poda consiga identificar as conexões
+importantes durante o uso do modelo.
+Após o retreinamento, o modelo final teve acurácia de $83,83\%$ nos dados de treinamento e $84,40\%$ nos dados de
+validação, consumindo 9,3 MB após remover todos os valores iguais a zero.
 
 Depois de podado, o modelo foi convertido para TensorFlow Lite, consumindo 9,2 MB de armazenamento e ficando com
 $84,91\%$ de acurácia. Depois disso, a quantização é aplicada utilizando a API do TensorFlow Lite, deixando o modelo
@@ -125,7 +132,7 @@ final com 2,4 MB e $84,36\%$ de acurácia.
 \end{table}
 \end{center}
 
-A \autoref{tabela_acuracia_peso} mostra a acurácia dos modelos durante as etapas de poda e quantização, onde a coluna
-"\textit{Memory footprint}"\  indica o consumo de armazenamento do modelo.
+A \autoref{tabela_acuracia_peso} mostra a acurácia dos modelos (nos dados de validação) durante as etapas de poda e
+quantização, onde a coluna "\textit{Memory footprint}"\  indica o consumo de armazenamento do modelo.
 A poda e quantização do modelo base resultou em uma redução de pegada de memória de 28 MB para 2,4 MB, apresentando uma perda
 de $1,5\%$ da sua acurácia, tornando o modelo mais eficiente sem a perda de desempenho.

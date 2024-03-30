@@ -9,10 +9,11 @@ transferência de conhecimento (\autoref{cap_conceitos_transferencia}), técnica
 
 \section{Redes Neurais Artificiais}\label{cap_conceitos_ann}
 % ---
-Redes Neurais Artificiais (ANNs), são neurônios interconectados que realizam um processamento simples. Dentro dessa
-estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônio da coluna anterior, assim replicando
-o processo de aprendizagem do cérebro humano. A \autoref{cap_conceitos_ann_exemplo_ann} ilustra uma ANN bem
-simples.
+% Adicionar referência
+Redes Neurais Artificiais, são neurônios interconectados que realizam um processamento simples.
+Dentro dessa estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônio da coluna anterior, assim
+replicando o processo de aprendizagem do cérebro humano. \cite{ml-faceli}
+A \autoref{cap_conceitos_ann_exemplo_ann} ilustra uma ANN bem simples.
 
 \begin{figure}[htb]
 	\caption {\label{cap_conceitos_ann_exemplo_ann}Exemplo de uma ANN}
@@ -45,15 +46,16 @@ y = g(u + b)
 \end{figure}
 
 \section{Redes Neurais Convolucionais}\label{cap_conceitos_cnn}
-% ---
 Redes Neurais Convolucionais são Redes Neurais Artificiais que utilizam a operação de convolução para o processamento e
 análise de dados no formato de \textit{grid} (grade).
-Por exemplo, uma série temporal que pode ser representada no formato de \textit{grid} 1-D, ou uma imagem, que pode ser
-representada no formato 2-D. \cite{Goodfellow-et-al-2016}
+Por exemplo, uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
 
-A arquitetura de uma CNN é composta por camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
-\textit{pooling} (\ref{cap_conceitos_cnn_pooling}) e totalmente conectadas (\ref{cap_conceitos_cnn_totalmente}),
-como pode ser visto na \autoref{exemplo_lenet}.
+A arquitetura de uma CNN, tem como componentes principais as camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
+que tem como o objetivo extrair as características dos dados de entrada, \textit{pooling}
+(\ref{cap_conceitos_cnn_pooling}), que realçam certos pontos da sua entrada, reduzindo o tamanho final da sua
+saída, e a camada totalmente conectada (\ref{cap_conceitos_cnn_totalmente}), que aprende a interpretar esses dados,
+para que a rede consiga realizar o processo de classificação.
+Na \autoref{exemplo_lenet}, temos a ilustração da arquitetura de uma CNN.
 
 \begin{figure}[htb]
 	\caption {\label{exemplo_lenet} Arquitetura da LeNet}
@@ -64,9 +66,9 @@ como pode ser visto na \autoref{exemplo_lenet}.
 \end{figure}
 
 \subsection{Camada de Convolução}\label{cap_conceitos_cnn_conv}
-Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada, onde esses filtros deslizam ao longo da grade de
-entrada executando operações de multiplicação e soma em cada elemento da matriz de entrada, com o objetivo de gerar um mapa de
-características (\textit{feature map}).
+Nessa camada são aplicados filtros (matriz de pesos) nos dados de entrada, onde esses filtros deslizam ao longo da
+grade de entrada executando operações de multiplicação e soma em cada elemento da matriz de entrada, com o objetivo de
+gerar um mapa de características (\textit{feature map}).
 O objetivo desses filtros é realçar as características dos dados de entrada. Alguns padrões como curvas e linhas podem ser
 reconhecidos por estas operações de filtragem.
 A \autoref{exemplo_conv}, é um exemplo da operação de convolução sendo aplicada em uma matriz.
@@ -158,13 +160,11 @@ A operação de poda procura pesos com valores abaixo de um determinado limiar e
 a rede neural mais esparsa, o que facilita o processo de compressão.
 O processo de poda pode reduzir o superajuste da rede, uma vez que remove pesos pouco importantes ou redundantes
 da rede.
-% TODO: Revisar
-Podemos dividir esse processo em dois, poda estática (\textit{static pruning}), que realiza todas as etapas de poda
-o modelo sem executar o processo de inferência, e poda dinâmica (\textit{dynamic pruning}), que é realizada junto com
-o processo de execução do modelo, permitindo que os nós relevantes sejam identificados. A \autoref{cap_conceitos_tipos_poda}
-ilustra o fluxo dos dois tipos de poda.
+Podemos dividir esse processo em dois, poda estática (\textit{static pruning}), que tem todas as etapas de poda
+executadas off-line (antes da inferência), e poda dinâmica (\textit{dynamic pruning}), que é realizada junto com
+o processo de execução do modelo, permitindo que os nós relevantes sejam identificados. A
+\autoref{cap_conceitos_tipos_poda} ilustra o fluxo dos dois tipos de poda.
 
-% TODO: ver questão das captions
 \begin{figure}[htb]
 	\caption {\label{cap_conceitos_tipos_poda}Fluxo dos tipos de poda}
 	\begin{center}
@@ -195,6 +195,8 @@ função de ativação final \textit{softmax}) no lugar da classe prevista. Alé
 
 \section{Otimização Bayesiana}\label{cap_conceitos_bayesiana}
 % ---
+A otimização Bayesiana tem como objetivo principal testar os valores de
+
 Testar diferentes valores para os hiperparâmetros é uma tarefa essencial para otimizar o desempenho de ANNs.
 A otimização Bayesiana é um dos métodos utilizados para fazer esse teste, ela possui dois componentes principais,
 o modelo estatístico Bayesiano, que modelar a função objetiva, e a função de aquisição, que decide a próxima amostra
