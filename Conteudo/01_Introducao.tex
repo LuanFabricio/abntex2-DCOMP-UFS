@@ -31,10 +31,11 @@ Para que ele seja alcançado, será necessário comprimir um modelo base, para q
 e uso de memória.
 
 \subsection{Objetivo específicos}
-O objetivo principal deste trabalho será alcançado se os seguintes objetivos forem concluídos:
+O trabalho estará completo se os seguintes objetivos forem finalizados:
 
 \begin{itemize}
-	\item
+	\item Construir um modelo que seja leve o bastante para ser embarcado.
+	\item Embarcar um modelo, de forma que ele consiga realizar operações na borda.
 \end{itemize}
 
 \section{Metodologia}
@@ -74,12 +75,20 @@ essencial para que o objetivo do trabalho seja atingido. Sendo elas:
 			tamanho do modelo são avaliadas.
 	\end{enumerate}
 
-	% TODO: Terminar
 	\item \textbf{Escolha do modelo para reconhecimento facial:}
+
+		Nesta etapa serão avaliados os modelos com base em métricas como acurácia, F1 score, latência e ocupação de
+		memória. Após a avaliação será escolhido um modelo que servirá como base nas próximas etapas.
 
 	\item \textbf{Compressão e implantação do modelo em hardware limitado:}
 
+		Depois de escolher um modelo de reconhecimento facial, ele será comprimido de forma que possa ser executado
+		em sistemas embarcados, mantendo a acurácia alta e latência baixa.
+
 	\item \textbf{Desenvolvimento do estudo de caso:}
+
+		Com o modelo final comprimido ao ponto de ser implantado em um sistema embarcado, será desenvolvida uma aplicação 	 	 que servirá como experimento para avaliar a eficácia do modelo dentro de dispositivos com hardware limitado.
+
 \end{enumerate}
 
 Onde as etapas 3, 4 e 5 serão realizadas no Trabalho de Conclusão de Curso 2.

@@ -70,7 +70,6 @@ características (\textit{feature map}).
 O objetivo desses filtros é realçar as características dos dados de entrada. Alguns padrões como curvas e linhas podem ser
 reconhecidos por estas operações de filtragem.
 A \autoref{exemplo_conv}, é um exemplo da operação de convolução sendo aplicada em uma matriz.
-% TODO: Adicionar figuras, referências e detalhar mais
 
 \begin{figure}[htb]
 	\caption {\label{exemplo_conv} Exemplo de convolução}
@@ -159,11 +158,13 @@ A operação de poda procura pesos com valores abaixo de um determinado limiar e
 a rede neural mais esparsa, o que facilita o processo de compressão.
 O processo de poda pode reduzir o superajuste da rede, uma vez que remove pesos pouco importantes ou redundantes
 da rede.
+% TODO: Revisar
 Podemos dividir esse processo em dois, poda estática (\textit{static pruning}), que realiza todas as etapas de poda
 o modelo sem executar o processo de inferência, e poda dinâmica (\textit{dynamic pruning}), que é realizada junto com
 o processo de execução do modelo, permitindo que os nós relevantes sejam identificados. A \autoref{cap_conceitos_tipos_poda}
 ilustra o fluxo dos dois tipos de poda.
 
+% TODO: ver questão das captions
 \begin{figure}[htb]
 	\caption {\label{cap_conceitos_tipos_poda}Fluxo dos tipos de poda}
 	\begin{center}
