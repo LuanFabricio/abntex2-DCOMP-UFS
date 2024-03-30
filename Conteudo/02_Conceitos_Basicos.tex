@@ -151,7 +151,7 @@ Nesse trabalho os métodos de poda (\ref{poda}), quantização (\ref{quantizacao
 
 A poda de redes neurais tem como foco eliminar conexões ou neurônios que não apresentam uma grade contribuição para a
 rede.
-Essa operação, é muito vantajosa para diminuir a pegada de memória \textit{memory footprint} da rede, pois ela reduz
+Essa operação, é muito vantajosa para diminuir a pegada de memória (\textit{memory footprint}) da rede, pois ela reduz
 a quantidade de parâmetros redundantes ou que não contribuem muito para a precisão dos resultados.
 
 
@@ -159,9 +159,10 @@ A operação de poda procura pesos com valores abaixo de um determinado limiar e
 a rede neural mais esparsa, o que facilita o processo de compressão.
 O processo de poda pode reduzir o superajuste da rede, uma vez que remove pesos pouco importantes ou redundantes
 da rede.
-Podemos dividir esse processo em dois, poda estática (\textit{static pruning}), que é realiza todas as etapas de poda
+Podemos dividir esse processo em dois, poda estática (\textit{static pruning}), que realiza todas as etapas de poda
 o modelo sem executar o processo de inferência, e poda dinâmica (\textit{dynamic pruning}), que é realizada junto com
-o processo de execução do modelo, permitindo que os nós relevantes sejam identificados.
+o processo de execução do modelo, permitindo que os nós relevantes sejam identificados. A \autoref{cap_conceitos_tipos_poda}
+ilustra o fluxo dos dois tipos de poda.
 
 \begin{figure}[htb]
 	\caption {\label{cap_conceitos_tipos_poda}Fluxo dos tipos de poda}
