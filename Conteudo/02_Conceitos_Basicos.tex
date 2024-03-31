@@ -11,7 +11,7 @@ transferência de conhecimento (\autoref{cap_conceitos_transferencia}), técnica
 % ---
 % Adicionar referência
 Redes Neurais Artificiais, são neurônios interconectados que realizam um processamento simples.
-Dentro dessa estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônio da coluna anterior, assim
+Dentro dessa estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônios da coluna anterior, assim
 replicando o processo de aprendizagem do cérebro humano. \cite{ml-faceli}
 A \autoref{cap_conceitos_ann_exemplo_ann} ilustra uma ANN bem simples.
 
@@ -52,7 +52,7 @@ Por exemplo, uma imagem, que pode ser representada no formato 2-D. \cite{Goodfel
 
 A arquitetura de uma CNN, tem como componentes principais as camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
 que tem como o objetivo extrair as características dos dados de entrada, \textit{pooling}
-(\ref{cap_conceitos_cnn_pooling}), que realçam certos pontos da sua entrada, reduzindo o tamanho final da sua
+(\ref{cap_conceitos_cnn_pooling}), que realça certos pontos da sua entrada, reduzindo o tamanho final da sua
 saída, e a camada totalmente conectada (\ref{cap_conceitos_cnn_totalmente}), que aprende a interpretar esses dados,
 para que a rede consiga realizar o processo de classificação.
 Na \autoref{exemplo_lenet}, temos a ilustração da arquitetura de uma CNN.
@@ -111,8 +111,8 @@ de entrada.
 
 \section{\textit{Data augmentation}}\label{cap_conceitos_data_augmentation}
 % ---
-CNN tem um ótimo desempenho em tarefas de visão computacional. Entretanto esse tipo de rede neural precisa de uma
-grande quantidade dados para não sofrer de \textit{overfitting} (superajuste). \cite{shorten2019survey}
+CNN tem um ótimo desempenho em tarefas de visão computacional. Entretanto, esse tipo de rede neural precisa de uma
+grande quantidade de dados para não sofrer de \textit{overfitting} (superajuste). \cite{shorten2019survey}
 Esse é o objetivo do \textit{data augmentation} (aumento de dados), gerar mais dados a partir de um conjunto de dados
 que já existe, aplicando algumas transformações geométricas ou espaciais, ou realizando injeção de ruído nas imagens
 originais.
@@ -199,7 +199,7 @@ máquina, especialmente do tipo caixa preta (\textit{black box}), como CNN.
 Esse método de otimização possui dois componentes principais, o modelo estatístico Bayesiano, que serve para modelar a
 função alvo, e a função de aquisição, que serve para escolher a próxima amostra de dados. \cite{frazier2018tutorial}
 Durante o teste inicial, o modelo escolhe os hiperparâmetros de forma aleatória, para aprender o comportamento da CNN.
-Depois disso, no processo iterativo, o modelo começa a convergir para uma combinação de hiperparâmetros otimizada,
+Depois disso, no processo iterativo, o modelo começa a convergir para uma combinação de hiperparâmetros otimizados,
 aumentando a acurácia da rede.
 
 % A otimização Bayesiana procura encontrar um valor ótimo (maximizando ou minimizando alguma métrica do modelo).

@@ -17,13 +17,14 @@ vigilância, onde o modelo pode fazer a detecção do rosto de uma pessoa, abrir
 para algum segurança.
 Porém, essa abordagem necessita de uma quantidade elevada de poder computacional, tornando inviável que tal tipo de
 produto seja embarcado e mantenha um baixo tempo de resposta, o que pode atrapalhar a experiência do usuário, ou
-reduz a efetividade da ação que será tomada.
+reduzir a efetividade da ação que será tomada.
 
 Um dos principais problemas das Redes Neurais Profundas, como CNN, é que elas necessitam de um alto processamento e uso
 de memória, o que acaba dificultando a sua execução em dispositivos com poder computacional e memória limitados (como os dispositivos embarcados).
 Porém, existem técnicas que podem ser aplicadas para reduzir o poder computacional necessário, como o uso de
 destilação de conhecimento \cite{hinton2015distilling}, poda e quantização.
-Possibilitando a implantação do modelo em sistemas embarcados na borda, de forma que a latência dispositivo seja baixa.
+Possibilitando a implantação do modelo em sistemas embarcados na borda, de forma que a latência do dispositivo seja
+baixa.
 
 \section{Objetivos}
 
@@ -36,7 +37,7 @@ em um dispositivo com hardware limitado, mantendo acurácia alta e baixa latênc
 O trabalho estará completo se os seguintes objetivos forem finalizados:
 
 \begin{itemize}
-	\item Aplicar técnias de compressão e otimização em um modelo, o tornando eficiente o suficiente para ser
+	\item Aplicar técnicas de compressão e otimização em um modelo, o tornando eficiente o suficiente para ser
 		embarcado.
 	\item Embarcar esse modelo comprimido, de forma que ele consiga realizar operações na borda, mantendo acurácia
 		alta e baixa latência.
@@ -44,12 +45,12 @@ O trabalho estará completo se os seguintes objetivos forem finalizados:
 
 \section{Metodologia}
 Para atingir o objetivo do estudo, foi necessário dividir o processo em algumas etapas, cada uma sendo
-essencial para que o objetivo do trabalho seja atingido. Sendo elas:
+essencial para que o objetivo do trabalho fosse atingido. Sendo elas:
 
 \begin{enumerate}
 	\item \textbf{Levantamento do estado da arte:}
 
-		Nessa etapa, são selecionados artigos que possuem o objetivo similiar ao deste artigo,
+		Nessa etapa, são selecionados artigos que possuem o objetivo similar ao deste artigo,
 		com base nesses artigos serão testadas novas técnicas para compressão de modelos.
 
 	\item \textbf{Reprodução do estado da arte:}

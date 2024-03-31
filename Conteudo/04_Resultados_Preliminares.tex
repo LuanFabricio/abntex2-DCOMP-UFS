@@ -15,7 +15,7 @@ Como já foi descrito na \autoref{conceitos_destilacao}, o objetivo dessa etapa 
 Professor(mais robusto e pré-treinado) para treinar o modelo Aluno (mais simples e sem pré-treinamento).
 Onde o modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
 \autoref{res_aluno_1}.
-Além disso o modelo Rafael \cite{rafael} foi adaptado e utilizado (com algumas variações).
+Além disso, o modelo Rafael \cite{rafael} foi adaptado e utilizado (com algumas variações).
 
 Para aumentar a precisão do modelo Aluno com o destilação de conhecimento, foi utilizada a otimização
 Bayesiana, para procurar os valores dos hiperparâmetros $\alpha$ e \textit{Temperature}.
@@ -51,7 +51,7 @@ Os resultados do experimento estão na \autoref{tabela_acuracia_1}.
 \end{table}
 \end{center}
 
-A \autoref{tabela_acuracia_1}, apresenta a acurácia dos modelos Rafael-Base, Rafael-1, Rafael-2 e Rafael-3 na tarefa de
+A \autoref{tabela_acuracia_1} apresenta a acurácia dos modelos Rafael-Base, Rafael-1, Rafael-2 e Rafael-3 na tarefa de
 classificação na base STL-10.
 Onde a coluna "Com destilação de conhecimento?" indica se a técnica de destilação foi aplicada
 ou não, e as colunas $\alpha$ e \textit{Temperature} indicam os valores dos hiperparâmetros utilizados.
@@ -91,9 +91,9 @@ Nela, as variações indicam a quantidade de camadas convolucionais adicionadas,
 
 Para esse experimento foi utilizada a base CIFAR-10, pois ela exige menos do modelo, facilitando o treinamento de uma
 CNN que performe bem nessa tarefa de classificação, o que permite que o foco da atividade seja mantido.
-Essa base possui 10 classes, com  6.000 imagens para cada classe, sendo que essas imagens tem resolução igual $32x32$ e
-possui 3 canais de cores (RGB). Nesse conjunto de dados também foi necessário fazer \textit{data augmentation} para
-melhorar a acurácia do modelo final.
+Essa base possui 10 classes, com  6.000 imagens para cada classe, sendo que essas imagens têm resolução igual a
+$32x32$ e possui 3 canais de cores (RGB). Nesse conjunto de dados também foi necessário fazer
+\textit{data augmentation} para melhorar a acurácia do modelo final.
 
 O modelo utilizado no experimento foi gerado pelo \autoref{pruning_quantization_model}, inicialmente ele possuía
 2.397.226 parâmetros (28 MB). Inicialmente ele foi treinado durante 25 \textit{epochs} (épocas), atingindo
