@@ -2,8 +2,8 @@
 
 O foco deste capítulo é introduzir alguns tópicos relevantes para o trabalho, de forma que o leitor consiga
 entender o conteúdo independente de conhecimento prévio.
-Neste capítulo serão abordados os tópicos relacionados a ANNs (\autoref{cap_conceitos_ann}),
-CNNs (\autoref{cap_conceitos_cnn}), \textit{Data augmentation} (\autoref{cap_conceitos_data_augmentation}),
+Neste capítulo serão abordados os tópicos relacionados a ANN (\autoref{cap_conceitos_ann}),
+CNN (\autoref{cap_conceitos_cnn}), \textit{Data augmentation} (\autoref{cap_conceitos_data_augmentation}),
 transferência de conhecimento (\autoref{cap_conceitos_transferencia}), técnicas de compressão para redes neurais
 (\autoref{cap_conceitos_compressao_redes}) e otimização Bayesiana (\autoref{cap_conceitos_bayesiana}).
 
@@ -111,7 +111,7 @@ de entrada.
 
 \section{\textit{Data augmentation}}\label{cap_conceitos_data_augmentation}
 % ---
-CNNs tem um ótimo desempenho em tarefas de visão computacional. Entretanto esse tipo de rede neural precisa de uma
+CNN tem um ótimo desempenho em tarefas de visão computacional. Entretanto esse tipo de rede neural precisa de uma
 grande quantidade dados para não sofrer de \textit{overfitting} (superajuste). \cite{shorten2019survey}
 Esse é o objetivo do \textit{data augmentation} (aumento de dados), gerar mais dados a partir de um conjunto de dados
 que já existe, aplicando algumas transformações geométricas ou espaciais, ou realizando injeção de ruído nas imagens
@@ -141,7 +141,7 @@ Para realizar a transferência de conhecimento é necessário adaptar a camada d
 conectada com o \textit{dataset} do problema.
 
 \section{Métodos de compressão para Redes Neurais}\label{cap_conceitos_compressao_redes}
-ANNs são utilizadas em várias aplicações, demonstrando habilidades extraordinárias no campo de visão computacional.
+ANN são utilizadas em várias aplicações, demonstrando habilidades extraordinárias no campo de visão computacional.
 No entanto, redes com arquiteturas complexas são um desafio para a implantação em tempo real e necessitam de uma
 grande quantidade de energia e poder computacional \cite{LIANG2021370}.
 Por causa disso foram desenvolvidos métodos para reduzir o tamanho dessas redes, as tornando mais eficiente.
@@ -154,7 +154,6 @@ A poda de redes neurais tem como foco eliminar conexões ou neurônios que não 
 rede.
 Essa operação, é muito vantajosa para diminuir a pegada de memória (\textit{memory footprint}) da rede, pois ela reduz
 a quantidade de parâmetros redundantes ou que não contribuem muito para a precisão dos resultados.
-
 
 A operação de poda procura pesos com valores abaixo de um determinado limiar e os muda para a zero, assim deixando
 a rede neural mais esparsa, o que facilita o processo de compressão.
@@ -195,16 +194,17 @@ função de ativação final \textit{softmax}) no lugar da classe prevista. Alé
 
 \section{Otimização Bayesiana}\label{cap_conceitos_bayesiana}
 % ---
-A otimização Bayesiana tem como objetivo principal testar os valores de
+A otimização Bayesiana é um método muito utilizado para a otimização de hiperparâmetros em modelos de aprendizagem de
+máquina, especialmente do tipo caixa preta (\textit{black box}), como CNN.
+Esse método de otimização possui dois componentes principais, o modelo estatístico Bayesiano, que serve para modelar a
+função alvo, e a função de aquisição, que serve para escolher a próxima amostra de dados. \cite{frazier2018tutorial}
+Durante o teste inicial, o modelo escolhe os hiperparâmetros de forma aleatória, para aprender o comportamento da CNN.
+Depois disso, no processo iterativo, o modelo começa a convergir para uma combinação de hiperparâmetros otimizada,
+aumentando a acurácia da rede.
 
-Testar diferentes valores para os hiperparâmetros é uma tarefa essencial para otimizar o desempenho de ANNs.
-A otimização Bayesiana é um dos métodos utilizados para fazer esse teste, ela possui dois componentes principais,
-o modelo estatístico Bayesiano, que modelar a função objetiva, e a função de aquisição, que decide a próxima amostra
-de parâmetros. \cite{frazier2018tutorial}
-
-A otimização Bayesiana procura encontrar um valor ótimo (maximizando ou minimizando alguma métrica do modelo).
-Inicialmente os hiperparâmetros são escolhidos aleatoriamente e testados, após algumas iterações o modelo começa
-a convergir para um resultado ótimo, em algum ponto essa função de otimização só irá escolher o melhor conjunto de
-parâmetros testado.
+% A otimização Bayesiana procura encontrar um valor ótimo (maximizando ou minimizando alguma métrica do modelo).
+% Inicialmente os hiperparâmetros são escolhidos aleatoriamente e testados, após algumas iterações o modelo começa
+% a convergir para um resultado ótimo, em algum ponto essa função de otimização só irá escolher o melhor conjunto de
+% parâmetros testado.
 
 % TODO: Refinar, sendo mais objetivo
