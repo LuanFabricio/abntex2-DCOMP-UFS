@@ -1,6 +1,6 @@
 \chapter{Introdução}
 
-% TODO: Melhorar, aprofundar ANN
+% TODO: Melhorar e aprofundar sobre ANN
 Redes Neurais Artificiais, ou \textit{Artificial Neural Network} (ANN), são ferramentas poderosas para auxiliar a
 sociedade.
 Podendo ser utilizadas em diversas tarefas, como reconhecimento facial, onde a rede é treinada para realizar a
@@ -11,7 +11,8 @@ segurança.
 % TODO: Talvez seja interessante rescrever para exaltar que o
 % motivo foi o artigo
 O uso de Redes Neurais Artificiais vem crescendo bastante no ramo de computação visual, principalmente desde 2012,
-quando Redes Neurais Convolucionais (CNN) começaram a ser utilizadas para classificação de imagens \cite{alexnet}.
+quando Redes Neurais Convolucionais ou \textit{Convolutional Neural Networks} (CNN) começaram a ser utilizadas para
+classificação de imagens \cite{alexnet}.
 Um dos usos desse tipo de rede é na detecção de face, que é muito relevante para a área de segurança e
 vigilância, onde o modelo pode fazer a detecção do rosto de uma pessoa, abrir uma porta ou enviar uma notificação
 para algum segurança.
@@ -28,18 +29,22 @@ baixa.
 
 \section{Objetivos}
 
-O objetivo deste trabalho é desenvolver uma Rede Neural Convolucional que realize o reconhecimento facial em
-microcontroladores, na borda.
+O objetivo deste trabalho é comprimir uma Rede Neural Convolucional, permitindo que ela realize o reconhecimento
+facial em microcontroladores, na borda.
 Nele também serão tratadas formas de comprimir e otimizar o modelo, para que a sua versão final consiga ser embarcada
 em um dispositivo com hardware limitado, mantendo acurácia alta e baixa latência.
 
 \subsection{Objetivo específicos}
-O trabalho estará completo se os seguintes objetivos forem finalizados:
+O trabalho estará completo se os seguintes objetivos forem alcançados:
 
 \begin{itemize}
+	% TODO: Reescrever, deixando claro que o objetivo é embarcar o modelo.
+	% Deixar claro que é necessário que o modelo comprimido também tenha uma alta acurácia, F1-score etc.
+	% Deixar claro que é necessário que o modelo comprimido não utilize poucos recursos computacionais
+	%	(armazenamento, memória e uso de cpu) e que a latência também seja baixa.
 	\item Aplicar técnicas de compressão e otimização em um modelo, o tornando eficiente o suficiente para ser
 		embarcado.
-	\item Embarcar esse modelo comprimido, de forma que ele consiga realizar operações na borda, mantendo acurácia
+	\item Embarcar o modelo comprimido, de forma que ele consiga realizar operações na borda, mantendo acurácia
 		alta e baixa latência.
 \end{itemize}
 
@@ -54,11 +59,14 @@ essencial para que o objetivo do trabalho fosse atingido. Sendo elas:
 		com base nesses artigos serão testadas novas técnicas para compressão de modelos.
 
 	\item \textbf{Reprodução do estado da arte:}
+		% TODO: Explicar melhor o que foi feito nesta etapa.
+		% Verificar se ela irá aparecer na etapa final do trabalho.
+		% TODO: Revisar
 
 	\begin{enumerate}
 		\item \textbf{Seleção de base e treino de modelos:}
 
-			Nesta é selecionada uma base de dados e a partir dela serão desenvolvidos modelos,
+			Nesta etapa, uma base de dados é selecionada e a partir dela serão desenvolvidos modelos,
 			com o objetivo de atingir uma alta acurácia, sem sofrer \textit{overfitting}.
 
 		\item \textbf{Aplicação de técnicas de compressão para Modelos:}
@@ -76,7 +84,7 @@ essencial para que o objetivo do trabalho fosse atingido. Sendo elas:
 
 			Para finalizar, os dados dos modelos serão comparados e analisados. Com o objetivo de
 			identificar o melhor modelo e descobrir quais foram os motivos para que esse modelo tenha se
-			saído tão bem, mesmo após a aplicação de compressão. Nesta etapa as métricas de acurácia e
+			saído melhor, mesmo após a aplicação de compressão. Nesta etapa as métricas de acurácia e
 			tamanho do modelo são avaliadas.
 	\end{enumerate}
 
@@ -96,7 +104,7 @@ essencial para que o objetivo do trabalho fosse atingido. Sendo elas:
 
 \end{enumerate}
 
-Onde as etapas 3, 4 e 5 serão realizadas no Trabalho de Conclusão de Curso 2.
+As etapas 3, 4 e 5 serão realizadas no Trabalho de Conclusão de Curso 2.
 
 \section{Estrutura do documento}
 Este documento foi dividido em capítulos, onde cada um apresenta uma proposta diferente:
