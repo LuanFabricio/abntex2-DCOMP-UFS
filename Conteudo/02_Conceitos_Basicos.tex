@@ -8,10 +8,10 @@ transferência de conhecimento (\autoref{cap_conceitos_transferencia}), técnica
 (\autoref{cap_conceitos_compressao_redes}) e otimização Bayesiana (\autoref{cap_conceitos_bayesiana}).
 
 \section{Redes Neurais Artificiais}\label{cap_conceitos_ann}
-% ---
-% Adicionar referência
-Redes Neurais Artificiais são neurônios interconectados que realizam um processamento simples.
-Dentro dessa estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônios da coluna anterior, assim
+Redes Neurais Artificiais é composta por neurônios interconectados, onde cada um é responsável por fazer um
+processamento simples.
+% são neurônios interconectados que realizam um processamento simples.
+Dentro dessa estrutura cada neurônio reforça ou enfraquece a conexão com um dos neurônios da camada anterior, assim
 replicando o processo de aprendizagem do cérebro humano \cite{ml-faceli}.
 A \autoref{cap_conceitos_ann_exemplo_ann} ilustra uma ANN simples.
 
@@ -25,8 +25,9 @@ A \autoref{cap_conceitos_ann_exemplo_ann} ilustra uma ANN simples.
 
 O neurônio é uma parte fundamental de uma ANN, nele que o aprendizado é armazenado através do reforço de conexões com
 outros neurônios. Esse reforço é o peso da conexão, ele é multiplicado pela entrada e somado com os outros valores,
-como é demonstrado na equação \ref{eq_neuronio} (onde $x$ é um vetor com os valores de entrada do neurônio e $w$
-é um vetor com os pesos de cada entrada). Depois disso os valores passam por uma função de ativação $g(x)$ (\ref
+como é demonstrado na equação \ref{eq_neuronio}, onde $x$ é um vetor com os valores de entrada do neurônio, $w$
+é um vetor com os pesos de cada entrada e $b$ é o viés (\textit{bias}) do modelo.
+Depois disso, os valores passam por uma função de ativação $g(x)$ (\ref
 {eq_ativacao}), que é responsável por transformar estes dados antes que sejam passados para a próxima etapa, por esta
 razão, a função de ativação também é chamada função de transferência.
 
@@ -50,12 +51,14 @@ Redes Neurais Convolucionais são Redes Neurais Artificiais que utilizam a opera
 análise de dados no formato de \textit{grid} (grade).
 Por exemplo, uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
 
-A arquitetura de uma CNN, tem como componentes principais as camadas convolucionais (\ref{cap_conceitos_cnn_conv}),
-que tem como o objetivo extrair as características dos dados de entrada, \textit{pooling}
-(\ref{cap_conceitos_cnn_pooling}), que realça certos pontos da sua entrada, reduzindo o tamanho final da sua
-saída, e a camada totalmente conectada (\ref{cap_conceitos_cnn_totalmente}), que aprende a interpretar esses dados,
+% TODO: Adicionar ponto e vírgula
+A arquitetura de uma CNN, tem como componentes principais as camadas convolucionais (\autoref{cap_conceitos_cnn_conv}),
+que tem como o objetivo extrair as características dos dados de entrada,
+\textit{pooling} (\autoref{cap_conceitos_cnn_pooling}), que realça certos pontos da sua entrada, reduzindo o tamanho
+final da sua saída,
+a camada totalmente conectada (\autoref{cap_conceitos_cnn_totalmente}), que aprende a interpretar esses dados,
 para que a rede consiga realizar o processo de classificação.
-Na \autoref{exemplo_lenet}, temos a ilustração da arquitetura de uma CNN.
+Na \autoref{exemplo_lenet} é mostrada a ilustração da arquitetura de uma CNN.
 
 \begin{figure}[htb]
 	\caption {\label{exemplo_lenet} Arquitetura da LeNet}
@@ -78,12 +81,12 @@ A \autoref{exemplo_conv}, é um exemplo da operação de convolução sendo apli
 	\begin{center}
 		\includegraphics[scale=1.0]{Imagens/conv}
 	\end{center}
-	\legend{Fonte: \cite{zhang2023dive}}
+	\legend{Fonte: \citeonline{zhang2023dive}}
 \end{figure}
 
 \subsection{Camada de \textit{pooling}}\label{cap_conceitos_cnn_pooling}
 % ---
-A abordagem da camada de \textit{pooling} é um pouco parecida com a camada de convolução,
+A abordagem da camada de \textit{pooling} é relativamente parecida com a camada de convolução,
 uma matriz desliza pelas células da imagem, salvando apenas um dos valores dessa área na matriz de saída.
 Esta operação reduz o tamanho da matriz de entrada, fazendo com que o poder computacional necessário seja reduzido,
 junto com o uso de memória.
@@ -98,27 +101,29 @@ A \autoref{exemplo_pooling} demonstra uma operação de max \textit{pooling} em 
 	\begin{center}
 		\includegraphics[scale=1.0]{Imagens/maxpooling}
 	\end{center}
-	\legend{Fonte: \cite{zhang2023dive}}
+	\legend{Fonte: \citeonline{zhang2023dive}}
 \end{figure}
 
 \subsection{Camada totalmente conectada}\label{cap_conceitos_cnn_totalmente}
 % ---
-A camada totalmente conectada (\textit{fully connected layer}) é a camada final de uma CNN.
+A camada totalmente conectada (\textit{fully connected layer}) é uma das últimas camadas de uma CNN.
 Depois das camadas anteriores extraírem as características da imagem, ela é responsável por
-fazer aprender a interpretar essas características e inferir um resultado a partir do seu treinamento.
-Onde essa camada é uma ANN (\autoref{cap_conceitos_ann}) que geralmente é focada em realizar a classificação dos dados
+aprender a interpretar essas características e inferir um resultado a partir do seu treinamento.
+Essa camada é uma ANN (\autoref{cap_conceitos_ann}) que geralmente é focada em realizar a classificação dos dados
 de entrada.
 
 \section{\textit{Data augmentation}}\label{cap_conceitos_data_augmentation}
 % ---
-CNN tem um ótimo desempenho em tarefas de visão computacional. Entretanto, esse tipo de rede neural precisa de uma
-grande quantidade de dados para não sofrer de \textit{overfitting} (superajuste). \cite{shorten2019survey}
-Esse é o objetivo do \textit{data augmentation} (aumento de dados), gerar mais dados a partir de um conjunto de dados
+CNN tem um bom desempenho em tarefas de visão computacional. Entretanto, esse tipo de rede neural precisa de uma
+grande quantidade de dados no treinamento para não sofrer de \textit{overfitting} (superajuste)
+\cite{shorten2019survey}.
+O objetivo do \textit{data augmentation} (aumento de dados) é gerar mais dados a partir de um conjunto de dados
 que já existe, aplicando algumas transformações geométricas ou espaciais, ou realizando injeção de ruído nas imagens
 originais.
 
-Na \autoref{cap_conceitos_exemplo_da}, temos um exemplo de uma imagem que sofreu uma transformação para efetuar um \textit{data augmentation}.
-Nesse caso, temos uma que foi revertida (\textit{flip}), gerando um novo dado para o \text{dataset}
+Na \autoref{cap_conceitos_exemplo_da}, é apresentado um exemplo de uma imagem que sofreu uma transformação para efetuar
+um \textit{data augmentation}.
+Nesse caso, uma que foi revertida (\textit{flip}), gerando um novo dado para o \text{dataset}
 
 \begin{figure}[htb]
 	\caption {\label{cap_conceitos_exemplo_da}Exemplo de uma transformação utilizando \textit{data augmentation}}
@@ -128,6 +133,7 @@ Nesse caso, temos uma que foi revertida (\textit{flip}), gerando um novo dado pa
 	\legend {Fonte: \cite{tf2guia}}
 \end{figure}
 
+% TODO: Continuar
 \section{Transferência de conhecimento}\label{cap_conceitos_transferencia}
 % ---
 Transferência de conhecimento consiste em usar um modelo pré-treinado em uma base de dados específica e aproveitar
