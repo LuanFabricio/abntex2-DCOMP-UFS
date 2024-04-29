@@ -49,13 +49,13 @@ y = g(u + b)
 \section{Redes Neurais Convolucionais}\label{cap_conceitos_cnn}
 Redes Neurais Convolucionais são Redes Neurais Artificiais que utilizam a operação de convolução para o processamento e
 análise de dados no formato de \textit{grid} (grade).
-Por exemplo, uma imagem, que pode ser representada no formato 2-D. \cite{Goodfellow-et-al-2016}
+Por exemplo, uma imagem, que pode ser representada no formato 2-D \cite{Goodfellow-et-al-2016}.
 
 % TODO: Adicionar ponto e vírgula
 A arquitetura de uma CNN, tem como componentes principais as camadas convolucionais (\autoref{cap_conceitos_cnn_conv}),
-que tem como o objetivo extrair as características dos dados de entrada,
+que tem como o objetivo extrair as características dos dados de entrada;
 \textit{pooling} (\autoref{cap_conceitos_cnn_pooling}), que realça certos pontos da sua entrada, reduzindo o tamanho
-final da sua saída,
+final da sua saída;
 a camada totalmente conectada (\autoref{cap_conceitos_cnn_totalmente}), que aprende a interpretar esses dados,
 para que a rede consiga realizar o processo de classificação.
 Na \autoref{exemplo_lenet} é mostrada a ilustração da arquitetura de uma CNN.
@@ -65,7 +65,7 @@ Na \autoref{exemplo_lenet} é mostrada a ilustração da arquitetura de uma CNN.
 	\begin{center}
 		\includegraphics[scale=0.5]{Imagens/lenet}
 	\end{center}
-	\legend{Fonte: \cite{zhang2023dive}}
+	\legend{Fonte: \citeonline{zhang2023dive}}
 \end{figure}
 
 \subsection{Camada de Convolução}\label{cap_conceitos_cnn_conv}
@@ -115,7 +115,7 @@ de entrada.
 \section{\textit{Data augmentation}}\label{cap_conceitos_data_augmentation}
 % ---
 CNN tem um bom desempenho em tarefas de visão computacional. Entretanto, esse tipo de rede neural precisa de uma
-grande quantidade de dados no treinamento para não sofrer de \textit{overfitting} (superajuste)
+grande quantidade de dados no treinamento para não sofrer de superajuste (\textit{overfitting})
 \cite{shorten2019survey}.
 O objetivo do \textit{data augmentation} (aumento de dados) é gerar mais dados a partir de um conjunto de dados
 que já existe, aplicando algumas transformações geométricas ou espaciais, ou realizando injeção de ruído nas imagens
@@ -138,8 +138,10 @@ Nesse caso, uma que foi revertida (\textit{flip}), gerando um novo dado para o \
 % ---
 Transferência de conhecimento consiste em usar um modelo pré-treinado em uma base de dados específica e aproveitar
 o conhecimento adquirido durante esse treinamento para um novo conjunto de dados.
-É necessário que o problema do \textit{dataset} (conjunto de dados) atual seja um subconjunto do \textit{dataset}
-que foi usado para treinar o modelo base.
+% TODO: Ver como explicar melhor
+% É necessário que o problema do \textit{dataset} (conjunto de dados) atual seja um subconjunto do problema
+% que foi usado para treinar o modelo base.
+% Por exemplo, um modelo Professor que reconhece animais e um Aluno que reconhece gatos e cachorros.
 
 Para realizar a transferência de conhecimento é necessário adaptar a camada de entrada e de saída
 (totalmente conectada) do modelo base, para que ocorra um pré-processamento dos dados de entrada
@@ -150,9 +152,9 @@ conectada com o \textit{dataset} do problema.
 ANN são utilizadas em várias aplicações, demonstrando habilidades extraordinárias no campo de visão computacional.
 No entanto, redes com arquiteturas complexas são um desafio para a implantação em tempo real e necessitam de uma
 grande quantidade de energia e poder computacional \cite{LIANG2021370}.
-Por causa disso foram desenvolvidos métodos para reduzir o tamanho dessas redes, as tornando mais eficiente.
-Nesse trabalho os métodos de poda (\ref{poda}), quantização (\ref{quantizacao}) e destilação do conhecimento
-(\ref{conceitos_destilacao}) serão usados.
+Por causa disso foram desenvolvidos métodos para reduzir o tamanho dessas redes, as tornando mais eficientes.
+Nesse trabalho os métodos de poda (\autoref{poda}), quantização (\autoref{quantizacao}) e destilação do conhecimento
+(\autoref{conceitos_destilacao}) serão usados.
 
 \subsection{\textit{Pruning}(Poda)}\label{poda}
 
@@ -165,7 +167,7 @@ A operação de poda procura pesos com valores abaixo de um determinado limiar e
 a rede neural mais esparsa, o que facilita o processo de compressão.
 O processo de poda pode reduzir o superajuste da rede, uma vez que remove pesos pouco importantes ou redundantes
 da rede.
-Podemos dividir esse processo em dois, poda estática (\textit{static pruning}), que tem todas as etapas de poda
+Esse processo geralmente é divido em dois, poda estática (\textit{static pruning}), que tem todas as etapas de poda
 executadas off-line (antes da inferência), e poda dinâmica (\textit{dynamic pruning}), que é realizada junto com
 o processo de execução do modelo, permitindo que os nós relevantes sejam identificados. A
 \autoref{cap_conceitos_tipos_poda} ilustra o fluxo dos dois tipos de poda.
@@ -200,10 +202,10 @@ função de ativação final \textit{softmax}) no lugar da classe prevista. Alé
 
 \section{Otimização Bayesiana}\label{cap_conceitos_bayesiana}
 % ---
-A otimização Bayesiana é um método muito utilizado para a otimização de hiperparâmetros em modelos de aprendizagem de
+A otimização Bayesiana é um método utilizado para a otimização de hiperparâmetros em modelos de aprendizagem de
 máquina, especialmente do tipo caixa preta (\textit{black box}), como CNN.
 Esse método de otimização possui dois componentes principais, o modelo estatístico Bayesiano, que serve para modelar a
-função alvo, e a função de aquisição, que serve para escolher a próxima amostra de dados. \cite{frazier2018tutorial}
+função alvo, e a função de aquisição, que serve para escolher a próxima amostra de dados \cite{frazier2018tutorial}.
 Durante o teste inicial, o modelo escolhe os hiperparâmetros de forma aleatória, para aprender o comportamento da CNN.
 Depois disso, no processo iterativo, o modelo começa a convergir para uma combinação de hiperparâmetros otimizados,
 aumentando a acurácia da rede.
