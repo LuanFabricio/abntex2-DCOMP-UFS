@@ -1,22 +1,23 @@
 \chapter{Resultados preliminares}
 
-Neste capítulo serão apresentados testes feitos durante o período inicial do TCC, eles tiveram a finalidade de
-exercitar o conteúdo estudado.
-O objetivo principal é aplicar as técnicas de compressão para criar modelos menores e mais eficientes.
+Neste capítulo serão apresentados testes feitos durante o período inicial do TCC, eles tiveram a finalidade de aplicar ténicas para ter modelos menores.
+O objetivo principal é aplicar as técnicas de compressão para criar modelos menores e computacionalmente eficientes.
 
 % Destilação de conhecimento
 \section{Destilação de conhecimento (modelo Professor-Aluno)}
-Para fazer o experimento com destilação de conhecimento foi utilizada a base STL-10, que possui 500 imagens para
+Para fazer o experimento com destilação de conhecimento foi utilizada a base STL-10 \cite{stl10}, que possui 500 imagens para
 treinamento e 800 para teste, com resolução de $96 \times 96$ e 3 canais de cor (RGB). Como o conjunto de dados
 não possui muitas imagens, foi aplicada a técnica de \textit{data augmentation} (aumento de dados) para reduzir o
 \textit{overfitting}.
 
-Como já foi descrito na \autoref{conceitos_destilacao}, o objetivo dessa etapa é utilizar o conhecimento do modelo
+Como já descrito na \autoref{conceitos_destilacao}, o objetivo dessa etapa é utilizar o conhecimento do modelo
 Professor(mais robusto e pré-treinado) para treinar o modelo Aluno (mais simples e sem pré-treinamento).
-Onde o modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
+O modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
+% NOTE: Movo para o texto?
 \autoref{res_aluno_1}.
 Além disso, o modelo Rafael \cite{rafael} foi adaptado e utilizado (com algumas variações).
 
+% TODO: Continuar correção
 Para aumentar a precisão do modelo Aluno com o destilação de conhecimento, foi utilizada a otimização
 Bayesiana, para procurar os valores dos hiperparâmetros $\alpha$ e \textit{Temperature}.
 Os possíveis valores de $\alpha$ foram 0.1, 0.5, 0.01 e 0.25.
@@ -34,17 +35,17 @@ Os resultados do experimento estão na \autoref{tabela_acuracia_1}.
 	\textbf{Modelo} & \textbf{Com destilação de conhecimento?}  & \textbf{Acurácia (validação)}
 		   & \textbf{$\alpha$} & \textbf{\textit{Temperature}} \\
 	\hline
-	% ResNet-50 	& 	Não 	& 	90,65\%	& 	- 	& 	-	 \\
-	% Aluno 		& 	Não 	& 	76,80\%	& 	- 	& 	-	 \\
-	Rafael-base 	& 	Não 	& 	71,38\%	& 	- 	& 	-	 \\
-	Rafael-1 	& 	Não 	& 	67,08\%	& 	- 	& 	-	 \\
-	Rafael-2 	& 	Não 	& 	74,57\%	& 	- 	& 	-	 \\
-	Rafael-3 	& 	Não 	& 	71,01\%	& 	- 	& 	-	 \\
-	% Aluno 		& 	Sim 	& 	83,79\%	& 	0,1 	& 	5	 \\
-	Rafael-base 	& 	Sim 	& 	74,21\%	& 	0,1 	& 	10	 \\
-	Rafael-1 	& 	Sim 	& 	69,70\%	& 	0,01 	& 	20	 \\
-	Rafael-2 	& 	Sim 	& 	79,12\%	& 	0,01 	& 	7	 \\
-	Rafael-3 	& 	Sim 	& 	76,55\%	& 	0,01 	& 	5	 \\
+	% ResNet-50 	& 	Não 	& 	90.65\%	& 	- 	& 	-	 \\
+	% Aluno 		& 	Não 	& 	76.80\%	& 	- 	& 	-	 \\
+	Rafael-base 	& 	Não 	& 	71.38\%	& 	- 	& 	-	 \\
+	Rafael-1 	& 	Não 	& 	67.08\%	& 	- 	& 	-	 \\
+	Rafael-2 	& 	Não 	& 	74.57\%	& 	- 	& 	-	 \\
+	Rafael-3 	& 	Não 	& 	71.01\%	& 	- 	& 	-	 \\
+	% Aluno 		& 	Sim 	& 	83.79\%	& 	0.1 	& 	5	 \\
+	Rafael-base 	& 	Sim 	& 	74.21\%	& 	0.1 	& 	10	 \\
+	Rafael-1 	& 	Sim 	& 	69.70\%	& 	0.01 	& 	20	 \\
+	Rafael-2 	& 	Sim 	& 	79.12\%	& 	0.01 	& 	7	 \\
+	Rafael-3 	& 	Sim 	& 	76.55\%	& 	0.01 	& 	5	 \\
 	\hline
 \end{tabular}
 \legend{Fonte: Autor}
@@ -97,7 +98,7 @@ $32x32$ e possui 3 canais de cores (RGB). Nesse conjunto de dados também foi ne
 
 O modelo utilizado no experimento foi gerado pelo \autoref{pruning_quantization_model}, inicialmente ele possuía
 2.397.226 parâmetros (28 MB). Inicialmente ele foi treinado durante 25 \textit{epochs} (épocas), atingindo
-uma acurácia de $90,18\%$ nos dados de treinamento e $85,91\%$ nos dados de validação.
+uma acurácia de $90.18\%$ nos dados de treinamento e $85.91\%$ nos dados de validação.
 Onde somente os dados de validação serão utilizados para comparar os modelos, pois eles podem sofrer
 \textit{overfitting} e ter um alto desempenho nos dados de treinamento e baixo desempenho nos dados de validação.
 
@@ -105,12 +106,12 @@ Depois de treinado, o modelo foi podado utilizando a estratégia de \textit{prun
 (podar baixa magnitude), que tem como foco zerar valores abaixo de um certo limiar. Depois de definir os parâmetros da
 poda, o modelo foi retreinado por 2 \textit{epochs}, para que o algoritmo de poda consiga identificar as conexões
 importantes durante o uso do modelo.
-Após o retreinamento, o modelo final teve acurácia de $83,83\%$ nos dados de treinamento e $84,40\%$ nos dados de
-validação, consumindo 9,3 MB após remover todos os valores iguais a zero.
+Após o retreinamento, o modelo final teve acurácia de $83.83\%$ nos dados de treinamento e $84.40\%$ nos dados de
+validação, consumindo 9.3 MB após remover todos os valores iguais a zero.
 
-Depois de podado, o modelo foi convertido para TensorFlow Lite, consumindo 9,2 MB de armazenamento e ficando com
-$84,91\%$ de acurácia. Depois disso, a quantização é aplicada utilizando a API do TensorFlow Lite, deixando o modelo
-final com 2,4 MB e $84,36\%$ de acurácia.
+Depois de podado, o modelo foi convertido para TensorFlow Lite, consumindo 9.2 MB de armazenamento e ficando com
+$84.91\%$ de acurácia. Depois disso, a quantização é aplicada utilizando a API do TensorFlow Lite, deixando o modelo
+final com 2.4 MB e $84.36\%$ de acurácia.
 
 \begin{center}
 \begin{table}[htb]
@@ -122,10 +123,10 @@ final com 2,4 MB e $84,36\%$ de acurácia.
 	\hline
 	\textbf{Modelo} & \textbf{Acurácia (validação)}  & \textbf{\textit{Memory footprint} (MB)} \\
 	\hline
-	Modelo base 				 & 	85,91\% 	& 	28	\\
-	Modelo base podado 			 & 	84,40\% 	& 	9,3	\\
-	Modelo base podado (TFLite) 		 & 	84,91\% 	& 	9,2	\\
-	Modelo base podado e quantizado (TFLite) & 	84,36\% 	& 	2,4	\\
+	Modelo base 				 & 	85.91\% 	& 	28	\\
+	Modelo base podado 			 & 	84.40\% 	& 	9.3	\\
+	Modelo base podado (TFLite) 		 & 	84.91\% 	& 	9.2	\\
+	Modelo base podado e quantizado (TFLite) & 	84.36\% 	& 	2.4	\\
 	\hline
 \end{tabular}
 \legend{Fonte: Autor}
@@ -134,5 +135,5 @@ final com 2,4 MB e $84,36\%$ de acurácia.
 
 A \autoref{tabela_acuracia_peso} mostra a acurácia dos modelos (nos dados de validação) durante as etapas de poda e
 quantização, onde a coluna \textbf{\textit{Memory footprint}}  indica o consumo de armazenamento do modelo.
-A poda e quantização do modelo base resultou em uma redução de pegada de memória de 28 MB para 2,4 MB, apresentando uma perda
-de $1,5\%$ da sua acurácia, tornando o modelo mais eficiente sem a perda de desempenho.
+A poda e quantização do modelo base resultou em uma redução de pegada de memória de 28 MB para 2.4 MB, apresentando uma perda
+de $1.5\%$ da sua acurácia, tornando o modelo mais eficiente sem a perda de desempenho.
