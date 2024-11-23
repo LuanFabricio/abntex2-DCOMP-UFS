@@ -42,9 +42,11 @@ O trabalho estará completo se os seguintes objetivos forem alcançados:
 	% Deixar claro que é necessário que o modelo comprimido também tenha uma alta acurácia, F1-score etc.
 	% Deixar claro que é necessário que o modelo comprimido não utilize poucos recursos computacionais
 	%	(armazenamento, memória e uso de cpu) e que a latência também seja baixa.
-	\item Aplicar técnicas de compressão e otimização em um modelo, o tornando eficiente o suficiente para ser
-		embarcado.
-	\item Embarcar o modelo comprimido, de forma que ele consiga realizar operações na borda, mantendo acurácia
+	\item Aplicar técnicas de compressão e otimização em um modelo, assim reduzindo o uso de CPU e memória,
+		o permitindo que seja embarcado.
+	% TODO: Rever
+	\item Validar performace do modelo, para garantir que a acurácia e F1-score do modelo seja mantida.
+	\item Embarcar o modelo comprimido de forma que ele consiga realizar operações na borda, mantendo acurácia
 		alta e baixa latência.
 \end{itemize}
 

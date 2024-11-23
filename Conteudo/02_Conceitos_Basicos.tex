@@ -52,7 +52,7 @@ análise de dados no formato de \textit{grid} (grade).
 Por exemplo, uma imagem, que pode ser representada no formato 2-D \cite{Goodfellow-et-al-2016}.
 
 % TODO: Adicionar ponto e vírgula
-A arquitetura de uma CNN, tem como componentes principais as camadas convolucionais (\autoref{cap_conceitos_cnn_conv}),
+A arquitetura de uma CNN tem como componentes principais as camadas convolucionais (\autoref{cap_conceitos_cnn_conv}),
 que tem como o objetivo extrair as características dos dados de entrada;
 \textit{pooling} (\autoref{cap_conceitos_cnn_pooling}), que realça certos pontos da sua entrada, reduzindo o tamanho
 final da sua saída;
@@ -130,7 +130,7 @@ Nesse caso, uma que foi revertida (\textit{flip}), gerando um novo dado para o \
 	\begin{center}
 		\includegraphics[scale=1]{Imagens/exemplo_da}
 	\end{center}
-	\legend {Fonte: \cite{tf2guia}}
+	\legend {Fonte: \citeonline{tf2guia}}
 \end{figure}
 
 % TODO: Continuar
@@ -149,7 +149,7 @@ Para realizar a transferência de conhecimento é necessário adaptar a camada d
 conectada com o \textit{dataset} do problema.
 
 \section{Métodos de compressão para Redes Neurais}\label{cap_conceitos_compressao_redes}
-ANN são utilizadas em várias aplicações, demonstrando habilidades extraordinárias no campo de visão computacional.
+ANN são utilizadas em várias aplicações, demonstrando habilidades no campo de visão computacional.
 No entanto, redes com arquiteturas complexas são um desafio para a implantação em tempo real e necessitam de uma
 grande quantidade de energia e poder computacional \cite{LIANG2021370}.
 Por causa disso foram desenvolvidos métodos para reduzir o tamanho dessas redes, as tornando mais eficientes.
@@ -165,7 +165,7 @@ a quantidade de parâmetros redundantes ou que não contribuem muito para a prec
 
 A operação de poda procura pesos com valores abaixo de um determinado limiar e os muda para a zero, assim deixando
 a rede neural mais esparsa, o que facilita o processo de compressão.
-O processo de poda pode reduzir o superajuste da rede, uma vez que remove pesos pouco importantes ou redundantes
+O processo de poda pode reduzir o \textit{overfitting} da rede, uma vez que remove pesos pouco importantes ou redundantes
 da rede.
 Esse processo geralmente é divido em dois, poda estática (\textit{static pruning}), que tem todas as etapas de poda
 executadas off-line (antes da inferência), e poda dinâmica (\textit{dynamic pruning}), que é realizada junto com
