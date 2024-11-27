@@ -11,7 +11,7 @@ não possui muitas imagens, foi aplicada a técnica de \textit{data augmentation
 \textit{overfitting}.
 
 Como já descrito na \autoref{conceitos_destilacao}, o objetivo dessa etapa é utilizar o conhecimento do modelo
-Professor(mais robusto e pré-treinado) para treinar o modelo Aluno (mais simples e sem pré-treinamento).
+Professor (mais robusto e pré-treinado) para treinar o modelo Aluno (mais simples e sem pré-treinamento).
 O modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
 % NOTE: Movo para o texto?
 \autoref{res_aluno_1}.
@@ -20,10 +20,15 @@ Além disso, o modelo Rafael \cite{rafael} foi adaptado e utilizado (com algumas
 % TODO: Continuar correção
 Para aumentar a precisão do modelo Aluno com o destilação de conhecimento, foi utilizada a otimização
 Bayesiana, para procurar os valores dos hiperparâmetros $\alpha$ e \textit{Temperature}.
+% TODO: Revisar
+% Talvez mover pro capítulo 02
+% Onde $\alpha$ é o peso da \textit{loss function} do modelo estudante e \textit{Temperature} é a relação de
+% \textit{logits} da função \textit{softmax}.
 Os possíveis valores de $\alpha$ foram 0.1, 0.5, 0.01 e 0.25.
 E os possíveis valores de \textit{Temperature} foram 2, 5, 7, 10, 12, 15, 17 e 20.
 Os resultados do experimento estão na \autoref{tabela_acuracia_1}.
 
+% TODO: Continuar correção
 \begin{center}
 \begin{table}[htb]
 \centering
