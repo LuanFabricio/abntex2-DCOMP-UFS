@@ -42,10 +42,13 @@ O trabalho estará completo se os seguintes objetivos forem alcançados:
 	% Deixar claro que é necessário que o modelo comprimido também tenha uma alta acurácia, F1-score etc.
 	% Deixar claro que é necessário que o modelo comprimido não utilize poucos recursos computacionais
 	%	(armazenamento, memória e uso de cpu) e que a latência também seja baixa.
-	\item Aplicar técnicas de compressão e otimização em um modelo, assim reduzindo o uso de CPU e memória,
-		o permitindo que seja embarcado.
+	\item Reduzir o custo computacional de um modelo, possibilitando que ele seja embarcado enquanto a capacidade
+		de reconhecimento facial é mantida.
+	% \item Aplicar técnicas de compressão e otimização em um modelo, assim reduzindo o uso de CPU e memória,
+	% 	o permitindo que seja embarcado.
 	% TODO: Rever
-	\item Validar performace do modelo, para garantir que a acurácia e F1-score do modelo seja mantida.
+	\item Validar performace do modelo, com a finalidade de validar que a acurácia e F1-Score sejam preservados
+		ou próximos.
 	\item Embarcar o modelo comprimido de forma que ele consiga realizar operações na borda, mantendo acurácia
 		alta e baixa latência.
 \end{itemize}
@@ -71,6 +74,10 @@ essencial para que o objetivo do trabalho fosse atingido. Sendo elas:
 			Nesta etapa, uma base de dados é selecionada e a partir dela serão desenvolvidos modelos,
 			com o objetivo de atingir uma alta acurácia, sem sofrer \textit{overfitting}.
 
+			% NOTE: Talvez rever texto
+			Nesta etapa, uma base de dados é selecionada e a partir dela modelos foram validados e
+			desenvolvidos, com o objetivo de atingir uma alta acurácia, sem sofrer \textit{overfitting}.
+
 		\item \textbf{Aplicação de técnicas de compressão para Modelos:}
 
 			Após definir e treinar os modelos, serão aplicadas técnicas de compressão, tendo como
@@ -81,6 +88,11 @@ essencial para que o objetivo do trabalho fosse atingido. Sendo elas:
 
 			Depois de treinar e aplicar técnicas de compressão, os dados dos modelos serão coletados e
 			avaliados. Para realizar essa avaliação, será necessário utilizar um conjunto de testes.
+			Nesta avaliação, foram medidos gastos computacionais do modelo quanto o seu desempenho para
+			realizar a tarefa de reconhecimento facial.
+
+			Onde pegada de memória e tempo de inferência são métricas referente ao custo computacional,
+			e acurácia e F1-Score foram métricas do desempenho na tarefa de reconhecimento facial.
 
 		\item \textbf{Análise e comparação dos resultados:}
 
@@ -90,16 +102,21 @@ essencial para que o objetivo do trabalho fosse atingido. Sendo elas:
 			tamanho do modelo são avaliadas.
 	\end{enumerate}
 
+	% NOTE: Talvez retirar ou juntar com 2.D
 	\item \textbf{Escolha do modelo para reconhecimento facial:}
 
 		Nesta etapa serão avaliados os modelos com base em métricas como acurácia, F1 score, latência e ocupação de
 		memória. Após a avaliação será escolhido um modelo que servirá como base nas próximas etapas.
 
-	\item \textbf{Compressão e implantação do modelo em hardware limitado:}
+	\item \textbf{Implantação do modelo em hardware limitado:}
 
-		Depois de escolher um modelo de reconhecimento facial, ele será comprimido de forma que possa ser executado
-		em sistemas embarcados, mantendo a acurácia alta e latência baixa.
+		Com o modelo final pronto e avaliado, ele será adaptado para ser implantado em um dispositivo
+		embarcado.
 
+		% Depois de escolher um modelo de reconhecimento facial, ele será comprimido de forma que possa ser executado
+		% em sistemas embarcados, mantendo a acurácia alta e latência baixa.
+
+	% NOTE: Remover
 	\item \textbf{Desenvolvimento do estudo de caso:}
 
 		Com o modelo final comprimido ao ponto de ser implantado em um sistema embarcado, será desenvolvida uma aplicação 	 	 que servirá como experimento para avaliar a eficácia do modelo dentro de dispositivos com hardware limitado.
