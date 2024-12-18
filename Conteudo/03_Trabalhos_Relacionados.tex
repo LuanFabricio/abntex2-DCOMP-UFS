@@ -74,5 +74,16 @@ e oportunidade do protótipo.
 \end{center}
 
 \subsection{\textit{A face recognition application for Alzheimer’s patients using ESP32‑CAM and Raspberry Pi}}
-Este trabalho \cite{} tem como objetivo, desenvolver um aparelho para auxiliar pessoas com Alzheimer, utilizando reconhecimento
-facial.
+Este trabalho \cite{espcamAlzheimer} tem como objetivo, desenvolver um aparelho para auxiliar pessoas com Alzheimer,
+utilizando reconhecimento facial. Para atingir esse objetivo, foi utilizada uma ESPCAM, para fazer a detecção facial
+e um Raspberry Pi, para fazer o reconhecimento facial. De forma que, a câmera detecta a face, realiza um recorte
+(\textit{crop}) e a envia para o servidor realizar a detecção, onde, caso seja uma face conhecida, o nome da pessoa será
+falado por um alto-falante (\textit{speaker}), como é possível notar a .
+
+\begin{figure}[htb]
+	\caption {\label{pipeline_espcam}Pipeline do reconhecimento facial}
+	\begin{center}
+		\includegraphics[scale=0.15]{Imagens/pipiline-espcam-alzheimer}
+	\end{center}
+	\legend {Fonte: \citeonline{bagchi20222133}}
+\end{figure}
