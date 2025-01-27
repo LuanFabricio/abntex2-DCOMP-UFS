@@ -5,17 +5,19 @@ finalidade avaliar o uso de métodos e técnica de compressão de modelos, focad
 embarcados. Nele serão apresentados os métodos de avaliação do modelo (\autoref{sec_avaliacao_modelo}),
 
 \section{Dispositivo utilizado}\label{sec_dispositivo}
-ESP32
+O ESP32-S3- foi escolhido como dispositivo utilizado pelo seu custo-benefício, sendo um aparelho poderoso
+tendo em relação o seu baixo custo e consumo energético.
 
 \section{Método de avaliação utilizado}\label{sec_avaliacao_modelo}
 Para avaliar o modelo, primeiro, as características de cada imagem e sua versão espelhada
 (\textit{flip} horizontal) são extraídas pelo modelo. Depois é realizada a verificação da face,
-calculando a similaridade de cosseno entre os vetores de características \cite{triplet_distillation_face_recognition}.
+calculando a distância de cosseno entre os vetores de características \cite{triplet_distillation_face_recognition}.
+Onde a imagem com menor distância é considerada a previsão do modelo.
 % TODO: DETALHAR
 
 \section{Modelo utilizado}\label{sec_modelo_utilizado}
-O modelo utilizado foi o mobilefacenet, pois ele mantém uma boa acurácia para detectar as faces enquanto ele necessita
-de pouco espaço para ser executado.
+O modelo utilizado foi o mobilefacenet, pois ele mantém uma acurácia acima de 90% na tarefa de detecção de faces,
+com tempo de inferência e baixa pegada de memória \cite{}.
 
 ---
 
