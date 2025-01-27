@@ -1,9 +1,21 @@
-\chapter{Resultados preliminares}
+\chapter{Experimentos e resultados}
 
-\section{Avaliação do modelo}
-O método de avaliação do modelo foi baseado no artigo Triplet Distillation \cite{triplet_distillation_face_recognition}
-, onde são extraídas as características imagens e suas versões com \textit{flip}. Depois disso, os vetores de
-característica são utilizados para a etapa de verificação de face, utilizando similaridade de cosseno.
+Neste capítulo serão apresentados os experimentos feitos durante o TCC. Eles tiveram como
+finalidade avaliar o uso de métodos e técnica de compressão de modelos, focado em dispositivos
+embarcados. Nele serão apresentados os métodos de avaliação do modelo (\autoref{sec_avaliacao_modelo}),
+
+\section{Dispositivo utilizado}\label{sec_dispositivo}
+ESP32
+
+\section{Método de avaliação utilizado}\label{sec_avaliacao_modelo}
+Para avaliar o modelo, primeiro, as características de cada imagem e sua versão espelhada
+(\textit{flip} horizontal) são extraídas pelo modelo. Depois é realizada a verificação da face,
+calculando a similaridade de cosseno entre os vetores de características \cite{triplet_distillation_face_recognition}.
+% TODO: DETALHAR
+
+\section{Modelo utilizado}\label{sec_modelo_utilizado}
+O modelo utilizado foi o mobilefacenet, pois ele mantém uma boa acurácia para detectar as faces enquanto ele necessita
+de pouco espaço para ser executado.
 
 ---
 
