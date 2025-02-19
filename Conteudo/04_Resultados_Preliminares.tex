@@ -8,19 +8,41 @@ embarcados. Nele serão apresentados os métodos de avaliação do modelo (\auto
 O ESP32-S3 N16R8 foi escolhido como dispositivo utilizado pelo seu custo-benefício,
 sendo um aparelho poderoso tendo em relação o seu baixo custo e consumo energético.
 
-\section{Método de avaliação}\label{sec_avaliacao_modelo}
-Para avaliar o modelo, primeiro, as características de cada imagem e sua versão espelhada
-(\textit{flip} horizontal) são extraídas pelo modelo. Depois é realizada a verificação da face,
-calculando a distância de cosseno entre os vetores de características \cite{triplet_distillation_face_recognition}.
-Onde a imagem com menor distância é considerada a previsão do modelo.
-% TODO: DETALHAR
-
 \section{Modelo utilizado}\label{sec_modelo_utilizado}
 O modelo utilizado foi o mobilefacenet, pois ele mantém uma acurácia acima de 90\% na tarefa de detecção de faces,
 com tempo de inferência e baixa pegada de memória \cite{leandro}.
 
-\section{\textit{Datasets}}\label{sec_datasets}
+\section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
+Para realizar o treinamento do modelo, foi utilizada a técnica \textit{triplet loss}
+\cite{triplet_distillation_face_recognition}. Essa técnica utiliza é descrita pela fórmula \ref{eq_triplet_loss}
 
+
+\begin{equation}\label{eq_triplet_loss}
+	Loss = \frac 1 N \sum _i ^N max(D(x_i^a, x_i^p) - D(x_i^a, x_i^n) + F(d), 0))
+\end{equation}
+\begin{equation}\label{eq_triplet_loss_teacher_dist}
+	d = max(T(x_i^a, x_i^n) - T(x_i^a, x_i^p), 0)
+\end{equation}
+
+% TODO:
+% - Citar técnica usada
+% - Citar técnica de avaliação usada
+% - Citar modelos treinados (Triplet Distillation)
+% 	- Rafael
+% 	- MobileNetV3Small
+
+\section{Método de avaliação}\label{sec_avaliacao_modelo}
+Para avaliar o modelo, primeiro, as características de cada imagem e sua versão espelhada
+(\textit{flip} horizontal) são extraídas pelo modelo. Depois é realizada a verificação da face,
+calculando a distância de cosseno entre os vetores de características \cite{triplet_distillation_face_recognition}, onde a imagem com menor distância é considerada a previsão do modelo.
+
+ADICIONAR IMAGEM
+% TODO: DETALHAR
+
+\section{\textit{Datasets}}\label{sec_datasets}
+Para realizar o treinamento do modelo, foi utilizada uma variação do \textit{dataset}
+\textit{Labeled faces in the Wild} (LFW), que possui várias amostras contendo triplas com as imagens das faces,
+assim facilitando o uso da técnica de \textit{triplet distillation} para o treinamento.
 
 \section{Resultados}\label{sec_resultados}
 
