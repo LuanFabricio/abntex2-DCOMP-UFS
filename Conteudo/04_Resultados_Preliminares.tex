@@ -9,29 +9,51 @@ O ESP32-S3 N16R8 foi escolhido como dispositivo utilizado pelo seu custo-benefí
 sendo um aparelho poderoso tendo em relação o seu baixo custo e consumo energético.
 
 \section{Modelo utilizado}\label{sec_modelo_utilizado}
-O modelo utilizado foi o mobilefacenet, pois ele mantém uma acurácia acima de 90\% na tarefa de detecção de faces,
+O modelo utilizado foi o MobileFaceNet, pois ele mantém uma acurácia acima de 90\% na tarefa de detecção de faces,
 com tempo de inferência e baixa pegada de memória \cite{leandro}.
 
 \section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
-Para realizar o treinamento do modelo, foi utilizada a técnica \textit{triplet loss}
+TODO: ADICIONAR RESUMO
+
+\subsection{\textit{Triplet Loss}}
+Para realizar o treinamento do modelo MobileFaceNet, foi utilizada a técnica \textit{triplet loss}
 \cite{triplet_distillation_face_recognition}. Ela tem como objetivo comparar os \textit{embeddings} de três imagens,
-utilizando a distância de cosseno (D) de um embedding ($x_i^j$) comparado com outro ($x_i^k$).
+utilizando a distância de cosseno ($D$) de um embedding ($x_i^j$) comparado com outro ($x_i^k$).
 %Essa técnica utiliza é descrita pela fórmula \ref{eq_triplet_loss}
 
-
 \begin{equation}\label{eq_triplet_loss}
-	Loss = \frac 1 N \sum _i ^N max(D(x_i^a, x_i^p) - D(x_i^a, x_i^n), 0))
+	Loss = \frac 1 N \sum _i ^N max(D(x_i^a, x_i^p) - D(x_i^a, x_i^n) + m, 0))
 \end{equation}
 %
 % \begin{equation}\label{eq_triplet_loss_teacher_dist}
 % 	d = max(T(x_i^a, x_i^n) - T(x_i^a, x_i^p), 0)
-% \end{equation}V
+% \end{equation}
 %
 
-A fórmula \ref{eq_triplet_loss}, é a função \textit{Loss} utilizada para treinar o modelo. Onde, $x_i^a$ é
+Na equação \ref{eq_triplet_loss}, é a função \textit{Loss} utilizada para treinar o modelo. Onde, $x_i^a$ é
 a imagem âncora, $x_i^p$ é a imagem positiva e $x_i^n$ é a imagem negativa, todas referentes a i-ésima
-tripla. Então, quanto mais parecidos forem os \textit{embeddings} da imagem âncora com a imagem positiva,
+tripla e $m$ é um hiperparâmetro que define a margem entre o par positivo e par negativo.
+Então, quanto mais parecidos forem os \textit{embeddings} da imagem âncora com a imagem positiva,
 menor será a perda, sendo o inverso para a âncora com a imagem negativa.
+
+\subsection{\textit{Triplet Distillation}}
+Para realizar o treinamento dos modelos MobileNetV3 e Rafael-2, foi utilizada a técnica de
+\textit{Knowledge Distillation} \cite{hinton2015distilling} com \textit{Triplet Loss}, conhecida como
+\textit{tripletloss} \cite{triplet_distillation_face_recognition}.
+Ela utiliza cálculo da \textit{Loss Function} \ref{eq_triplet_loss} como base, adicionando a distância entre os
+\textit{embeddings} do modelo estudante e do modelo professor, como pode ser visto na fórmula
+\ref{eq_triplet_distillation}.
+
+\begin{equation}\label{eq_triplet_distillation}
+	Loss = \frac 1 N \sum _i ^N max(D(x_i^a, x_i^p) - D(x_i^a, x_i^n) + d, 0))
+\end{equation}
+
+\begin{equation}\label{eq_triplet_loss_teacher_dist}
+	d = max(T(x_i^a, x_i^n) - T(x_i^a, x_i^p), 0)
+\end{equation}
+
+Onde $T$ (\ref{eq_triplet_loss_teacher_dist}) é a distância entre os \textit{embeddings} do modelo estudante e
+professor, e $d$ (\ref{eq_triplet_distillation}) é utilizado como uma margem dinâmica entre par positivo e negativo.
 
 % TODO:
 % - Citar técnica usada
@@ -47,7 +69,7 @@ calculando a distância de cosseno entre os vetores de características
 \cite{triplet_distillation_face_recognition}, onde a imagem com menor distância é considerada a previsão do
 modelo.
 
-ADICIONAR IMAGEM
+TODO: ADICIONAR IMAGEM
 % TODO: DETALHAR
 
 \section{\textit{Datasets}}\label{sec_datasets}
