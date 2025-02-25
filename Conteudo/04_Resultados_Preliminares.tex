@@ -14,15 +14,24 @@ com tempo de inferência e baixa pegada de memória \cite{leandro}.
 
 \section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
 Para realizar o treinamento do modelo, foi utilizada a técnica \textit{triplet loss}
-\cite{triplet_distillation_face_recognition}. Essa técnica utiliza é descrita pela fórmula \ref{eq_triplet_loss}
+\cite{triplet_distillation_face_recognition}. Ela tem como objetivo comparar os \textit{embeddings} de três imagens,
+utilizando a distância de cosseno (D) de um embedding ($x_i^j$) comparado com outro ($x_i^k$).
+%Essa técnica utiliza é descrita pela fórmula \ref{eq_triplet_loss}
 
 
 \begin{equation}\label{eq_triplet_loss}
-	Loss = \frac 1 N \sum _i ^N max(D(x_i^a, x_i^p) - D(x_i^a, x_i^n) + F(d), 0))
+	Loss = \frac 1 N \sum _i ^N max(D(x_i^a, x_i^p) - D(x_i^a, x_i^n), 0))
 \end{equation}
-\begin{equation}\label{eq_triplet_loss_teacher_dist}
-	d = max(T(x_i^a, x_i^n) - T(x_i^a, x_i^p), 0)
-\end{equation}
+%
+% \begin{equation}\label{eq_triplet_loss_teacher_dist}
+% 	d = max(T(x_i^a, x_i^n) - T(x_i^a, x_i^p), 0)
+% \end{equation}V
+%
+
+A fórmula \ref{eq_triplet_loss}, é a função \textit{Loss} utilizada para treinar o modelo. Onde, $x_i^a$ é
+a imagem âncora, $x_i^p$ é a imagem positiva e $x_i^n$ é a imagem negativa, todas referentes a i-ésima
+tripla. Então, quanto mais parecidos forem os \textit{embeddings} da imagem âncora com a imagem positiva,
+menor será a perda, sendo o inverso para a âncora com a imagem negativa.
 
 % TODO:
 % - Citar técnica usada
@@ -34,7 +43,9 @@ Para realizar o treinamento do modelo, foi utilizada a técnica \textit{triplet 
 \section{Método de avaliação}\label{sec_avaliacao_modelo}
 Para avaliar o modelo, primeiro, as características de cada imagem e sua versão espelhada
 (\textit{flip} horizontal) são extraídas pelo modelo. Depois é realizada a verificação da face,
-calculando a distância de cosseno entre os vetores de características \cite{triplet_distillation_face_recognition}, onde a imagem com menor distância é considerada a previsão do modelo.
+calculando a distância de cosseno entre os vetores de características
+\cite{triplet_distillation_face_recognition}, onde a imagem com menor distância é considerada a previsão do
+modelo.
 
 ADICIONAR IMAGEM
 % TODO: DETALHAR
