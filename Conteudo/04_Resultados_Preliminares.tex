@@ -13,7 +13,13 @@ O modelo utilizado foi o MobileFaceNet, pois ele mantém uma acurácia acima de 
 com tempo de inferência e baixa pegada de memória \cite{leandro}.
 
 \section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
-TODO: ADICIONAR RESUMO
+Para fazer o treinamento dos modelos, foi necessário utilizar a técnica de \textit{triplet distillation}
+\cite{triplet_distillation_face_recognition},
+para que seja possível medir o quão próximo as \textit{embeddings} de uma imagem são parecidas com as de outra.
+Essa técnica usa três imagens, \textbf{âncora}, que é considerada como imagem base, \textbf{positiva},
+que é uma variação da mesma categoria da âncora, e \textbf{negativa}, de outra categoria.
+
+No contexto de reconhecimento facial, a âncora e positi
 
 \subsection{\textit{Triplet Loss}}
 Para realizar o treinamento do modelo MobileFaceNet, foi utilizada a técnica \textit{triplet loss}
@@ -39,8 +45,8 @@ menor será a perda, sendo o inverso para a âncora com a imagem negativa.
 \subsection{\textit{Triplet Distillation}}
 Para realizar o treinamento dos modelos MobileNetV3 e Rafael-2, foi utilizada a técnica de
 \textit{Knowledge Distillation} \cite{hinton2015distilling} com \textit{Triplet Loss}, conhecida como
-\textit{tripletloss} \cite{triplet_distillation_face_recognition}.
-Ela utiliza cálculo da \textit{Loss Function} \ref{eq_triplet_loss} como base, adicionando a distância entre os
+\textit{triplet loss} \cite{triplet_distillation_face_recognition}.
+Ela utiliza cálculo da \textit{Loss Function} (\ref{eq_triplet_loss}) como base, adicionando a distância entre os
 \textit{embeddings} do modelo estudante e do modelo professor, como pode ser visto na fórmula
 \ref{eq_triplet_distillation}.
 
@@ -76,6 +82,8 @@ TODO: ADICIONAR IMAGEM
 Para realizar o treinamento do modelo, foi utilizada uma variação do \textit{dataset}
 \textit{Labeled faces in the Wild} (LFW), que possui várias amostras contendo triplas com as imagens das faces,
 assim facilitando o uso da técnica de \textit{triplet distillation} para o treinamento.
+
+TODO: ADICIONAR DATASET DA UFS (LEANDRO)
 
 \section{Resultados}\label{sec_resultados}
 
