@@ -5,8 +5,8 @@ finalidade avaliar o uso de métodos e técnica de compressão de modelos, focad
 embarcados. Nele serão apresentados os métodos de avaliação do modelo (\autoref{sec_avaliacao_modelo}),
 
 \section{Dispositivo utilizado}\label{sec_dispositivo}
-O ESP32-S3 N16R8 foi escolhido como dispositivo utilizado pelo seu custo-benefício,
-sendo um aparelho poderoso tendo em relação o seu baixo custo e consumo energético.
+O ESP32-S3 N16R8 foi escolhido como dispositivo utilizado pelo seu custo-benefício, sendo um aparelho poderoso
+considerando o seu baixo custo e consumo energético. Além disso, esse modelo possui u TERMINAR
 
 \section{Modelo utilizado}\label{sec_modelo_utilizado}
 O modelo utilizado foi o MobileFaceNet, pois ele mantém uma acurácia acima de 90\% na tarefa de detecção de faces,
@@ -62,8 +62,6 @@ Onde $T$ (\ref{eq_triplet_loss_teacher_dist}) é a distância entre os \textit{e
 professor, e $d$ (\ref{eq_triplet_distillation}) é utilizado como uma margem dinâmica entre par positivo e negativo.
 
 % TODO:
-% - Citar técnica usada
-% - Citar técnica de avaliação usada
 % - Citar modelos treinados (Triplet Distillation)
 % 	- Rafael
 % 	- MobileNetV3Small
@@ -79,13 +77,33 @@ TODO: ADICIONAR IMAGEM
 % TODO: DETALHAR
 
 \section{\textit{Datasets}}\label{sec_datasets}
+
+\subsection{\textit{Labeled Faces in the Wild} (LFW)}
+Este \textit{dataset} possui imagens da face de várias celebridades, classificadas com o nome da pessoa.
+Para esse trabalho, foi utilizada uma variação do LFW, que agrupa as imagens em triplas, \textbf{âncora},
+\textbf{positiva} e \textbf{negativa}, para ser utilizado como dataset de treinamento, seguindo a técnica
+de \textit{triplet distillation} \cite{triplet_distillation_face_recognition}.
+
+
 Para realizar o treinamento do modelo, foi utilizada uma variação do \textit{dataset}
 \textit{Labeled faces in the Wild} (LFW), que possui várias amostras contendo triplas com as imagens das faces,
 assim facilitando o uso da técnica de \textit{triplet distillation} para o treinamento.
 
 TODO: ADICIONAR DATASET DA UFS (LEANDRO)
 
+\subsection{Faces - UFS}
+Este \textit{dataset} possui faces coletadas de alunos da Universidade Federal de Sergipe (UFS) \cite{leandro}.
+Ele foi utilizado na etapa de validação (\ref{sec_avaliacao_modelo}).
+
 \section{Resultados}\label{sec_resultados}
+
+\subsection{Métricas usadas}\label{sect_restultados_metricas}
+Para avaliar o desempenho, foram utilizadas as métricas de precisão (\ref{sect_restultados_metricas_precisao})
+e acurácia (\ref{sect_restultados_metricas_acuracia})
+
+\subsubsection{Precisão}\label{sect_restultados_metricas_precisao}
+
+\subsubsection{Acurácia}\label{sect_restultados_metricas_acuracia}
 
 ---
 
