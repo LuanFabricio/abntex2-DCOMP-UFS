@@ -2,15 +2,40 @@
 
 Neste capítulo serão apresentados os experimentos feitos durante o TCC. Eles tiveram como
 finalidade avaliar o uso de métodos e técnica de compressão de modelos, focado em dispositivos
-embarcados. Nele serão apresentados os métodos de avaliação do modelo (\autoref{sec_avaliacao_modelo}),
+embarcados. Nele serão apresentados o dispositivo utilizado (\autoref{sec_dispositivo}),
+modelos usados (\autoref{sec_modelo_utilizado}),
+métodos de treinamento (\autoref{sec_treinamento_modelo})
+os métodos de avaliação do modelo (\autoref{sec_avaliacao_modelo}),
+\textit{dataset} utilizados (\autoref{sec_datasets})
+e resultados finais (\autoref{sec_resultados}).
 
 \section{Dispositivo utilizado}\label{sec_dispositivo}
-O ESP32-S3 N16R8 foi escolhido como dispositivo utilizado pelo seu custo-benefício, sendo um aparelho poderoso
-considerando o seu baixo custo e consumo energético. Além disso, esse modelo possui u TERMINAR
+O ESP32-S3 N16R8 foi escolhido pelo seu custo-benefício, sendo um aparelho poderoso considerando o seu baixo
+custo e consumo energético. Além disso, esse modelo possui 16 MB de memória flash e 8 MB de PSRAM,
+permitindo que modelos maiores sejam portados para esse dispositivo sem redução de parâmetros, mesmo que
+isso afete o tempo de inferência do modelo.
 
-\section{Modelo utilizado}\label{sec_modelo_utilizado}
-O modelo utilizado foi o MobileFaceNet, pois ele mantém uma acurácia acima de 90\% na tarefa de detecção de faces,
-com tempo de inferência e baixa pegada de memória \cite{leandro}.
+\section{Modelos utilizados}\label{sec_modelo_utilizado}
+Para realizar os experimentos, alguns modelos foram utilizados como teste, tanto na etapa de treinamento
+(\autoref{sec_treinamento_modelo}) quanto de avaliação (\autoref{sec_avaliacao_modelo}).
+
+\subsection{MobileFaceNet}
+% O modelo utilizado foi o MobileFaceNet, pois ele mantém uma acurácia acima de 90\% na tarefa de detecção de faces,
+% com tempo de inferência e baixa pegada de memória \cite{leandro}.
+
+O MobileFaceNet é um modelo focado para fazer reconhecimento de faces em tempo real em dispositivos móveis,
+assim possuindo uma baixa pegada de memória, abaixo de 5MB e mantendo uma acurácia alta, acima de 90\% \cite{leandro}.
+
+\subsection{Rafael-2}
+Rafael-2 é uma variação do modelo Rafael \cite{rafael}, adaptada para realizar a tarefa de reconhecimento facial.
+Como o modelo base é simples e focado para dispositivos embarcados, ele possuí uma baixa quantidade de parâmetros,
+ o que melhora a performance do modelo em dispositivos embarcados.
+
+\subsection{MobileNetV3Small}
+MobileNetV3Small é uma variação do MobileNetV3, com uma quantidade reduzida de parâmetros, reduzindo a sua pegada de
+memória e aumentando a performance.
+
+ADICIONAR TABELA COM PEGADA DE MEMÓRIA DURANTE A INFERÊNCIA
 
 \section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
 Para fazer o treinamento dos modelos, foi necessário utilizar a técnica de \textit{triplet distillation}
@@ -77,8 +102,10 @@ TODO: ADICIONAR IMAGEM
 % TODO: DETALHAR
 
 \section{\textit{Datasets}}\label{sec_datasets}
+Nessa seção serão apresentados os dois \textit{datasets} utilizados, \textit{Labeled Faces in the Wild} (LFW),
+que foi utilizado para o treinamento dos modelos, e Faces - UFS, que foi utilizado para a validação dos modelos.
 
-\subsection{\textit{Labeled Faces in the Wild} (LFW)}
+\subsection{\textit{Labeled Faces in the Wild}}
 Este \textit{dataset} possui imagens da face de várias celebridades, classificadas com o nome da pessoa.
 Para esse trabalho, foi utilizada uma variação do LFW, que agrupa as imagens em triplas, \textbf{âncora},
 \textbf{positiva} e \textbf{negativa}, para ser utilizado como dataset de treinamento, seguindo a técnica
@@ -90,10 +117,10 @@ Para realizar o treinamento do modelo, foi utilizada uma variação do \textit{d
 assim facilitando o uso da técnica de \textit{triplet distillation} para o treinamento.
 
 TODO: ADICIONAR DATASET DA UFS (LEANDRO)
-
 \subsection{Faces - UFS}
 Este \textit{dataset} possui faces coletadas de alunos da Universidade Federal de Sergipe (UFS) \cite{leandro}.
-Ele foi utilizado na etapa de validação (\ref{sec_avaliacao_modelo}).
+Ele foi utilizado na etapa de validação do modelo(\ref{sec_avaliacao_modelo}), por apresentar faces novas e
+com características mais comuns no Brasil, diferente do LFW.
 
 \section{Resultados}\label{sec_resultados}
 
