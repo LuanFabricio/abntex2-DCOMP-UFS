@@ -3,17 +3,20 @@
 Neste capítulo serão apresentados os experimentos feitos durante o TCC. Eles tiveram como
 finalidade avaliar o uso de métodos e técnica de compressão de modelos, focado em dispositivos
 embarcados. Nele serão apresentados o dispositivo utilizado (\autoref{sec_dispositivo}),
-modelos usados (\autoref{sec_modelo_utilizado}),
-métodos de treinamento (\autoref{sec_treinamento_modelo})
-os métodos de avaliação do modelo (\autoref{sec_avaliacao_modelo}),
-\textit{dataset} utilizados (\autoref{sec_datasets})
-e resultados finais (\autoref{sec_resultados}).
+modelos usados (\autoref{sec_modelo_utilizado}), métodos de treinamento (\autoref{sec_treinamento_modelo})
+os métodos de avaliação do modelo (\autoref{sec_avaliacao_modelo}), \textit{dataset} utilizados
+(\autoref{sec_datasets}) e resultados (\autoref{sec_resultados}).
 
 \section{Dispositivo utilizado}\label{sec_dispositivo}
 O ESP32-S3 N16R8 foi escolhido pelo seu custo-benefício, sendo um aparelho poderoso considerando o seu baixo
 custo e consumo energético. Além disso, esse modelo possui 16 MB de memória flash e 8 MB de PSRAM,
 permitindo que modelos maiores sejam portados para esse dispositivo sem redução de parâmetros, mesmo que
 isso afete o tempo de inferência do modelo.
+
+Para executar os modelos no ESP foi utilizado o modelo person-detection do projeto esp-tflite-micro da Espressif.
+\footnote{Disponível em: <https://github.com/espressif/esp-tflite-micro/tree/master> Acessado em Março de 2025}
+Além disso, foi necessário adequar os tipos de camada que serão utilizados por cada modelo.
+
 
 \section{Modelos utilizados}\label{sec_modelo_utilizado}
 Para realizar os experimentos, alguns modelos foram utilizados como teste, tanto na etapa de treinamento
@@ -35,16 +38,36 @@ Como o modelo base é simples e focado para dispositivos embarcados, ele possuí
 MobileNetV3Small é uma variação do MobileNetV3, com uma quantidade reduzida de parâmetros, reduzindo a sua pegada de
 memória e aumentando a performance.
 
-ADICIONAR TABELA COM PEGADA DE MEMÓRIA DURANTE A INFERÊNCIA
+ADICIONAR TABELA COM O CONSUMO DE RECURSOS DO MODELO
+\begin{center}
+\begin{table}[htb]
+\centering
+\ABNTEXfontereduzida
+\caption[Acurácia dos modelos]{Acurácia dos modelos.}
+\label{tabela_acuracia_1}
+\begin{tabular}{ |c|c|c|c|c| }
+	\hline
+	\textbf{Modelo} & \textbf{Parâmetros} & \textbf{Tamanho do arquivo (TFLite)} \\
+	\hline
+	MobileFaceNet 		& ? 	& 4.5MB \\
+	Rafael-2 		& ? 	& 1.4MB \\
+	MobileNetV3Small 	& ? 	& 1.4MB \\
+	\hline
+\end{tabular}
+\legend{Fonte: Autor}
+\end{table}
+\end{center}
 
 \section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
 Para fazer o treinamento dos modelos, foi necessário utilizar a técnica de \textit{triplet distillation}
 \cite{triplet_distillation_face_recognition},
 para que seja possível medir o quão próximo as \textit{embeddings} de uma imagem são parecidas com as de outra.
-Essa técnica usa três imagens, \textbf{âncora}, que é considerada como imagem base, \textbf{positiva},
-que é uma variação da mesma categoria da âncora, e \textbf{negativa}, de outra categoria.
+Essa técnica usa três imagens: \textbf{âncora}, que é serve como imagem base; \textbf{positiva},
+que é uma variação da mesma categoria da \textbf{âncora}; e a \textbf{negativa}, que pertence a outra categoria.
 
-No contexto de reconhecimento facial, a âncora e positi
+No contexto de reconhecimento facial, os \textit{embeddings} das imagens \textbf{âncora} e \textbf{positivas}
+devem possuir uma distância de cosseno pequena, enquanto o vetor de característica das imagens
+\textbf{âncoras} e \textbf{negativas} devem possuir uma distância de cosseno alta.
 
 \subsection{\textit{Triplet Loss}}
 Para realizar o treinamento do modelo MobileFaceNet, foi utilizada a técnica \textit{triplet loss}
@@ -117,162 +140,72 @@ Para realizar o treinamento do modelo, foi utilizada uma variação do \textit{d
 assim facilitando o uso da técnica de \textit{triplet distillation} para o treinamento.
 
 TODO: ADICIONAR DATASET DA UFS (LEANDRO)
-\subsection{Faces - UFS}
+\subsection{Faces - UFS}\label{subsec_dataset_faces_ufs}
 Este \textit{dataset} possui faces coletadas de alunos da Universidade Federal de Sergipe (UFS) \cite{leandro}.
-Ele foi utilizado na etapa de validação do modelo(\ref{sec_avaliacao_modelo}), por apresentar faces novas e
-com características mais comuns no Brasil, diferente do LFW.
+Para coletar essas imagens, foi disponibilizado um estande com uma câmera, monitor, teclado e mouse, permitindo
+que qualquer pessoa pudesse salvar uma imagem com o seu nome.
+
+Esse \textit{dataset} foi utilizado na etapa de validação do modelo (\ref{sec_avaliacao_modelo}), por apresentar faces
+novas e com um padrão diferente do LFW, já que o seu público consiste em celebridades, principalmente dos Estados
+Unidos. Enquanto o \textit{dataset} coletado na UFS possui um público diferente, estudantes ou funcionários da UFS.
 
 \section{Resultados}\label{sec_resultados}
+Para obter os resultados, primeiro foram definidas as métricas que serão usadas para avaliar os modelos. Em seguida,
+cada modelo foi submetido ao método de avaliação escolhido (\autoref{sec_avaliacao_modelo}), com o objetivo de
+validar e comparar o desempenho na tarefa de reconhecimento facial de cada um, junto com o seu tempo de execução.
+
+Para realizar a avaliação na tarefa de reconhecimento facial, os modelos foram executados em um computador com um
+AMD Ryzen 5 4600G. Na etapa de avaliação de performance em microcontroladores, foi utilizado o ESP32-S3 N16R8,
+descrito na \autoref{sec_dispositivo}.
 
 \subsection{Métricas usadas}\label{sect_restultados_metricas}
 Para avaliar o desempenho, foram utilizadas as métricas de precisão (\ref{sect_restultados_metricas_precisao})
-e acurácia (\ref{sect_restultados_metricas_acuracia})
+e acurácia (\ref{sect_restultados_metricas_acuracia}). Como a avaliação é binária, a imagem prevista é a imagem
+verdadeira, também foi utilizada a matriz de confusão, para facilitar o entendimento dos acertos e erros, quanto
+facilitar o cálculo da precisão e acurácia.
 
-\subsubsection{Precisão}\label{sect_restultados_metricas_precisao}
+\label{sect_restultados_metricas_precisao}
+A precisão pode ser calculada pela fórmula \ref{eq_precisao}. Onde a variável $TP$ indica o valor que foi previsto corretamente como verdadeiro,
+enquanto a variável $FP$ indica o valor que foi previsto falsamente como verdadeiro.
+Considerando o método de avaliação utilizada, a variável $TP$ indica os casos onde o modelo escolheu corretamente a
+imagem, e a variável $FP$  indica quando o modelo escolheu a imagem errada.
 
-\subsubsection{Acurácia}\label{sect_restultados_metricas_acuracia}
+\begin{equation}\label{eq_precisao}
+	\text{Precisão} = \frac {TP} {TP + FP}
+\end{equation}
 
----
+\label{sect_restultados_metricas_acuracia}
+Enquanto isso a acurácia pode ser calculada pela fórmula \
+\begin{equation}\label{eq_acuracia}
+	\text{Acurácia} = \frac {TP + TN} {TP + TN + FP + FN}
+\end{equation}
 
-Neste capítulo serão apresentados testes feitos durante o período inicial do TCC, eles tiveram a finalidade de aplicar técnicas para ter modelos menores.
-O objetivo principal é aplicar as técnicas de compressão para criar modelos menores e computacionalmente eficientes.
+\subsection{Avaliação do modelo}
+Para a avaliação do modelo, o método descrito na \autoref{sec_avaliacao_modelo} foi executado 10 vezes,
+utilizando o \textit{dataset} Faces - UFS (\ref{subsec_dataset_faces_ufs}), medindo o tempo médio de inferência
+e acurácia de cada execução. Com isso esses resultados, foi gerada a \autoref{tempo_inferencia_modelos}, onde as
+métricas são dos modelos descritos na \autoref{sec_modelo_utilizado}.
 
-% Destilação de conhecimento
-\section{Destilação de conhecimento (modelo Professor-Aluno)}
-Para fazer o experimento com destilação de conhecimento foi utilizada a base STL-10 \cite{stl10}, que possui 500 imagens para
-treinamento e 800 para teste, com resolução de $96 \times 96$ e 3 canais de cor (RGB). Como o conjunto de dados
-não possui muitas imagens, foi aplicada a técnica de \textit{data augmentation} (aumento de dados) para reduzir o
-\textit{overfitting}.
 
-Como já descrito na \autoref{conceitos_destilacao}, o objetivo dessa etapa é utilizar o conhecimento do modelo
-Professor (mais robusto e pré-treinado) para treinar o modelo Aluno (mais simples e sem pré-treinamento).
-O modelo professor (\autoref{res_professor}) é a ResNet-50  \cite{resnet} e o modelo estudante é gerado pelo
-% NOTE: Movo para o texto?
-\autoref{res_aluno_1}.
-Além disso, o modelo Rafael \cite{rafael} foi adaptado e utilizado (com algumas variações).
-
-% TODO: Continuar correção
-Para aumentar a precisão do modelo Aluno com o destilação de conhecimento, foi utilizada a otimização
-Bayesiana, para procurar os valores dos hiperparâmetros $\alpha$ e \textit{Temperature}.
-% TODO: Revisar
-% Talvez mover pro capítulo 02
-% Onde $\alpha$ é o peso da \textit{loss function} do modelo estudante e \textit{Temperature} é a relação de
-% \textit{logits} da função \textit{softmax}.
-Os possíveis valores de $\alpha$ foram 0.1, 0.5, 0.01 e 0.25.
-E os possíveis valores de \textit{Temperature} foram 2, 5, 7, 10, 12, 15, 17 e 20.
-Os resultados do experimento estão na \autoref{tabela_acuracia_1}.
-
-% TODO: Continuar correção
 \begin{center}
 \begin{table}[htb]
 \centering
 \ABNTEXfontereduzida
-\caption[Acurácia dos modelos]{Acurácia dos modelos.}
-\label{tabela_acuracia_1}
-\begin{tabular}{ |c|c|c|c|c| }
+\caption[Acurácia e tempo de inferência (Faces - UFS)]{Acurácia e tempo de inferência (Faces - UFS)}
+\label{tempo_inferencia_modelos}
+\begin{tabular}{ |c|c|c|c| }
 	\hline
-	\textbf{Modelo} & \textbf{Com destilação de conhecimento?}  & \textbf{Acurácia (validação)}
-		   & \textbf{$\alpha$} & \textbf{\textit{Temperature}} \\
+	\textbf{Modelo} & \textbf{Acurácia} & \textbf{Tempo médio de inferência (ms)} & \textbf{Método de treinamento} \\
 	\hline
-	% ResNet-50 	& 	Não 	& 	90.65\%	& 	- 	& 	-	 \\
-	% Aluno 		& 	Não 	& 	76.80\%	& 	- 	& 	-	 \\
-	Rafael-base 	& 	Não 	& 	71.38\%	& 	- 	& 	-	 \\
-	Rafael-1 	& 	Não 	& 	67.08\%	& 	- 	& 	-	 \\
-	Rafael-2 	& 	Não 	& 	74.57\%	& 	- 	& 	-	 \\
-	Rafael-3 	& 	Não 	& 	71.01\%	& 	- 	& 	-	 \\
-	% Aluno 		& 	Sim 	& 	83.79\%	& 	0.1 	& 	5	 \\
-	Rafael-base 	& 	Sim 	& 	74.21\%	& 	0.1 	& 	10	 \\
-	Rafael-1 	& 	Sim 	& 	69.70\%	& 	0.01 	& 	20	 \\
-	Rafael-2 	& 	Sim 	& 	79.12\%	& 	0.01 	& 	7	 \\
-	Rafael-3 	& 	Sim 	& 	76.55\%	& 	0.01 	& 	5	 \\
+	MobileFaceNet 		& 	100.00\% 	& $140 \pm 0.00266$ & Pré-treinado + \textit{Triplet Loss} \\
+	Rafael-2	 	& 	 16.88\% 	& $120 \pm 0.00014$ & \textit{Triplet Distillation} \\
+	MobileNetV3Small 	& 	 24.02\% 	& $114 \pm 0.00013$ & \textit{Triplet Distillation} \\
 	\hline
 \end{tabular}
 \legend{Fonte: Autor}
 \end{table}
 \end{center}
 
-A \autoref{tabela_acuracia_1} apresenta a acurácia dos modelos Rafael-Base, Rafael-1, Rafael-2 e Rafael-3 na tarefa de
-classificação na base STL-10.
-Onde a coluna \textbf{Com destilação de conhecimento?} indica se a técnica de destilação foi aplicada
-ou não, e as colunas $\alpha$ e \textit{Temperature} indicam os valores dos hiperparâmetros utilizados.
-Percebe-se que, em todos os casos, os modelos que foram treinados utilizando a técnica de destilação de conhecimento alcançaram
-uma acurácia maior do que os modelos treinados apenas com os atributos alvo, chegando a um aumento maior que $5\%$ (no modelo
-Rafael-3).
-Nela, as variações indicam a quantidade de camadas convolucionais adicionadas, Rafael-1
-(\autoref{cap_resultados_rafael_1}) indica que foi adicionada uma camada convolucional $9x9$ no modelo, Rafael-2
-(\autoref{cap_resultados_rafael_2}) indica que foi adicionada duas camadas $3x3$ convolucionais e Rafael-3
-(\autoref{cap_resultados_rafael_3})indica que foi adicionada três camadas $3x3$.
+Após a avaliação, foi possível perceber a diferença entre
 
-\begin{figure}
-	\caption {\label{cap_resultados_rafael_1}Arquitetura do modelo Rafael-1}
-	\begin{center}
-		\includegraphics[scale=0.50]{Imagens/arch-rafael-1}
-	\end{center}
-	\legend {Fonte: Autor}
-\end{figure}
-
-\begin{figure}
-	\caption {\label{cap_resultados_rafael_2}Arquitetura do modelo Rafael-2}
-	\begin{center}
-		\includegraphics[scale=0.50]{Imagens/arch-rafael-2}
-	\end{center}
-	\legend {Fonte: Autor}
-\end{figure}
-
-\begin{figure}
-	\caption {\label{cap_resultados_rafael_3}Arquitetura do modelo Rafael-3}
-	\begin{center}
-		\includegraphics[scale=0.50]{Imagens/arch-rafael-3}
-	\end{center}
-	\legend {Fonte: Autor}
-\end{figure}
-
-\section{\textit{Pruning} e Quantização}
-
-Para esse experimento foi utilizada a base CIFAR-10, pois ela exige menos do modelo, facilitando o treinamento de uma
-CNN que performe bem nessa tarefa de classificação, o que permite que o foco da atividade seja mantido.
-Essa base possui 10 classes, com  6.000 imagens para cada classe, sendo que essas imagens têm resolução igual a
-$32x32$ e possui 3 canais de cores (RGB). Nesse conjunto de dados também foi necessário fazer
-\textit{data augmentation} para melhorar a acurácia do modelo final.
-
-O modelo utilizado no experimento foi gerado pelo \autoref{pruning_quantization_model}, inicialmente ele possuía
-2.397.226 parâmetros (28 MB). Inicialmente ele foi treinado durante 25 \textit{epochs} (épocas), atingindo
-uma acurácia de $90.18\%$ nos dados de treinamento e $85.91\%$ nos dados de validação.
-Onde somente os dados de validação serão utilizados para comparar os modelos, pois eles podem sofrer
-\textit{overfitting} e ter um alto desempenho nos dados de treinamento e baixo desempenho nos dados de validação.
-
-Depois de treinado, o modelo foi podado utilizando a estratégia de \textit{prune low magnitude}
-(podar baixa magnitude), que tem como foco zerar valores abaixo de um certo limiar. Depois de definir os parâmetros da
-poda, o modelo foi retreinado por 2 \textit{epochs}, para que o algoritmo de poda consiga identificar as conexões
-importantes durante o uso do modelo.
-Após o retreinamento, o modelo final teve acurácia de $83.83\%$ nos dados de treinamento e $84.40\%$ nos dados de
-validação, consumindo 9.3 MB após remover todos os valores iguais a zero.
-
-Depois de podado, o modelo foi convertido para TensorFlow Lite, consumindo 9.2 MB de armazenamento e ficando com
-$84.91\%$ de acurácia. Depois disso, a quantização é aplicada utilizando a API do TensorFlow Lite, deixando o modelo
-final com 2.4 MB e $84.36\%$ de acurácia.
-
-\begin{center}
-\begin{table}[htb]
-\centering
-\ABNTEXfontereduzida
-\caption[Acurácia e peso dos modelos]{Acurácia e peso dos modelos.}
-\label{tabela_acuracia_peso}
-\begin{tabular}{ |c|c|c| }
-	\hline
-	\textbf{Modelo} & \textbf{Acurácia (validação)}  & \textbf{\textit{Memory footprint} (MB)} \\
-	\hline
-	Modelo base 				 & 	85.91\% 	& 	28	\\
-	Modelo base podado 			 & 	84.40\% 	& 	9.3	\\
-	Modelo base podado (TFLite) 		 & 	84.91\% 	& 	9.2	\\
-	Modelo base podado e quantizado (TFLite) & 	84.36\% 	& 	2.4	\\
-	\hline
-\end{tabular}
-\legend{Fonte: Autor}
-\end{table}
-\end{center}
-
-A \autoref{tabela_acuracia_peso} mostra a acurácia dos modelos (nos dados de validação) durante as etapas de poda e
-quantização, onde a coluna \textbf{\textit{Memory footprint}}  indica o consumo de armazenamento do modelo.
-A poda e quantização do modelo base resultou em uma redução de pegada de memória de 28 MB para 2.4 MB, apresentando uma perda
-de $1.5\%$ da sua acurácia, tornando o modelo mais eficiente sem a perda de desempenho.
+DISCUTIR RESULTADOS
