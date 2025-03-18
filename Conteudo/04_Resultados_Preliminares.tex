@@ -13,15 +13,31 @@ custo e consumo energético. Além disso, esse modelo possui 16 MB de memória f
 permitindo que modelos maiores sejam portados para esse dispositivo sem redução de parâmetros, mesmo que
 isso afete o tempo de inferência do modelo.
 
-Para executar os modelos no ESP foi utilizado o modelo person-detection do projeto esp-tflite-micro da Espressif.
+Para executar os modelos no ESP foi utilizado o projeto person-detection do repositório esp-tflite-micro da Espressif.
 \footnote{Disponível em: <https://github.com/espressif/esp-tflite-micro/tree/master> Acessado em Março de 2025}
-Além disso, foi necessário adequar os tipos de camada que serão utilizados por cada modelo.
-
+A partir desse projeto, os modelos foram portados, sendo necessário realizar algumas alterações para suportar o
+tamanho dos modelos e suas camadas, e adicionar alguns utilitários, como um \textit{log} com os tipos de memória
+e o quanto que cada uma está ocupada.
 
 \section{Modelos utilizados}\label{sec_modelo_utilizado}
-Para realizar os experimentos, alguns modelos foram utilizados como teste, tanto na etapa de treinamento
-(\autoref{sec_treinamento_modelo}) quanto de avaliação (\autoref{sec_avaliacao_modelo}).
+Para realizar os experimentos, os modelos \textbf{MobileFaceNet}, \textbf{Rafael-2} e \textbf{MobileNetV3Small}
+foram utilizados como teste, tanto na etapa de treinamento (\autoref{sec_treinamento_modelo}) quanto de avaliação
+(\autoref{sec_avaliacao_modelo}).
 
+Para treinar os modelos, foi utilizada a plataforma kaggle\footnote{
+Disponível em: <https://www.kaggle.com/>. Acessado em Março de 2025}, o \textit{dataset} utilizado foi
+\textit{Labeled Faces in the Wild} (LFW) \footnote{
+Disponível em: <https://www.kaggle.com/datasets/luhtookyaw/lfwpreparedtriplets>. Acessado em Março de 2025.},
+onde os métodos de treinamento \textit{Triplet Loss} e \textit{Triplet Distillation}
+\cite{triplet_distillation_face_recognition} foram utilizados, pois são eficazes para melhorar a precisão do modelo,
+no contexto de reconhecimento facial.
+
+% TODO: Ver se eu posso deixar esse footnote
+Para validar os resultados de cada modelo, foi criado o repositório model-eval\footnote{
+Disponível em: <https://github.com/LuanFabricio/model-eval>. Acessado em Março 2025.}, para ser utilizado junto com o
+\textit{dataset} Faces - UFS \cite{leandro}.
+Onde o método de validação consiste em comparar uma imagem com \textit{flip} com todo o \textit{dataset}, e definindo
+a classe prevista pelo modelo aquela que possui menor distância de cosseno.
 \subsection{MobileFaceNet}
 % O modelo utilizado foi o MobileFaceNet, pois ele mantém uma acurácia acima de 90\% na tarefa de detecção de faces,
 % com tempo de inferência e baixa pegada de memória \cite{leandro}.
@@ -43,7 +59,7 @@ ADICIONAR TABELA COM O CONSUMO DE RECURSOS DO MODELO
 \begin{table}[htb]
 \centering
 \ABNTEXfontereduzida
-\caption[Acurácia dos modelos]{Acurácia dos modelos.}
+\caption[Recursos utilizados pelos modelos]{Recursos utilizados pelos modelos}
 \label{tabela_acuracia_1}
 \begin{tabular}{ |c|c|c|c|c| }
 	\hline
@@ -59,7 +75,7 @@ ADICIONAR TABELA COM O CONSUMO DE RECURSOS DO MODELO
 \end{center}
 
 \section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
-Para fazer o treinamento dos modelos, foi necessário utilizar a técnica de \textit{triplet distillation}
+Para fazer o treinamento dos modelos, foi necessário utilizar a técnica de \textit{Triplet Distillation}
 \cite{triplet_distillation_face_recognition},
 para que seja possível medir o quão próximo as \textit{embeddings} de uma imagem são parecidas com as de outra.
 Essa técnica usa três imagens: \textbf{âncora}, que é serve como imagem base; \textbf{positiva},
@@ -121,8 +137,18 @@ calculando a distância de cosseno entre os vetores de características
 \cite{triplet_distillation_face_recognition}, onde a imagem com menor distância é considerada a previsão do
 modelo.
 
-TODO: ADICIONAR IMAGEM
+\begin{figure}[htb]
+	\caption {\label{exemplo_flip}Exemplo de uma imagem e sua versão com \textit{flip}}
+	\begin{center}
+		\includegraphics[scale=0.5]{Imagens/exemplo_flip_01}
+		\includegraphics[scale=0.5]{Imagens/exemplo_flip_02}
+	\end{center}
+	\legend {Fonte: LFW} %Colocar fonte do LFW
+\end{figure}
 % TODO: DETALHAR
+
+Para calcular as estatísticas de modelo, foi calculada a precisão e acurácia de cada modelo, junto com o seu tempo de
+inferência.
 
 \section{\textit{Datasets}}\label{sec_datasets}
 Nessa seção serão apresentados os dois \textit{datasets} utilizados, \textit{Labeled Faces in the Wild} (LFW),
