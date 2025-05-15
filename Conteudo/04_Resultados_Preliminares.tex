@@ -3,21 +3,21 @@
 Neste capítulo serão apresentados os experimentos feitos durante o TCC. Eles tiveram como
 finalidade avaliar o uso de métodos e técnica de compressão de modelos, focado em dispositivos
 embarcados. Nele serão apresentados o dispositivo utilizado (\autoref{sec_dispositivo}),
-modelos usados (\autoref{sec_modelo_utilizado}), métodos de treinamento (\autoref{sec_treinamento_modelo})
-os métodos de avaliação do modelo (\autoref{sec_avaliacao_modelo}), \textit{dataset} utilizados
+modelos usados (\autoref{sec_modelo_utilizado}), métodos de treinamento (\autoref{sec_treinamento_modelo}),
+o método de avaliação do modelo (\autoref{sec_avaliacao_modelo}), \textit{datasets} utilizados
 (\autoref{sec_datasets}) e resultados (\autoref{sec_resultados}).
 
 \section{Dispositivo utilizado}\label{sec_dispositivo}
 O ESP32-S3 N16R8 foi escolhido pelo seu custo-benefício, sendo um aparelho poderoso considerando o seu baixo
-custo e consumo energético. Além disso, esse modelo possui 16 MB de memória flash e 8 MB de PSRAM,
-permitindo que modelos maiores sejam portados para esse dispositivo sem redução de parâmetros, mesmo que
-isso afete o tempo de inferência do modelo.
+custo e consumo energético. Além disso, esse dispositivo possui 16 MB de memória flash e 8 MB de PSRAM,
+permitindo que modelos maiores sejam portados para esse dispositivo sem redução de parâmetros, podendo afetar o
+tempo de inferência do modelo.
 
-Para executar os modelos no ESP foi utilizado o projeto person-detection do repositório esp-tflite-micro da Espressif.
-\footnote{Disponível em: <https://github.com/espressif/esp-tflite-micro/tree/master> Acessado em Março de 2025}
-A partir desse projeto, os modelos foram portados, sendo necessário realizar algumas alterações para suportar o
-tamanho dos modelos e suas camadas, e adicionar alguns utilitários, como um \textit{log} com os tipos de memória
-e o quanto que cada uma está ocupada.
+Para executar os modelos no ESP foi utilizado o projeto person-detection do repositório esp-tflite-micro da Espressif
+\footnote{Disponível em: <https://github.com/espressif/esp-tflite-micro/tree/master> Acessado em Março de 2025}.
+A partir desse projeto, os modelos foram portados, sendo necessário realizar algumas alterações no projeto,
+para suportar o tamanho dos modelos e suas camadas, e adicionar alguns utilitários, como um \textit{log} com
+o uso da memória.
 
 \section{Modelos utilizados}\label{sec_modelo_utilizado}
 Para realizar os experimentos, os modelos \textbf{MobileFaceNet}, \textbf{Rafael-2} e \textbf{MobileNetV3Small}
@@ -31,6 +31,8 @@ Disponível em: <https://www.kaggle.com/datasets/luhtookyaw/lfwpreparedtriplets>
 onde os métodos de treinamento \textit{Triplet Loss} e \textit{Triplet Distillation}
 \cite{triplet_distillation_face_recognition} foram utilizados, pois são eficazes para melhorar a precisão do modelo,
 no contexto de reconhecimento facial.
+Além disso os modelos foram treinados considerando com imagens R8G8B8, cada imagem tem seus pixels representados por
+triplas de 8 bits, contendo o valor das cores vermelho, verde e azul, respectivamente.
 
 % TODO: Ver se eu posso deixar esse footnote
 Para validar os resultados de cada modelo, foi criado o repositório model-eval\footnote{
@@ -38,21 +40,22 @@ Disponível em: <https://github.com/LuanFabricio/model-eval>. Acessado em Março
 \textit{dataset} Faces - UFS \cite{leandro}.
 Onde o método de validação consiste em comparar uma imagem com \textit{flip} com todo o \textit{dataset}, e definindo
 a classe prevista pelo modelo aquela que possui menor distância de cosseno.
-\subsection{MobileFaceNet}
+% \subsection{MobileFaceNet}
 % O modelo utilizado foi o MobileFaceNet, pois ele mantém uma acurácia acima de 90\% na tarefa de detecção de faces,
 % com tempo de inferência e baixa pegada de memória \cite{leandro}.
 
-O MobileFaceNet é um modelo focado para fazer reconhecimento de faces em tempo real em dispositivos móveis,
+MobileFaceNet é um modelo focado para fazer reconhecimento de faces em tempo real em dispositivos móveis,
 assim possuindo uma baixa pegada de memória, abaixo de 5MB e mantendo uma acurácia alta, acima de 90\% \cite{leandro}.
 
-\subsection{Rafael-2}
+% \subsection{Rafael-2}
 Rafael-2 é uma variação do modelo Rafael \cite{rafael}, adaptada para realizar a tarefa de reconhecimento facial.
 Como o modelo base é simples e focado para dispositivos embarcados, ele possuí uma baixa quantidade de parâmetros,
  o que melhora a performance do modelo em dispositivos embarcados.
 
-\subsection{MobileNetV3Small}
+% \subsection{MobileNetV3Small}
 MobileNetV3Small é uma variação do MobileNetV3, com uma quantidade reduzida de parâmetros, reduzindo a sua pegada de
 memória e aumentando a performance.
+% TODO: CITAR ARTIGOS
 
 ADICIONAR TABELA COM O CONSUMO DE RECURSOS DO MODELO
 \begin{center}
@@ -135,20 +138,21 @@ Para avaliar o modelo, primeiro, as características de cada imagem e sua versã
 (\textit{flip} horizontal) são extraídas pelo modelo. Depois é realizada a verificação da face,
 calculando a distância de cosseno entre os vetores de características
 \cite{triplet_distillation_face_recognition}, onde a imagem com menor distância é considerada a previsão do
-modelo.
+modelo. A \autoref{exemplo_flip_lfw} é um exemplo da imagem original e sua versão com \textit{flip}.
 
 \begin{figure}[htb]
-	\caption {\label{exemplo_flip}Exemplo de uma imagem e sua versão com \textit{flip}}
 	\begin{center}
 		\includegraphics[scale=0.5]{Imagens/exemplo_flip_01}
 		\includegraphics[scale=0.5]{Imagens/exemplo_flip_02}
 	\end{center}
+	\caption {\label{exemplo_flip_lfw}Exemplo de uma imagem e sua versão com \textit{flip}}
 	\legend {Fonte: LFW} %Colocar fonte do LFW
 \end{figure}
 % TODO: DETALHAR
 
-Para calcular as estatísticas de modelo, foi calculada a precisão e acurácia de cada modelo, junto com o seu tempo de
+Para gerar as estatísticas de modelo, foi calculada a precisão e acurácia de cada um, junto com o seu tempo de
 inferência.
+
 
 \section{\textit{Datasets}}\label{sec_datasets}
 Nessa seção serão apresentados os dois \textit{datasets} utilizados, \textit{Labeled Faces in the Wild} (LFW),
@@ -208,9 +212,10 @@ Enquanto isso a acurácia pode ser calculada pela fórmula \
 
 \subsection{Avaliação do modelo}
 Para a avaliação do modelo, o método descrito na \autoref{sec_avaliacao_modelo} foi executado 10 vezes,
-utilizando o \textit{dataset} Faces - UFS (\ref{subsec_dataset_faces_ufs}), medindo o tempo médio de inferência
-e acurácia de cada execução. Com isso esses resultados, foi gerada a \autoref{tempo_inferencia_modelos}, onde as
-métricas são dos modelos descritos na \autoref{sec_modelo_utilizado}.
+utilizando o \textit{dataset} Faces - UFS (\ref{subsec_dataset_faces_ufs}), medindo o tempo médio de inferência,
+desvio padrão e acurácia de cada execução.
+Com isso esses resultados, foi gerada a \autoref{tempo_inferencia_modelos}, onde as métricas são dos modelos
+descritos na \autoref{sec_modelo_utilizado}.
 
 
 \begin{center}
@@ -219,13 +224,14 @@ métricas são dos modelos descritos na \autoref{sec_modelo_utilizado}.
 \ABNTEXfontereduzida
 \caption[Acurácia e tempo de inferência (Faces - UFS)]{Acurácia e tempo de inferência (Faces - UFS)}
 \label{tempo_inferencia_modelos}
-\begin{tabular}{ |c|c|c|c| }
+\begin{tabular}{ |c|c|c|c|c| }
 	\hline
-	\textbf{Modelo} & \textbf{Acurácia} & \textbf{Tempo médio de inferência (ms)} & \textbf{Método de treinamento} \\
+	\textbf{Modelo} & Quantização & \textbf{Acurácia} & \textbf{Tempo médio de inferência (ms)} & \textbf{Método de treinamento} \\
 	\hline
-	MobileFaceNet 		& 	100.00\% 	& $140 \pm 0.00266$ & Pré-treinado + \textit{Triplet Loss} \\
-	Rafael-2	 	& 	 16.88\% 	& $120 \pm 0.00014$ & \textit{Triplet Distillation} \\
-	MobileNetV3Small 	& 	 24.02\% 	& $114 \pm 0.00013$ & \textit{Triplet Distillation} \\
+	MobileFaceNet 	&-	& 	100.00\% 	& $140 \pm 0.00266$ & Pré-treinado + \textit{Triplet Loss} \\
+	MobileFaceNet 	&uint8	& 	100.00\% 	& $453 \pm 0.00441$ & Pré-treinado + \textit{Triplet Loss} \\
+	Rafael-2	&-	& 	 16.88\% 	& $120 \pm 0.00014$ & \textit{Triplet Distillation} \\
+	MobileNetV3Small&-	& 	 24.02\% 	& $114 \pm 0.00013$ & \textit{Triplet Distillation} \\
 	\hline
 \end{tabular}
 \legend{Fonte: Autor}
