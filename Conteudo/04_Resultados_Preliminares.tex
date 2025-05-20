@@ -14,7 +14,7 @@ permitindo que modelos maiores sejam portados para esse dispositivo sem reduçã
 tempo de inferência do modelo.
 
 Para executar os modelos no ESP foi utilizado o projeto person-detection do repositório esp-tflite-micro da Espressif
-\footnote{Disponível em: <https://github.com/espressif/esp-tflite-micro/tree/master> Acessado em Março de 2025}.
+\footnote{Disponível em: \url{https://github.com/espressif/esp-tflite-micro/tree/master} Acessado em Março de 2025}.
 A partir desse projeto, os modelos foram portados, sendo necessário realizar algumas alterações no projeto,
 para suportar o tamanho dos modelos e suas camadas, e adicionar alguns utilitários, como um \textit{log} com
 o uso da memória.
@@ -25,9 +25,9 @@ foram utilizados como teste, tanto na etapa de treinamento (\autoref{sec_treinam
 (\autoref{sec_avaliacao_modelo}).
 
 Para treinar os modelos, foi utilizada a plataforma kaggle\footnote{
-Disponível em: <https://www.kaggle.com/>. Acessado em Março de 2025}, o \textit{dataset} utilizado foi
+Disponível em: \url{https://www.kaggle.com/}. Acessado em Março de 2025}, o \textit{dataset} utilizado foi
 \textit{Labeled Faces in the Wild} (LFW) \footnote{
-Disponível em: <https://www.kaggle.com/datasets/luhtookyaw/lfwpreparedtriplets>. Acessado em Março de 2025.},
+Disponível em: \url{https://www.kaggle.com/datasets/luhtookyaw/lfwpreparedtriplets}. Acessado em Março de 2025.},
 onde os métodos de treinamento \textit{Triplet Loss} e \textit{Triplet Distillation}
 \cite{triplet_distillation_face_recognition} foram utilizados, pois são eficazes para melhorar a precisão do modelo,
 no contexto de reconhecimento facial.
@@ -36,7 +36,7 @@ triplas de 8 bits, contendo o valor das cores vermelho, verde e azul, respectiva
 
 % TODO: Ver se eu posso deixar esse footnote
 Para validar os resultados de cada modelo, foi criado o repositório model-eval\footnote{
-Disponível em: <https://github.com/LuanFabricio/model-eval>. Acessado em Março 2025.}, para ser utilizado junto com o
+Disponível em: \url{https://github.com/LuanFabricio/model-eval}. Acessado em Março 2025.}, para ser utilizado junto com o
 \textit{dataset} Faces - UFS \cite{leandro}.
 Onde o método de validação consiste em comparar uma imagem com \textit{flip} com todo o \textit{dataset}, e definindo
 a classe prevista pelo modelo aquela que possui menor distância de cosseno.
@@ -218,26 +218,59 @@ Com isso esses resultados, foi gerada a \autoref{tempo_inferencia_modelos}, onde
 descritos na \autoref{sec_modelo_utilizado}.
 
 
-\begin{center}
 \begin{table}[htb]
 \centering
 \ABNTEXfontereduzida
-\caption[Acurácia e tempo de inferência (Faces - UFS)]{Acurácia e tempo de inferência (Faces - UFS)}
-\label{tempo_inferencia_modelos}
+\caption[]{Acurácia e tempo de inferência com o dataset Faces - UFS (Desktop)}
+\label{acuracia_tempo_inferencia_modelos_desktop}
 \begin{tabular}{ |c|c|c|c|c| }
 	\hline
-	\textbf{Modelo} & Quantização & \textbf{Acurácia} & \textbf{Tempo médio de inferência (ms)} & \textbf{Método de treinamento} \\
+	\textbf{Modelo} & \textbf{Quantização} & \textbf{Acurácia (\%)} & \textbf{Tempo médio de inferência (ms)} & \textbf{Método de treinamento} \\
 	\hline
-	MobileFaceNet 	&-	& 	100.00\% 	& $140 \pm 0.00266$ & Pré-treinado + \textit{Triplet Loss} \\
-	MobileFaceNet 	&uint8	& 	100.00\% 	& $453 \pm 0.00441$ & Pré-treinado + \textit{Triplet Loss} \\
-	Rafael-2	&-	& 	 16.88\% 	& $120 \pm 0.00014$ & \textit{Triplet Distillation} \\
-	MobileNetV3Small&-	& 	 24.02\% 	& $114 \pm 0.00013$ & \textit{Triplet Distillation} \\
+	MobileFaceNet 	&-	& 	100.00  & $129 \pm 2.002$ & Pré-treinado + \textit{Triplet Loss} \\
+	MobileFaceNet 	&uint8	& 	100.00  & $443 \pm 2.734$ & Pré-treinado + \textit{Triplet Loss} \\
+	Rafael-2	&-	& 	 3.25 & $115 \pm 0.553$ & \textit{Triplet Distillation} \\
+	Rafael-2	&uint8	& 	 24.03& $103 \pm 0.209$ & \textit{Triplet Distillation} \\
+	MobileNetV3Small&-	& 	 7.14& $37 \pm 0.701$ & \textit{Triplet Distillation} \\
 	\hline
 \end{tabular}
 \legend{Fonte: Autor}
 \end{table}
-\end{center}
 
-Após a avaliação, foi possível perceber a diferença entre
+A \autoref{acuracia_tempo_inferencia_modelos_desktop} contém os resultados dos testes feitos com os modelos
+MobileFaceNet, Rafael-2 e MobileNetV3Small, mostrando o tipo de quantização que foi feito, acurácia, tempo
+médio de inferência e o método de treinamento.
+
+Com isso, é possível notar que o modelo que o melhor modelo foi o MobileFaceNet, por conta da sua estrutura
+mais robusta que tem o foco na tarefa de reconhecimento facial. Além disso, fica evidente a diferença entre
+o tempo de inferência do MobileFaceNet quantizado e não quantizado, isso se deve pelo ambiente de execução
+do TensorFlowLite, que em tempo de execução converte os pesos quantizados de inteiro de 8 bits para float.
+
+\begin{table}[htb]
+\centering
+\ABNTEXfontereduzida
+\caption[Acurácia e tempo de inferência (ESP)]{Acurácia e tempo de inferência Faces - UFS (ESP)}
+\label{acuracia_tempo_inferencia_modelos_esp}
+\begin{tabular}{ |c|c|c|c|c| }
+	\hline
+	\textbf{Modelo} & \textbf{Quantização} & \textbf{Acurácia (\%)} & \textbf{Tempo médio de inferência (ms)} & \textbf{\textit{Runs}} \\
+	\hline
+	MobileFaceNet 	&uint8	& 	93.33& $3703 \pm 0.6010$ & 5 \\
+	MobileFaceNet 	&uint8	& 	93.33& $3703 \pm 0.6067$ & 10 \\
+	Rafael-2	&uint8	& 	93.33& $737 \pm 0.061$ & 5\\
+	Rafael-2	&uint8	& 	93.33& $737 \pm 0.056$ & 10\\
+	\hline
+\end{tabular}
+\legend{Fonte: Autor}
+\end{table}
+
+A \autoref{acuracia_tempo_inferencia_modelos_esp} mostra o resultado dos testes feitos no ESP,
+utilizando a ferramenta idf.py\footnote{Disponível em:
+\url{https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/tools/idf-py.html}.
+Acessado em Maio 2025.}
+com a biblioteca Tensorflow Lite Micro\footnote{Disponível em: \url{
+https://github.com/espressif/esp-tflite-micro}. Acessado em Maio 2025.}
+, e com uma versão com apenas três imagens do \textit{dataset} Faces - UFS, onde o foco desse
+experimento foi o medir o tempo de inferência dos modelos. Pode-se notar que
 
 DISCUTIR RESULTADOS
