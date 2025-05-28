@@ -214,8 +214,8 @@ Enquanto isso a acurácia pode ser calculada pela fórmula \
 Para a avaliação do modelo, o método descrito na \autoref{sec_avaliacao_modelo} foi executado 10 vezes,
 utilizando o \textit{dataset} Faces - UFS (\ref{subsec_dataset_faces_ufs}), medindo o tempo médio de inferência,
 desvio padrão e acurácia de cada execução.
-Com isso esses resultados, foi gerada a \autoref{tempo_inferencia_modelos}, onde as métricas são dos modelos
-descritos na \autoref{sec_modelo_utilizado}.
+Com isso, esses resultados, foi gerada a \autoref{acuracia_tempo_inferencia_modelos_desktop}, onde as
+métricas são dos modelos descritos na \autoref{sec_modelo_utilizado}.
 
 
 \begin{table}[htb]
@@ -264,13 +264,20 @@ do TensorFlowLite, que em tempo de execução converte os pesos quantizados de i
 \legend{Fonte: Autor}
 \end{table}
 
-A \autoref{acuracia_tempo_inferencia_modelos_esp} mostra o resultado dos testes feitos no ESP,
+A \autoref{acuracia_tempo_inferencia_modelos_esp} mostra o resultado dos testes feitos no ESP32-S3,
 utilizando a ferramenta idf.py\footnote{Disponível em:
 \url{https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/tools/idf-py.html}.
 Acessado em Maio 2025.}
 com a biblioteca Tensorflow Lite Micro\footnote{Disponível em: \url{
-https://github.com/espressif/esp-tflite-micro}. Acessado em Maio 2025.}
-, e com uma versão com apenas três imagens do \textit{dataset} Faces - UFS, onde o foco desse
-experimento foi o medir o tempo de inferência dos modelos. Pode-se notar que
+https://github.com/espressif/esp-tflite-micro}. Acessado em Maio 2025.},
+e com uma versão com uma versão limitada do \textit{dataset} Faces - UFS, contendo apenas três imagens.
+O foco desse experimento foi o medir o tempo de inferência dos modelos e avaliar a sua acurácia
+no ESP32-S3, onde foi possível perceber os limites do do microcontrolador.
 
-DISCUTIR RESULTADOS
+Com isso, é possível observar que acurácia permanece igual, isso é causado pela limitação na
+quantidade de imagens utilizada, visto que a memória do ESP32-S3 é limitada, então não possível
+portar todo \textit{dataset} utilizado no experimento da tabela
+\autoref{acuracia_tempo_inferencia_modelos_desktop}.
+
+% Pode-se observar que, na \autoref{acuracia_tempo_inferencia_modelos_esp}, a acurácia do modelo se manteve
+% a mesma.
