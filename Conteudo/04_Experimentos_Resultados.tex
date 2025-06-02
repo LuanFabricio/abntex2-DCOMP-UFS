@@ -1,4 +1,4 @@
-\chapter{Experimentos e resultados}
+\chapter{Experimentos e resultados}\label{experimentos}
 
 Neste capítulo serão apresentados os experimentos feitos durante o TCC. Eles tiveram como
 finalidade avaliar o uso de métodos e técnica de compressão de modelos, focado em dispositivos
@@ -7,7 +7,18 @@ modelos usados (\autoref{sec_modelo_utilizado}), métodos de treinamento (\autor
 o método de avaliação do modelo (\autoref{sec_avaliacao_modelo}), \textit{datasets} utilizados
 (\autoref{sec_datasets}) e resultados (\autoref{sec_resultados}).
 
-\section{Dispositivo utilizado}\label{sec_dispositivo}
+\section{Dispositivos utilizados}\label{sec_dispositivo}
+% Para avaliar os modelos, foram usados diversos dispositivos para que seja possível medir a sua performance em mais de um
+% ambiente.
+%
+% \subsection{Desktop}\label{sec_dispositivo_desktop}
+% Para auxiliar na etapa de avaliação dos modelos, foi utilizado um computador com o processo AMD Ryzen 5 4600G e 16GB de
+% memória ram, ele serviu como base para avaliação por ser um dispositivo com grande poder computacional.
+%
+% Além disso, ele foi o ambiente de desenvolvimento do projeto, onde foram desenvolvidos os benchmarks e utilitários
+% usados no trabalho.
+%
+% \subsection{ESP32-S3}\label{sec_dispositivo_esp}
 O ESP32-S3 N16R8 foi escolhido pelo seu custo-benefício, sendo um aparelho poderoso considerando o seu baixo
 custo e consumo energético. Além disso, esse dispositivo possui 16 MB de memória flash e 8 MB de PSRAM,
 permitindo que modelos maiores sejam portados para esse dispositivo sem redução de parâmetros, podendo afetar o
@@ -57,25 +68,25 @@ MobileNetV3Small é uma variação do MobileNetV3, com uma quantidade reduzida d
 memória e aumentando a performance.
 % TODO: CITAR ARTIGOS
 
-ADICIONAR TABELA COM O CONSUMO DE RECURSOS DO MODELO
-\begin{center}
-\begin{table}[htb]
-\centering
-\ABNTEXfontereduzida
-\caption[Recursos utilizados pelos modelos]{Recursos utilizados pelos modelos}
-\label{tabela_acuracia_1}
-\begin{tabular}{ |c|c|c|c|c| }
-	\hline
-	\textbf{Modelo} & \textbf{Parâmetros} & \textbf{Tamanho do arquivo (TFLite)} \\
-	\hline
-	MobileFaceNet 		& ? 	& 4.5MB \\
-	Rafael-2 		& ? 	& 1.4MB \\
-	MobileNetV3Small 	& ? 	& 1.4MB \\
-	\hline
-\end{tabular}
-\legend{Fonte: Autor}
-\end{table}
-\end{center}
+% ADICIONAR TABELA COM O CONSUMO DE RECURSOS DO MODELO
+% \begin{table}[htb]
+% \centering
+% \ABNTEXfontereduzida
+% \caption[Recurso utilizado por modelo]{Recurso ocupado pelos modelos utilizados}
+% \label{tabela_acuracia_1}
+% \begin{tabular}{ |c|c|c|c|c| }
+% 	\hline
+% 	\textbf{Modelo} & \textbf{Quantização} & \textbf{Tamanho do arquivo (TFLite)} \\
+% 	\hline
+% 	MobileFaceNet 		& - 	& 4.5MB \\
+% 	MobileFaceNet 		& uint8 & 1.5MB \\
+% 	Rafael-2 		& - 	& 1.4MB \\
+% 	Rafael-2 		& uint8 & 356KB \\
+% 	MobileNetV3Small 	& - 	& 1.4MB \\
+% 	\hline
+% \end{tabular}
+% \legend{Fonte: Autor}
+% \end{table}
 
 \section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
 Para fazer o treinamento dos modelos, foi necessário utilizar a técnica de \textit{Triplet Distillation}
@@ -150,9 +161,8 @@ modelo. A \autoref{exemplo_flip_lfw} é um exemplo da imagem original e sua vers
 \end{figure}
 % TODO: DETALHAR
 
-Para gerar as estatísticas de modelo, foi calculada a precisão e acurácia de cada um, junto com o seu tempo de
-inferência.
-
+% Para gerar as estatísticas de modelo, foi calculada a precisão e acurácia de cada um, junto com o seu tempo de
+% inferência. Onde
 
 \section{\textit{Datasets}}\label{sec_datasets}
 Nessa seção serão apresentados os dois \textit{datasets} utilizados, \textit{Labeled Faces in the Wild} (LFW),
@@ -169,7 +179,6 @@ Para realizar o treinamento do modelo, foi utilizada uma variação do \textit{d
 \textit{Labeled faces in the Wild} (LFW), que possui várias amostras contendo triplas com as imagens das faces,
 assim facilitando o uso da técnica de \textit{triplet distillation} para o treinamento.
 
-TODO: ADICIONAR DATASET DA UFS (LEANDRO)
 \subsection{Faces - UFS}\label{subsec_dataset_faces_ufs}
 Este \textit{dataset} possui faces coletadas de alunos da Universidade Federal de Sergipe (UFS) \cite{leandro}.
 Para coletar essas imagens, foi disponibilizado um estande com uma câmera, monitor, teclado e mouse, permitindo
@@ -185,8 +194,8 @@ cada modelo foi submetido ao método de avaliação escolhido (\autoref{sec_aval
 validar e comparar o desempenho na tarefa de reconhecimento facial de cada um, junto com o seu tempo de execução.
 
 Para realizar a avaliação na tarefa de reconhecimento facial, os modelos foram executados em um computador com um
-AMD Ryzen 5 4600G. Na etapa de avaliação de performance em microcontroladores, foi utilizado o ESP32-S3 N16R8,
-descrito na \autoref{sec_dispositivo}.
+AMD Ryzen 5 4600G e em um Raspberry Model B. Na etapa de avaliação de performance em microcontroladores, foi utilizado
+o ESP32-S3 N16R8, descrito na \autoref{sec_dispositivo}.
 
 \subsection{Métricas usadas}\label{sect_restultados_metricas}
 Para avaliar o desempenho, foram utilizadas as métricas de precisão (\ref{sect_restultados_metricas_precisao})
@@ -195,8 +204,9 @@ verdadeira, também foi utilizada a matriz de confusão, para facilitar o entend
 facilitar o cálculo da precisão e acurácia.
 
 \label{sect_restultados_metricas_precisao}
-A precisão pode ser calculada pela fórmula \ref{eq_precisao}. Onde a variável $TP$ indica o valor que foi previsto corretamente como verdadeiro,
-enquanto a variável $FP$ indica o valor que foi previsto falsamente como verdadeiro.
+A precisão pode ser calculada pela \autoref{eq_precisao} e a acurácia pela \autoref{eq_acuracia}.
+Onde a variável $TP$ indica o valor que foi previsto corretamente como verdadeiro, enquanto a variável $FP$ indica o
+valor que foi previsto falsamente como verdadeiro.
 Considerando o método de avaliação utilizada, a variável $TP$ indica os casos onde o modelo escolheu corretamente a
 imagem, e a variável $FP$  indica quando o modelo escolheu a imagem errada.
 
@@ -205,7 +215,6 @@ imagem, e a variável $FP$  indica quando o modelo escolheu a imagem errada.
 \end{equation}
 
 \label{sect_restultados_metricas_acuracia}
-Enquanto isso a acurácia pode ser calculada pela fórmula \
 \begin{equation}\label{eq_acuracia}
 	\text{Acurácia} = \frac {TP + TN} {TP + TN + FP + FN}
 \end{equation}
@@ -245,6 +254,36 @@ Com isso, é possível notar que o modelo que o melhor modelo foi o MobileFaceNe
 mais robusta que tem o foco na tarefa de reconhecimento facial. Além disso, fica evidente a diferença entre
 o tempo de inferência do MobileFaceNet quantizado e não quantizado, isso se deve pelo ambiente de execução
 do TensorFlowLite, que em tempo de execução converte os pesos quantizados de inteiro de 8 bits para float.
+
+
+\begin{table}[htb]
+\centering
+\ABNTEXfontereduzida
+\caption[]{Acurácia e tempo de inferência com o dataset Faces - UFS (Raspberry Pi Model B)}
+\label{acuracia_tempo_inferencia_modelos_raspberry}
+\begin{tabular}{ |c|c|c|c|c| }
+	\hline
+	\textbf{Modelo} & \textbf{Quantização} & \textbf{Acurácia (\%)} & \textbf{Tempo médio de inferência (ms)} & \textbf{Método de treinamento} \\
+	\hline
+	MobileFaceNet 	&-	& 	100.00  & $3677 \pm 13.218$ & Pré-treinado + \textit{Triplet Loss} \\
+	MobileFaceNet 	&uint8	& 	 99.35  & $10607 \pm 28.274$ & Pré-treinado + \textit{Triplet Loss} \\
+	Rafael-2	&-	& 	 3.25 	& $1779 \pm 10.346$ & \textit{Triplet Distillation} \\
+	Rafael-2	&uint8	& 	 24.03	& $2515 \pm 10.8334$ & \textit{Triplet Distillation} \\
+	\hline
+\end{tabular}
+\legend{Fonte: Autor}
+\end{table}
+
+A \autoref{acuracia_tempo_inferencia_modelos_raspberry} contém os resultados dos experimentos feitos no
+Raspberry Pi Model B, utilizando o \textit{dataset} Faces - UFS e o interpretador do tflite-runtime
+\footnote{Disponível em: \url{https://pypi.org/project/tflite-runtime/}. Acessado em Maio 2025.}
+no lugar do interpretador do tensorflow, por ser a versão indicada para executar modelos de aprendizagem de
+máquina em dispositivos embarcados, móveis ou com baixo poder computacional. Por conta de uma limitação
+do tflite-runtime, o modelo MobileNetV3Small não foi incluído nos testes.
+
+Com isso, é possível observar que os resultados são parecidos com o experimento no Desktop, o MobileFaceNet
+permanece com acurácia alta, com e sem quantização. A diferença no tempo de execução entre os tipos de
+quantização também é parecida, por conta da forma como o \textit{runtime} lida com a quantização do modelo.
 
 \begin{table}[htb]
 \centering

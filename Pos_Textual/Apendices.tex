@@ -1,103 +1,103 @@
-\begin{apendicesenv}
-
-% Imprime uma página indicando o início dos apêndices
-\partapendices
-
-% ----------------------------------------------------------
-\chapter{Modelo Professor}\label{apendice_professor}
-% ----------------------------------------------------------
-
-Código utilizado para criar a o modelo Professor usando a ResNet-50 \cite{resnet} com TensorFlow 2.0.
-
-\begin{codigo}[!htb]
-    \caption{Criação do modelo Professor}
-    \label{res_professor}
-    \begin{lstlisting}[language = python]
-	preprocess_input = tf.keras.applications.resnet50.preprocess_input
-	base_model = tf.keras.applications.resnet.ResNet50(input_shape=IMG_SHAPE,
-					   include_top=False,
-					   pooling='avg',
-					   weights='imagenet')
-	base_model.trainable = False
-	input = tf.keras.Input(shape=(96, 96, 3))
-	x = input
-	x = preprocess_input(x)
-	x = base_model(x, training=False)
-	x = tf.keras.layers.Dropout(0.2)(x)
-	output = tf.keras.layers.Dense(n)(x)
-	teacher = tf.keras.Model(input, output)
-    \end{lstlisting}
-    \legend{Fonte: Autor}
-\end{codigo}
-
-% ----------------------------------------------------------
-\chapter{Modelo Aluno}\label{apendice_aluno}
-% ----------------------------------------------------------
-Código utilizado para criar a o modelo Aluno com TensorFlow 2.0.
-
-\begin{codigo}[!htb]
-    \caption{Criação do modelo Aluno}
-    \label{res_aluno_1}
-    \begin{lstlisting}[language = python]
-	def create_student_model():
-		i = tf.keras.layers.Input(shape=IMG_SHAPE)
-		x = add_cnorm_layer(32, i)
-		x = add_cnorm_layer(64, x)
-		x = add_cnorm_layer(128, x)
-		x = tf.keras.layers.Flatten()(x)
-		x = tf.keras.layers.Dropout(0.2)(x)
-		x = tf.keras.layers.Dense(1024, activation='relu')(x)
-		x = tf.keras.layers.Dropout(0.2)(x)
-		x = tf.keras.layers.Dense(n)(x)
-		return tf.keras.Model(i, x)
-
-	def add_cnorm_layer(size, x):
-		x = tf.keras.layers.Conv2D(size, (3, 3), padding='same', activation='relu')(x)
-		x = tf.keras.layers.BatchNormalization()(x)
-		x = tf.keras.layers.Conv2D(size, (3, 3), padding='same', activation='relu')(x)
-		x = tf.keras.layers.BatchNormalization()(x)
-		x = tf.keras.layers.MaxPooling2D((2, 2))(x)
-		return x
-    \end{lstlisting}
-    \legend{Fonte: Autor}
-\end{codigo}
-
-
-% ----------------------------------------------------------
-\chapter{Modelo utilizado para fazer poda e quantização}\label{apendice_pruning_quantization}
-% ----------------------------------------------------------
-
-\begin{codigo}[!htb]
-    \caption{Criação do modelo utilizado na etapa de poda e quantização}
-    \label{pruning_quantization_model}
-    \begin{lstlisting}[language = python]
-	    def create_model():
-		    i = Input(shape=x_train[0].shape)
-
-		    x = add_cnorm_layer(32, i)
-		    x = add_cnorm_layer(64, x)
-		    x = add_cnorm_layer(128, x)
-
-		    x = Flatten()(x)
-		    x = Dropout(0.2)(x)
-		    x = Dense(1024, activation='relu')(x)
-		    x = Dropout(0.2)(x)
-		    x = Dense(K, activation='softmax')(x)
-
-		    return Model(i, x)
-
-	    def add_cnorm_layer(size, x):
-		    x = Conv2D(size, (3, 3), padding='same', activation='relu')(x)
-		    x = BatchNormalization()(x)
-
-		    x = Conv2D(size, (3, 3), padding='same', activation='relu')(x)
-		    x = BatchNormalization()(x)
-
-		    x = MaxPooling2D((2, 2))(x)
-
-		    return x
-    \end{lstlisting}
-    \legend{Fonte: Autor}
-\end{codigo}
-
-\end{apendicesenv}
+% \begin{apendicesenv}
+%
+% % Imprime uma página indicando o início dos apêndices
+% \partapendices
+%
+% % ----------------------------------------------------------
+% \chapter{Modelo Professor}\label{apendice_professor}
+% % ----------------------------------------------------------
+%
+% Código utilizado para criar a o modelo Professor usando a ResNet-50 \cite{resnet} com TensorFlow 2.0.
+%
+% \begin{codigo}[!htb]
+%     \caption{Criação do modelo Professor}
+%     \label{res_professor}
+%     \begin{lstlisting}[language = python]
+% 	preprocess_input = tf.keras.applications.resnet50.preprocess_input
+% 	base_model = tf.keras.applications.resnet.ResNet50(input_shape=IMG_SHAPE,
+% 					   include_top=False,
+% 					   pooling='avg',
+% 					   weights='imagenet')
+% 	base_model.trainable = False
+% 	input = tf.keras.Input(shape=(96, 96, 3))
+% 	x = input
+% 	x = preprocess_input(x)
+% 	x = base_model(x, training=False)
+% 	x = tf.keras.layers.Dropout(0.2)(x)
+% 	output = tf.keras.layers.Dense(n)(x)
+% 	teacher = tf.keras.Model(input, output)
+%     \end{lstlisting}
+%     \legend{Fonte: Autor}
+% \end{codigo}
+%
+% % ----------------------------------------------------------
+% \chapter{Modelo Aluno}\label{apendice_aluno}
+% % ----------------------------------------------------------
+% Código utilizado para criar a o modelo Aluno com TensorFlow 2.0.
+%
+% \begin{codigo}[!htb]
+%     \caption{Criação do modelo Aluno}
+%     \label{res_aluno_1}
+%     \begin{lstlisting}[language = python]
+% 	def create_student_model():
+% 		i = tf.keras.layers.Input(shape=IMG_SHAPE)
+% 		x = add_cnorm_layer(32, i)
+% 		x = add_cnorm_layer(64, x)
+% 		x = add_cnorm_layer(128, x)
+% 		x = tf.keras.layers.Flatten()(x)
+% 		x = tf.keras.layers.Dropout(0.2)(x)
+% 		x = tf.keras.layers.Dense(1024, activation='relu')(x)
+% 		x = tf.keras.layers.Dropout(0.2)(x)
+% 		x = tf.keras.layers.Dense(n)(x)
+% 		return tf.keras.Model(i, x)
+%
+% 	def add_cnorm_layer(size, x):
+% 		x = tf.keras.layers.Conv2D(size, (3, 3), padding='same', activation='relu')(x)
+% 		x = tf.keras.layers.BatchNormalization()(x)
+% 		x = tf.keras.layers.Conv2D(size, (3, 3), padding='same', activation='relu')(x)
+% 		x = tf.keras.layers.BatchNormalization()(x)
+% 		x = tf.keras.layers.MaxPooling2D((2, 2))(x)
+% 		return x
+%     \end{lstlisting}
+%     \legend{Fonte: Autor}
+% \end{codigo}
+%
+%
+% % ----------------------------------------------------------
+% \chapter{Modelo utilizado para fazer poda e quantização}\label{apendice_pruning_quantization}
+% % ----------------------------------------------------------
+%
+% \begin{codigo}[!htb]
+%     \caption{Criação do modelo utilizado na etapa de poda e quantização}
+%     \label{pruning_quantization_model}
+%     \begin{lstlisting}[language = python]
+% 	    def create_model():
+% 		    i = Input(shape=x_train[0].shape)
+%
+% 		    x = add_cnorm_layer(32, i)
+% 		    x = add_cnorm_layer(64, x)
+% 		    x = add_cnorm_layer(128, x)
+%
+% 		    x = Flatten()(x)
+% 		    x = Dropout(0.2)(x)
+% 		    x = Dense(1024, activation='relu')(x)
+% 		    x = Dropout(0.2)(x)
+% 		    x = Dense(K, activation='softmax')(x)
+%
+% 		    return Model(i, x)
+%
+% 	    def add_cnorm_layer(size, x):
+% 		    x = Conv2D(size, (3, 3), padding='same', activation='relu')(x)
+% 		    x = BatchNormalization()(x)
+%
+% 		    x = Conv2D(size, (3, 3), padding='same', activation='relu')(x)
+% 		    x = BatchNormalization()(x)
+%
+% 		    x = MaxPooling2D((2, 2))(x)
+%
+% 		    return x
+%     \end{lstlisting}
+%     \legend{Fonte: Autor}
+% \end{codigo}
+%
+% \end{apendicesenv}

@@ -8,15 +8,6 @@ embarcados.
 Os seguintes critérios de busca foram utilizados para filtrar os trabalhos acadêmicos:
 
 \begin{itemize}
-	% TODO: Olhar
-	\item Portal de periódicos utilizada foi o CAPES CAFE.
-	\item A string de busca utilizada foi: "face recognition" and "esp32".
-	\item O seguintes filtros foram utilizados:
-	\begin{itemize}
-		\item Idioma: Inglês.
-		\item Revisado por pares: Sim.
-	\end{itemize}
----
 	\item Os artigos devem ser relacionado ao tema de CNN com compressão para sistemas embarcados.
 	\item Trabalhos publicados entre 2020 e 2023.
 	\item Trabalhos escritos em inglês.
@@ -33,8 +24,6 @@ começando pela destilação de conhecimento, e partindo para poda e quantizaç�
 
 O resultado alcançado foi uma CNN capaz de detectar placas de trânsito, consumindo 59KB de espaço, com $85,91\%$ de
 acurácia e F1-Score igual a $85,80\%$, atingindo um tempo de inferência de 80 ms no ESP32 e 83 ms no ESP32-2.
-
-\subsection{\textit{IMPROVED FACE DETECTION ACCURACY USING HAAR CASCADE CLASSIFIER METHOD AND ESP32-CAM FOR IOT-BASED HOME DOOR SECURITY}}
 
 \subsection{\textit{Intelligent security system based on face recognition and IoT}}
 Este artigo \cite{bagchi20222133} tem como objetivo desenvolver um protótipo de sistema de segurança baseado em reconhecimento facial,
@@ -77,13 +66,13 @@ e oportunidade do protótipo.
 Este trabalho \cite{espcamAlzheimer} tem como objetivo, desenvolver um aparelho para auxiliar pessoas com Alzheimer,
 utilizando reconhecimento facial. Para atingir esse objetivo, foi utilizada uma ESPCAM, para fazer a detecção facial
 e um Raspberry Pi, para fazer o reconhecimento facial. De forma que, a câmera detecta a face, realiza um recorte
-(\textit{crop}) e a envia para o servidor realizar a detecção, onde, caso seja uma face conhecida, o nome da pessoa será
-falado por um alto-falante (\textit{speaker}), como é possível notar a .
+(\textit{crop}) e a envia para o servidor realizar o reconhecimento facial, onde, caso seja uma face conhecida, o nome da pessoa será
+falado por um alto-falante (\textit{speaker}), como é possível notar na \autoref{pipeline_espcam}.
 
 \begin{figure}[htb]
-	\caption {\label{pipeline_espcam}Pipeline do reconhecimento facial}
 	\begin{center}
 		\includegraphics[scale=0.15]{Imagens/pipiline-espcam-alzheimer}
 	\end{center}
+	\caption {\label{pipeline_espcam}Pipeline do reconhecimento facial}
 	\legend {Fonte: \citeonline{espcamAlzheimer}}
 \end{figure}

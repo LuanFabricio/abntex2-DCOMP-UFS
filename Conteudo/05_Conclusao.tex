@@ -1,0 +1,41 @@
+\chapter{Conclusão}
+
+Este trabalho teve como objetivo principal a compressão de uma rede neural artificial para viabilizar o
+reconhecimento facial em dispositivos embarcados, buscando manter uma alta acurácia e baixa latência no
+dispositivo, assim o tornado viável o seu uso em tarefas que executam em tempo real.
+% , possibilitando que a mesma consiga auxiliar
+% na tarefa de reconhecimento facial, mantendo uma alta acurácia e baixa latência em dispositivos embarcados.
+
+Para alcançar esse objetivo, foi realizada a compressão, treinamento e avaliação de modelos de reconhecimento
+facial, onde foi desenvolvidos \textit{benchmarks} para medir a acurácia e latência dos modelos, para
+dispositivos de propósito geral e embarcados. Os dispositivos utilizados foram \textit{Desktop}, Raspberry
+Model B e ESP32-S3, junto com os interpretadores TensorFlow, TFLite Runtime e ESP TFLite Micro.
+% \section{Expectativas alcançadas}
+% Durante o inicio do trabalho, foi estimado o treinamento, avaliação e implantação de um modelo de reconhecimento
+% facial, e desenvolvimento de uma aplicação para avaliar a acurácia e latência do modelo dentro de um sistema
+% embarcado. Onde essas tarefas foram feitas no \autoref{experimentos}, utilizando o \textit{Desktop}, Raspberry
+% Model B e ESP32-S3 como dispositivos para execução do modelo, e \textit{TensorFlow}, \textit{TfLite Runtime} e
+% ESP TFLite Micro, como interpretadores dos modelos.
+
+% \section{Resultados}
+Como foi possível observar nos experimentos, o melhor modelo para realizar o trabalho de reconhecimento
+facial é o MobileFaceNet com quantização para o tipo uint8, pois ele apresenta um acurácia alta, mesmo possuindo
+um tempo de resposta elevado. Considerando isso, esse modelo não é o mais indicado para realizar reconhecimento
+facial em tempo real, pois ele demora 3.7 segundos gerando os \textit{embeddings} de uma imagem, ou seja, ele
+é muito lento para ser executado em tempo real, visto que o ideal seria alcançar uma média de 33.33
+milissegundos, para alcançar 30 \textit{frames} por segundo.
+
+Inicialmente, esperava-se que fosse possível realizar compressão ao ponto que o modelo MobileFaceNet executasse
+a tarefa de reconhecimento facial com baixa latência, ou que seria possível aplicar
+\textit{Triplet Distillation} no modelo Rafael-2 para melhorar a sua acurácia consideravelmente, a tornando
+próxima do MobileFaceNet.
+Porém, como é possível observar, esse resultado não foi alcançado, uma vez que o único modelo com acurácia alta
+foi o MobileFaceNet, que possui um tempo de inferência elevado no ESP32-S3, o tornando inviável para a
+executá-lo em tempo real.
+
+% \section{Trabalhos futuros}
+Considerando isso, sugere-se que, como trabalhos futuros, seja feita um estudo utilizando diferentes hardwares,
+com o objetivo de aumentar a amostra de dispositivos testados e encontrar um dispositivo com baixo custo que
+seja capaz de realizar a tarefa de reconhecimento facial em tempo real. Outra sugestão seria utilizar
+\textit{benchmark} construído para o ESP32-S3 como ponto de partida para desenvolver um produto ou demonstração
+funcional que integre a detecção e reconhecimento facial em aplicações práticas.
