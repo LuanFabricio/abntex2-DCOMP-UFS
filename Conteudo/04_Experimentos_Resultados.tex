@@ -230,7 +230,7 @@ métricas são dos modelos descritos na \autoref{sec_modelo_utilizado}.
 \begin{table}[htb]
 \centering
 \ABNTEXfontereduzida
-\caption[]{Acurácia e tempo de inferência com o dataset Faces - UFS (Desktop)}
+\caption[Acurácia e tempo de inferência com o dataset Faces - UFS (Desktop)]{Acurácia e tempo de inferência com o dataset Faces - UFS (Desktop)}
 \label{acuracia_tempo_inferencia_modelos_desktop}
 \begin{tabular}{ |c|c|c|c|c| }
 	\hline
@@ -259,7 +259,7 @@ do TensorFlowLite, que em tempo de execução converte os pesos quantizados de i
 \begin{table}[htb]
 \centering
 \ABNTEXfontereduzida
-\caption[]{Acurácia e tempo de inferência com o dataset Faces - UFS (Raspberry Pi Model B)}
+\caption[Acurácia e tempo de inferência com o dataset Faces - UFS (Raspberry Pi Model B)]{Acurácia e tempo de inferência com o dataset Faces - UFS (Raspberry Pi Model B)}
 \label{acuracia_tempo_inferencia_modelos_raspberry}
 \begin{tabular}{ |c|c|c|c|c| }
 	\hline
@@ -320,3 +320,10 @@ portar todo \textit{dataset} utilizado no experimento da tabela
 
 % Pode-se observar que, na \autoref{acuracia_tempo_inferencia_modelos_esp}, a acurácia do modelo se manteve
 % a mesma.
+
+\section{Conclusão}
+Neste capítulo, foi possível descrever melhor os pontos fortes e fracos do ESP32-S3 N16R8, que foi o microcontrolador
+alvo para embarcar o modelo de reconhecimento facial. Além disso, foi possível destacar os modelos, suas técnicas de
+treinamento e validação, junto com os \textit{datasets} utilizados durante o experimento. Também, foi possível demonstrar
+os resultados dos experimentos, junto com as suas métricas e dispositivos utilizados, junto com a comparação dos seus
+resultados, onde esses dispositivos são o Desktop, Raspberry Pi e ESP32-S3.
