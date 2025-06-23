@@ -7,7 +7,7 @@ modelos usados (\autoref{sec_modelo_utilizado}), métodos de treinamento (\autor
 o método de avaliação do modelo (\autoref{sec_avaliacao_modelo}), \textit{datasets} utilizados
 (\autoref{sec_datasets}) e resultados (\autoref{sec_resultados}).
 
-\section{Dispositivos utilizados}\label{sec_dispositivo}
+\section{Dispositivo utilizado}\label{sec_dispositivo}
 % Para avaliar os modelos, foram usados diversos dispositivos para que seja possível medir a sua performance em mais de um
 % ambiente.
 %
@@ -20,9 +20,10 @@ o método de avaliação do modelo (\autoref{sec_avaliacao_modelo}), \textit{dat
 %
 % \subsection{ESP32-S3}\label{sec_dispositivo_esp}
 O ESP32-S3 N16R8 foi escolhido pelo seu custo-benefício, sendo um aparelho poderoso considerando o seu baixo
-custo e consumo energético. Além disso, esse dispositivo possui 16 MB de memória flash e 8 MB de PSRAM,
-permitindo que modelos maiores sejam portados para esse dispositivo sem redução de parâmetros, podendo afetar o
-tempo de inferência do modelo.
+custo e consumo energético. Além disso, esse dispositivo possui um processador 32-bit Xtensa dual-core,
+16 MB de memória flash e 8 MB de PSRAM, permitindo que modelos maiores sejam portados para esse dispositivo sem redução
+% NOTE: Rever
+de parâmetros, podendo afetar o tempo de inferência do modelo.
 
 Para executar os modelos no ESP foi utilizado o projeto person-detection do repositório esp-tflite-micro da Espressif
 \footnote{Disponível em: \url{https://github.com/espressif/esp-tflite-micro/tree/master} Acessado em Março de 2025}.
@@ -42,8 +43,9 @@ Disponível em: \url{https://www.kaggle.com/datasets/luhtookyaw/lfwpreparedtripl
 onde os métodos de treinamento \textit{Triplet Loss} e \textit{Triplet Distillation}
 \cite{triplet_distillation_face_recognition} foram utilizados, pois são eficazes para melhorar a precisão do modelo,
 no contexto de reconhecimento facial.
-Além disso os modelos foram treinados considerando com imagens R8G8B8, cada imagem tem seus pixels representados por
-triplas de 8 bits, contendo o valor das cores vermelho, verde e azul, respectivamente.
+Além disso os modelos foram treinados considerando com imagens R8G8B8, assim reduzindo a quantidade de memória necessária
+para carregar as imagens no ESP32-S3, onde cada imagem tem seus pixels representados por triplas de 8 bits, contendo o
+valor das cores vermelho, verde e azul, respectivamente.
 
 % TODO: Ver se eu posso deixar esse footnote
 Para validar os resultados de cada modelo, foi criado o repositório model-eval\footnote{
@@ -69,24 +71,31 @@ memória e aumentando a performance.
 % TODO: CITAR ARTIGOS
 
 % ADICIONAR TABELA COM O CONSUMO DE RECURSOS DO MODELO
-% \begin{table}[htb]
-% \centering
-% \ABNTEXfontereduzida
-% \caption[Recurso utilizado por modelo]{Recurso ocupado pelos modelos utilizados}
-% \label{tabela_acuracia_1}
-% \begin{tabular}{ |c|c|c|c|c| }
-% 	\hline
-% 	\textbf{Modelo} & \textbf{Quantização} & \textbf{Tamanho do arquivo (TFLite)} \\
-% 	\hline
-% 	MobileFaceNet 		& - 	& 4.5MB \\
-% 	MobileFaceNet 		& uint8 & 1.5MB \\
-% 	Rafael-2 		& - 	& 1.4MB \\
-% 	Rafael-2 		& uint8 & 356KB \\
-% 	MobileNetV3Small 	& - 	& 1.4MB \\
-% 	\hline
-% \end{tabular}
-% \legend{Fonte: Autor}
-% \end{table}
+\begin{table}[htb]
+\centering
+\ABNTEXfontereduzida
+\caption[Recurso utilizado por modelo]{Recurso ocupado pelos modelos utilizados}
+\label{tabela_modelos}
+\begin{tabular}{ |c|c|c|c|c| }
+	\hline
+	\textbf{Modelo} 	& \textbf{Quantização} & \textbf{Quantidade de Parâmetros} & \textbf{Tamanho do arquivo (TFLite)} \\
+	\hline
+	MobileFaceNet 		& - 	& 1.154.065 & 4.5MB \\
+	MobileFaceNet 		& uint8 & 1.154.065 & 1.5MB \\
+	Rafael-2 		& - 	& 351.522  & 1.4MB \\
+	Rafael-2 		& uint8 & 351.522   & 356KB \\
+	MobileNetV3Small 	& - 	& 1.088.357 & 1.4MB \\
+	\hline
+\end{tabular}
+\legend{Fonte: Autor}
+\end{table}
+
+Na \autoref{tabela_modelos}, é possível observar o parâmetros e pegada de memória dos modelos, com base na quantização
+utilizada.
+Com isso, é possível perceber que o modelo mais simples, menor quantidade de parâmetros e que necessita de menos recurso
+é o Rafael-2, enquanto o mais complexo, com maior quantidade de parâmetros e que necessita de mais recurso é o
+MobileFaceNet. Também, é válido destacar que as suas versões quantizadas reduziram consideravelmente a quantidade de
+memória utilizada pelos modelos.
 
 \section{Método de treinamento do modelo}\label{sec_treinamento_modelo}
 Para fazer o treinamento dos modelos, foi necessário utilizar a técnica de \textit{Triplet Distillation}
@@ -156,8 +165,7 @@ modelo. A \autoref{exemplo_flip_lfw} é um exemplo da imagem original e sua vers
 		\includegraphics[scale=0.5]{Imagens/exemplo_flip_01}
 		\includegraphics[scale=0.5]{Imagens/exemplo_flip_02}
 	\end{center}
-	\caption {\label{exemplo_flip_lfw}Exemplo de uma imagem e sua versão com \textit{flip}}
-	\legend {Fonte: LFW} %Colocar fonte do LFW
+	\caption {\label{exemplo_flip_lfw}Exemplo de uma imagem e sua versão com \textit{flip}} \legend {Fonte: LFW} %Colocar fonte do LFW
 \end{figure}
 % TODO: DETALHAR
 
@@ -174,10 +182,20 @@ Para esse trabalho, foi utilizada uma variação do LFW, que agrupa as imagens e
 \textbf{positiva} e \textbf{negativa}, para ser utilizado como dataset de treinamento, seguindo a técnica
 de \textit{triplet distillation} \cite{triplet_distillation_face_recognition}.
 
-
 Para realizar o treinamento do modelo, foi utilizada uma variação do \textit{dataset}
 \textit{Labeled faces in the Wild} (LFW), que possui várias amostras contendo triplas com as imagens das faces,
-assim facilitando o uso da técnica de \textit{triplet distillation} para o treinamento.
+assim facilitando o uso da técnica de \textit{triplet distillation} para o treinamento. Um exemplo pode ser visto
+na \autoref{exemplo_dataset_lfw}.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.5]{Imagens/exemplo_triplet_01}
+		\includegraphics[scale=0.5]{Imagens/exemplo_triplet_02}
+		\includegraphics[scale=0.5]{Imagens/exemplo_triplet_03}
+	\end{center}
+	\caption{\label{exemplo_dataset_lfw}Exemplo de triplas do LFW}
+	\legend {Fonte: LFW}
+\end{figure}
 
 \subsection{Faces - UFS}\label{subsec_dataset_faces_ufs}
 Este \textit{dataset} possui faces coletadas de alunos da Universidade Federal de Sergipe (UFS) \cite{leandro}.
@@ -193,8 +211,11 @@ Para obter os resultados, primeiro foram definidas as métricas que serão usada
 cada modelo foi submetido ao método de avaliação escolhido (\autoref{sec_avaliacao_modelo}), com o objetivo de
 validar e comparar o desempenho na tarefa de reconhecimento facial de cada um, junto com o seu tempo de execução.
 
-Para realizar a avaliação na tarefa de reconhecimento facial, os modelos foram executados em um computador com um
-AMD Ryzen 5 4600G e em um Raspberry Model B. Na etapa de avaliação de performance em microcontroladores, foi utilizado
+Para realizar a avaliação na tarefa de reconhecimento facial, os modelos foram executados em um computador, com um
+AMD Ryzen 5 4600G, com seis núcleos, clock máximo de 4.2GHz, 16GB de memória RAM e arquitetura x86 64,
+e em um Raspberry Model B um processador com quatro núcleos, clock de 1.GHz, 1GB de memória RAM e arquitetura armv7l,
+de 32 bits.
+Na etapa de avaliação de performance em microcontroladores, foi utilizado
 o ESP32-S3 N16R8, descrito na \autoref{sec_dispositivo}.
 
 \subsection{Métricas usadas}\label{sect_restultados_metricas}

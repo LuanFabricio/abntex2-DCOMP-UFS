@@ -1,0 +1,130 @@
+%% Creator: Inkscape 1.4.2 (ebf0e940d0, 2025-05-08), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'rafael_student_r8g8b8_tflite.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{104.25bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,7.35251799)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.4631843,6.98342092){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×112×112×3\end{tabular}}}}%
+    \put(0.4631843,6.11291732){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×110×110×32\end{tabular}}}}%
+    \put(0.4631843,5.31435617){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×108×108×32\end{tabular}}}}%
+    \put(0.4631843,4.51579502){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×52×52×32\end{tabular}}}}%
+    \put(0.4631843,4.0769461){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×26×26×32\end{tabular}}}}%
+    \put(0.4631843,3.27838495){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×24×24×64\end{tabular}}}}%
+    \put(0.4631843,2.83953603){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×12×12×64\end{tabular}}}}%
+    \put(0.4631843,2.04097488){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×12×12×32\end{tabular}}}}%
+    \put(0.4631843,1.60212596){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×6×6×32\end{tabular}}}}%
+    \put(0.4631843,1.03378063){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×1152\end{tabular}}}}%
+    \put(0.4631843,0.37910437){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}?×256\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.28299095,7.21363675){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}input_1\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.13831919,6.63090293){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Conv2D\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.13831919,6.49421229){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{filter}〈32×3×3×3〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.13831919,6.40788135){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{bias}〈32〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.13831919,6.2711907){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Relu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,5.83234178){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Conv2D\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,5.69565114){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{filter}〈32×3×3×32〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,5.6093202){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{bias}〈32〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,5.47262955){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Relu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,5.03378063){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Conv2D\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,4.89708998){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{filter}〈32×5×5×32〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,4.81075905){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{bias}〈32〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,4.6740684){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Relu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.20809599,4.23521948){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}MaxPool2D\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=16]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,3.79637056){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Conv2D\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=17]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,3.65967991){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{filter}〈64×3×3×32〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=18]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,3.57334898){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{bias}〈64〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=19]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,3.43665833){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Relu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=20]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.20809599,2.99780941){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}MaxPool2D\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=21]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,2.55896049){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Conv2D\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=22]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,2.42226984){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{filter}〈32×1×1×64〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=23]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,2.33593891){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{bias}〈32〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=24]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.12027737,2.19924826){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Relu\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=25]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.20809599,1.76039934){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}MaxPool2D\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=26]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.19340012,1.32155042){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}Reshape\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=27]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.19340012,1.18485977){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{shape}〈2〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=28]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.08852153,0.75320509){\color[rgb]{1,1,1}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}FullyConnected\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=29]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.08852153,0.61651444){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{weights}〈256×1152〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=30]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.08852153,0.53018351){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\textbf{bias}〈256〉\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=31]{rafael_student_r8g8b8_tflite.pdf}}%
+    \put(0.30496712,0.09852883){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}dense\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=32]{rafael_student_r8g8b8_tflite.pdf}}%
+  \end{picture}%
+\endgroup%
