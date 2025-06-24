@@ -186,17 +186,46 @@ Quantização reduz a computação diminuindo a precisão dos tipos de dados. Pe
 geralmente devem ser quantizadas para inteiros de 8 bits, embora implementações menores que 8 bits sejam discutidas
 incluindo redes neurais binárias. \cite{LIANG2021370}
 
+A quantização pode ser dividida em duas, considerando e etapa de treinamento do modelo.
+\textbf{Quantização pós-treinamento}, onde essa tarefa é feita com o modelo já treinado, o que pode torná-la mais rápida,
+porém pode impactar na acurácia do modelo, em alguns casos é necessário fornecer um \textit{dataset} representativo
+para realizar esse tipo de quantização.
+\textbf{Treinamento consciente de quantização}, onde a quantização é feita durante o treinamento do modelo, reduzindo as
+chances da acurácia ser impactada, porém pode aumentar o tempo de treinamento do modelo.
+
 \subsection{Destilação de conhecimento (Professor-Aluno)}\label{conceitos_destilacao}
 
-Destilação de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica que tem
-como objetivo treinar um modelo Aluno (menor e sem pré-treinamento) com um modelo Professor
-(maior e com pré-treinamento). Ela é amplamente utilizada para as áreas de visão computacional e linguagem natural,
-e tem como objetivo reduzir o tamanho do modelo final (Aluno).
+Destilação de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling} é uma técnica que utiliza dois
+modelos durante a etapa de treinamento, o \textbf{Professor} e \textbf{Aluno}.
+Onde o modelo Professor é pré-treinado e possui uma arquitetura robusta, fazendo com que ele tenha bom desempenho para
+realizar a tarefa proposta.
+Enquanto isso, o modelo Aluno não possui pré-treinamento, tem uma arquitetura mais simples e não possui um desempenho
+tão bom quanto o Professor na tarefa proposta.
 
-Para transferir o conhecimento do modelo Professor para o Aluno, a técnica utiliza os \textit{logits} (entrada da
-função de ativação final \textit{softmax}) no lugar da classe prevista. Além disso, são utilizado os
-\textit{soft targets} (probabilidades das classes previstas pelo modelo Professor) junto com os
-\textit{hard targets} (classe esperada).
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.5]{Imagens/kd_exemplo}
+	\end{center}
+	\caption {\label{cap_conceitos_exemplo_kd}Exemplo de treinamento com \textit{knowledge distillation}}
+	\legend {Fonte: \cite{kd_transfomers}}
+\end{figure}
+
+Durante o treinamento, as amostras do \textit{dataset} são enviadas para os dois modelos, onde o resultado inferido pelo
+modelo Professor é comparado com o resultado do modelo Aluno.
+Com isso, é calculada a \textit{loss} que utilizada para recalcular os pesos do modelo Aluno.
+Esse fluxo pode ser observado na \autoref{cap_conceitos_exemplo_kd}.
+
+
+% Destilação de conhecimento ou \textit{knowledge distillation} \cite{hinton2015distilling}, é uma técnica que tem
+% como objetivo treinar um modelo Aluno (menor e sem pré-treinamento) com um modelo Professor
+% (maior e com pré-treinamento). Ela é amplamente utilizada para as áreas de visão computacional e linguagem natural,
+% tendo como objetivo tornar melhorar o desempenho do modelo Aluno
+% e tem como objetivo reduzir o tamanho do modelo final (Aluno).
+%
+% Para transferir o conhecimento do modelo Professor para o Aluno, a técnica utiliza os \textit{logits} (entrada da
+% função de ativação final \textit{softmax}) no lugar da classe prevista. Além disso, são utilizado os
+% \textit{soft targets} (probabilidades das classes previstas pelo modelo Professor) junto com os
+% \textit{hard targets} (classe esperada).
 
 % NOTE: Talvez detalhar a temperatura?
 

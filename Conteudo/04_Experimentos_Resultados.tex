@@ -155,8 +155,8 @@ professor, e $d$ (\ref{eq_triplet_distillation}) é utilizado como uma margem di
 
 \section{Método de avaliação}\label{sec_avaliacao_modelo}
 Para avaliar o modelo, primeiro, as características de cada imagem e sua versão espelhada
-(\textit{flip} horizontal) são extraídas pelo modelo. Depois é realizada a verificação da face,
-calculando a distância de cosseno entre os vetores de características
+(\textit{flip} horizontal) são extraídas pelo modelo.
+Depois é realizada a verificação da face, calculando a distância de cosseno entre os vetores de características
 \cite{triplet_distillation_face_recognition}, onde a imagem com menor distância é considerada a previsão do
 modelo. A \autoref{exemplo_flip_lfw} é um exemplo da imagem original e sua versão com \textit{flip}.
 
@@ -165,12 +165,14 @@ modelo. A \autoref{exemplo_flip_lfw} é um exemplo da imagem original e sua vers
 		\includegraphics[scale=0.5]{Imagens/exemplo_flip_01}
 		\includegraphics[scale=0.5]{Imagens/exemplo_flip_02}
 	\end{center}
-	\caption {\label{exemplo_flip_lfw}Exemplo de uma imagem e sua versão com \textit{flip}} \legend {Fonte: LFW} %Colocar fonte do LFW
+	\caption {\label{exemplo_flip_lfw}Exemplo de uma imagem e sua versão com \textit{flip}} \legend {Fonte: LFW}
 \end{figure}
-% TODO: DETALHAR
 
-% Para gerar as estatísticas de modelo, foi calculada a precisão e acurácia de cada um, junto com o seu tempo de
-% inferência. Onde
+Na \autoref{exemplo_flip_lfw} é possível observar um exemplo da imagem original e sua versão com \textit{flip}.
+Onde essa operação é aplicada para obter uma variação das faces que estão \textit{dataset} original, de forma que as
+cores não sejam alteradas nem a posição do rosto esteja muito diferente.
+Por isso, não foram aplicadas operações como filtros para cores ou operações como rotação ou \textit{flip} vertical da
+face.
 
 \section{\textit{Datasets}}\label{sec_datasets}
 Nessa seção serão apresentados os dois \textit{datasets} utilizados, \textit{Labeled Faces in the Wild} (LFW),
