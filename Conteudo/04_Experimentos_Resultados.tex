@@ -32,7 +32,8 @@ para suportar o tamanho dos modelos e suas camadas, e adicionar alguns utilitár
 o uso da memória.
 
 \section{Modelos utilizados}\label{sec_modelo_utilizado}
-Para realizar os experimentos, os modelos \textbf{MobileFaceNet}, \textbf{Rafael-2} e \textbf{MobileNetV3Small}
+Para realizar os experimentos, os modelos \textbf{MobileFaceNet} \cite{leondgarse}, \textbf{Rafael-2} e
+\textbf{MobileNetV3Small} \cite{howard2019searchingmobilenetv3}
 foram utilizados como teste, tanto na etapa de treinamento (\autoref{sec_treinamento_modelo}) quanto de avaliação
 (\autoref{sec_avaliacao_modelo}).
 
@@ -40,6 +41,7 @@ Para treinar os modelos, foi utilizada a plataforma kaggle\footnote{
 Disponível em: \url{https://www.kaggle.com/}. Acessado em Março de 2025}, o \textit{dataset} utilizado foi
 \textit{Labeled Faces in the Wild} (LFW) \footnote{
 Disponível em: \url{https://www.kaggle.com/datasets/luhtookyaw/lfwpreparedtriplets}. Acessado em Março de 2025.},
+com distribuição de 85\% das triplas para treinamento e 15\% para validação,
 onde os métodos de treinamento \textit{Triplet Loss} e \textit{Triplet Distillation}
 \cite{triplet_distillation_face_recognition} foram utilizados, pois são eficazes para melhorar a precisão do modelo,
 no contexto de reconhecimento facial.
@@ -74,11 +76,11 @@ memória e aumentando a performance.
 \begin{table}[htb]
 \centering
 \ABNTEXfontereduzida
-\caption[Recurso utilizado por modelo]{Recurso ocupado pelos modelos utilizados}
+\caption[Configurações dos modelos]{Configurações dos modelos}
 \label{tabela_modelos}
 \begin{tabular}{ |c|c|c|c|c| }
 	\hline
-	\textbf{Modelo} 	& \textbf{Quantização} & \textbf{Quantidade de Parâmetros} & \textbf{Tamanho do arquivo (TFLite)} \\
+	\textbf{Modelo} 	& \textbf{Quantização} & \textbf{Quantidade de Parâmetros} & \textbf{Pegada de memória} \\
 	\hline
 	MobileFaceNet 		& - 	& 1.154.065 & 4.5MB \\
 	MobileFaceNet 		& uint8 & 1.154.065 & 1.5MB \\
@@ -179,7 +181,8 @@ Nessa seção serão apresentados os dois \textit{datasets} utilizados, \textit{
 que foi utilizado para o treinamento dos modelos, e Faces - UFS, que foi utilizado para a validação dos modelos.
 
 \subsection{\textit{Labeled Faces in the Wild}}
-Este \textit{dataset} possui imagens da face de várias celebridades, classificadas com o nome da pessoa.
+Este \textit{dataset} possui imagens da face de várias celebridades em disversos contexto, classificadas com o nome da
+pessoa.
 Para esse trabalho, foi utilizada uma variação do LFW, que agrupa as imagens em triplas, \textbf{âncora},
 \textbf{positiva} e \textbf{negativa}, para ser utilizado como dataset de treinamento, seguindo a técnica
 de \textit{triplet distillation} \cite{triplet_distillation_face_recognition}.
@@ -276,7 +279,8 @@ médio de inferência e o método de treinamento.
 Com isso, é possível notar que o modelo que o melhor modelo foi o MobileFaceNet, por conta da sua estrutura
 mais robusta que tem o foco na tarefa de reconhecimento facial. Além disso, fica evidente a diferença entre
 o tempo de inferência do MobileFaceNet quantizado e não quantizado, isso se deve pelo ambiente de execução
-do TensorFlowLite, que em tempo de execução converte os pesos quantizados de inteiro de 8 bits para float.
+do TensorFlowLite, que em tempo de execução tem que fazer a dequantização, convertendo os pesos valores
+quantizados de inteiro de 8 bits para float.
 
 
 \begin{table}[htb]
@@ -301,8 +305,8 @@ A \autoref{acuracia_tempo_inferencia_modelos_raspberry} contém os resultados do
 Raspberry Pi Model B, utilizando o \textit{dataset} Faces - UFS e o interpretador do tflite-runtime
 \footnote{Disponível em: \url{https://pypi.org/project/tflite-runtime/}. Acessado em Maio 2025.}
 no lugar do interpretador do tensorflow, por ser a versão indicada para executar modelos de aprendizagem de
-máquina em dispositivos embarcados, móveis ou com baixo poder computacional. Por conta de uma limitação
-do tflite-runtime, o modelo MobileNetV3Small não foi incluído nos testes.
+máquina em dispositivos embarcados, móveis ou com baixo poder computacional. Por conta de uma limitação de
+compatibilidade do tflite-runtime, o modelo MobileNetV3Small não foi incluído nos testes.
 
 Com isso, é possível observar que os resultados são parecidos com o experimento no Desktop, o MobileFaceNet
 permanece com acurácia alta, com e sem quantização. A diferença no tempo de execução entre os tipos de

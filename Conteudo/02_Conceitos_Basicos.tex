@@ -77,10 +77,10 @@ reconhecidos por estas operações de filtragem.
 A \autoref{exemplo_conv}, é um exemplo da operação de convolução sendo aplicada em uma matriz.
 
 \begin{figure}[htb]
-	\caption {\label{exemplo_conv} Exemplo de convolução}
 	\begin{center}
 		\includegraphics[scale=1.0]{Imagens/conv}
 	\end{center}
+	\caption {\label{exemplo_conv} Exemplo de convolução}
 	\legend{Fonte: \citeonline{zhang2023dive}}
 \end{figure}
 
@@ -97,10 +97,10 @@ além de reduzir o tamanho da matriz de entrada ele consegue realçar algumas ca
 A \autoref{exemplo_pooling} demonstra uma operação de max \textit{pooling} em uma matriz.
 
 \begin{figure}[htb]
-	\caption {\label{exemplo_pooling} Exemplo de max \textit{pooling}}
 	\begin{center}
 		\includegraphics[scale=1.0]{Imagens/maxpooling}
 	\end{center}
+	\caption {\label{exemplo_pooling} Exemplo de max \textit{pooling}}
 	\legend{Fonte: \citeonline{zhang2023dive}}
 \end{figure}
 
@@ -126,10 +126,10 @@ um \textit{data augmentation}.
 Nesse caso, uma que foi revertida (\textit{flip}), gerando um novo dado para o \text{dataset}
 
 \begin{figure}[htb]
-	\caption {\label{cap_conceitos_exemplo_da}Exemplo de uma transformação utilizando \textit{data augmentation}}
 	\begin{center}
 		\includegraphics[scale=1]{Imagens/exemplo_da}
 	\end{center}
+	\caption {\label{cap_conceitos_exemplo_da}Exemplo de uma transformação utilizando \textit{data augmentation}}
 	\legend {Fonte: \citeonline{tf2guia}}
 \end{figure}
 
@@ -173,10 +173,10 @@ o processo de execução do modelo, permitindo que os nós relevantes sejam iden
 \autoref{cap_conceitos_tipos_poda} ilustra o fluxo dos dois tipos de poda.
 
 \begin{figure}[htb]
-	\caption {\label{cap_conceitos_tipos_poda}Fluxo dos tipos de poda}
 	\begin{center}
 		\includegraphics[scale=0.5]{Imagens/categorias-poda}
 	\end{center}
+	\caption {\label{cap_conceitos_tipos_poda}Fluxo dos tipos de poda}
 	\legend {Fonte: \cite{LIANG2021370}}
 \end{figure}
 
@@ -232,12 +232,33 @@ Esse fluxo pode ser observado na \autoref{cap_conceitos_exemplo_kd}.
 \section{Otimização Bayesiana}\label{cap_conceitos_bayesiana}
 % ---
 A otimização Bayesiana é um método utilizado para a otimização de hiperparâmetros em modelos de aprendizagem de
-máquina, especialmente do tipo caixa preta (\textit{black box}), como CNN.
-Esse método de otimização possui dois componentes principais, o modelo estatístico Bayesiano, que serve para modelar a
-função alvo, e a função de aquisição, que serve para escolher a próxima amostra de dados \cite{frazier2018tutorial}.
-Durante o teste inicial, o modelo escolhe os hiperparâmetros de forma aleatória, para aprender o comportamento da CNN.
-Depois disso, no processo iterativo, o modelo começa a convergir para uma combinação de hiperparâmetros otimizados,
-aumentando a acurácia da rede.
+máquina, principalmente para modelos mais complexos, como CNNs.
+Esse método de otimização possui dois componentes principais: um modelo estatístico Bayesiano, que serve para modelar a
+função alvo, e uma função de aquisição, que serve para escolher a próxima amostra de hiperparâmetros que será avaliada
+\cite{frazier2018tutorial}.
+
+% Durante o teste inicial, o modelo escolhe os hiperparâmetros de forma aleatória, para aprender o comportamento da CNN.
+% Depois disso, no processo iterativo, o modelo começa a convergir para uma combinação de hiperparâmetros otimizados,
+% aumentando a acurácia da rede.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[scale=0.5]{Imagens/fluxo_otmizacao_bayesiana}
+	\end{center}
+	\caption {\label{cap_conceitos_fluxo_otimizacao_bayesiana}Fluxo de otimização bayesiana para modelos de aprendizagem de máquina}
+	\legend {Fonte: \cite{ml-bayesian}}
+\end{figure}
+
+Na \autoref{cap_conceitos_fluxo_otimizacao_bayesiana}, é possível observar o fluxo de otimização bayesiana.
+Onde são fornecidas as variáveis que serão utilizadas pela otimização.
+Durante a otimização, primeiro, o modelo escolhe algumas aleatoriamente para avaliar o impacto de cada uma na
+performance do modelo.
+Com disso, durante um número pré-definido de interações, a função de aquisição escolhe os possíveis melhores valores
+para cada hiperparâmetro, buscando a melhor combinação de parâmetros.
+
+Um dos pontos mais fortes dessa abordagem é sua capacidade de aprender durante a busca, eliminando a necessidade de
+procurar todas as variações possíveis dos hiperparâmetros, diferente de abordagens como \textit{Grid Search} ou
+\textit{Random Search}.
 
 % A otimização Bayesiana procura encontrar um valor ótimo (maximizando ou minimizando alguma métrica do modelo).
 % Inicialmente os hiperparâmetros são escolhidos aleatoriamente e testados, após algumas iterações o modelo começa
